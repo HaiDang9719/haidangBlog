@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2018-05-29 18:05:55 +0300
+title:  "Linear Regression!"
+date:   '`r format(Sys.Date(), "%B %d, %Y")`'
 image:  11.jpg
 tags:   [Jekyll]
 ---
