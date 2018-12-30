@@ -100,7 +100,11 @@
 </header> <!-- /.header -->
 
 
-      <div class="container">
+      <script type="text/javascript" async
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?
+config=TeX-AMS-MML_HTMLorMML"></script>
+
+<div class="container">
 	<div class="row">
 		<div class="col col-12">
 			<div class="post-image-box">
@@ -136,8 +140,85 @@
 					<h1 id="welcome-to-my-first-blog">Welcome to my first blog</h1>
 
 <p><strong>Hello</strong>, this is my first blog post about linear regression in machine learning series.</p>
+<h3 id="semantic-meaning-of-linear-regression">Semantic meaning of linear regression</h3>
+<p>Let make an example first, we have a house and we need the machine to estimate the price of the house. So, what will be the important attribute we need to concern? Obviously, there is a list of attributes:</p>
+<ul>
+  <li>The position of the house, is it near the city center or supermarket?</li>
+  <li>The size of the house, is it big or small?</li>
+  <li>The number of rooms</li>
+  <li>…..</li>
+</ul>
+
+<p>Those information is presented as a vector to input to the machine, then we give them the sample price pair with the vector of information. As a result, when we input any block of information about the house, we expect the machine will return the expected price with minimal difference between it and the real price. To achieve that, we need to understand what actually happens inside the machine? So, we come to first and basic technique that happens inside the machine, linear regression.</p>
+
+<p>To get the expected price of the house, we actually need to know the influence of the attributes to the price of the house and this relationship is represented by linear regression. Why it is called linear regression? Because we represent it into a space as a line for 2D space and a hyperplane for 3D space. In machine learning, linear is most basic and common model, so it is a good starting point for study machine learning.</p>
+
+<h3 id="mathematical">Mathematical</h3>
+
+<p>In this part, I would like to summary the formula of linear regression, for more detail, you can read at link in source part.</p>
+
+<p>In linear regression, the relationship is represented a linear function or linear hyperplane and the result of the function is the prediction value:</p>
+
+<p>2D space: \[ y \approx \mathbf{\bar{x}}\mathbf{w} = \hat{y} \]</p>
+
+<p>We expect the predict price has as small difference as possible when comparing to the real price. The difference or we can call as loss is represented as the following function:</p>
+
+<p>\[\mathcal{L}(\mathbf{w}) = \frac{1}{2}\sum_{i=1}^N (y_i - \mathbf{\bar{x}_i}\mathbf{w})^2  \]
+To reduce the difference between predicted and real value, we find the value w so that the loss function has the minimum value.</p>
+
+<p>\[\mathbf{w}^* = \arg\min_{\mathbf{w}} \mathcal{L}(\mathbf{w})  \]</p>
+
+<p>To find the minimum value, one of the popular way is use derivative. 
+\[\frac{\partial{\mathcal{L}(\mathbf{w})}}{\partial{\mathbf{w}}} 
+   = \mathbf{\bar{X}}^T(\mathbf{\bar{X}}\mathbf{w} - \mathbf{y})  \]
+and the above function is equal 0 when it reaches the minimum value of w</p>
+
+<p>\[\mathbf{\bar{X}}^T\mathbf{\bar{X}}\mathbf{w} = \mathbf{\bar{X}}^T\mathbf{y} \triangleq \mathbf{b}  \]</p>
+
+<p>So, as a conclusion, the optimal point of linear regression is:</p>
+
+<p>\[\mathbf{w} = \mathbf{A}^{\dagger}\mathbf{b} = (\mathbf{\bar{X}}^T\mathbf{\bar{X}})^{\dagger} \mathbf{\bar{X}}^T\mathbf{y}  \]</p>
+
+<p>Now, let come to an example to get better understand how we solve the problem with the above function.</p>
+
+<p>We have a data for both training and test set: 
+<img src="../img/dataset-linear-regression.jpg" alt="" />
+And the problem: 
+In this problem you will implement the linear basis method for regression with least squares error. You will estimate functions using the training data and evaluate their performance on the test data. You should solve this problem by setting up a linear system of equations Aw = b, where the solution to the linear equations minimizes the sum of squared errors.
+For this problem you should use polynomial basis functions:
+\[\phi _ { 1 } ( x ) = 1 , \phi _ { 2 } ( x ) = x , \phi _ { 3 } ( x ) = x ^ { 2 } , \phi _ { 4 } ( x ) = x ^ { 3 } , \ldots \]
+\[f _ { w } ( x ) = \sum _ { i = 1 } ^ { M } w _ { i } \phi _ { i } ( x )  \]
+Let T: 
+\[T = { \left( x _ { 1 } , y _ { 1 } \right) , \ldots , \left( x _ { N } , y _ { N } \right)}  \]
+And RMS is: 
+\[E ( F , T ) = \sqrt { \frac { \sum _ { i = 1 } ^ { N } \left( f _ { w } \left( x _ { i } \right) - y _ { i } \right) ^ { 2 } } { N } }  \]
+Let begin:</p>
+
+<p>Degree 1: We firstly create the matrix H1(combine 1 and X value in the training set), then calculate the transpose of matrix H1. Then, we multiple the matrix H1 with the transpose matrix of H1 to get the A value. 
+For b value, we multiple the transpose matrix of H1 with t value( in this case is the matrix of Y value in the training set. 
+To calculate w*: We multiple the inverse value of A with value of b.
+And the result has two value(a,b) present for the linear function:  f(x) = ax + b.</p>
+
+<p><img src="../img/linear-regression-ex1.png" alt="" /></p>
+
+<p>After we have w value for each degree, we apply it to the above formula to calculate the RMS.
+With training set, we calculate the sum of the power-two of the substraction beween polinomial function and Y. Then, we take square root of the sum over the number of data point. The detail of calculation is included in the image below.
+<img src="../img/linear-regression-ex1-rms-training.png" alt="" />
+For test set: 
+<img src="../img/linear-regression-ex1-rms-test.png" alt="" /></p>
+
+<p>For more detail, you can download source code (python) here: <a href="https://drive.google.com/file/d/1fCnqYUKJVz8_ziw7cnVTpMx96o-Hkrzn/view?usp=sharing">Link</a></p>
+
+<p>Python also provide a library scikit-learn that have linear model. So, you can use this library to test the result after finishing the exercise.</p>
+
+<p>You can also practice with the example in <a href="https://machinelearningcoban.com/2016/12/28/linearregression/">Linear Regression - ML cơ bản</a>.</p>
 
 <p>I hope you like it!</p>
+
+<p>Source:</p>
+
+<p><a href="https://machinelearningcoban.com/2016/12/28/linearregression/">Linear Regression - ML cơ bản</a></p>
+
 
 
 					<div class="post-share">
@@ -149,7 +230,7 @@
 									<i class="ion ion-logo-facebook"></i>
 								</a>
 							</li>
-					
+
 							<li class="share-item">
 								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Linear%20Regression&url=http://localhost:4000/haidangBlog/linear-regression/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
@@ -157,7 +238,7 @@
 									<i class="ion ion-logo-twitter"></i>
 								</a>
 							</li>
-					
+
 							<li class="share-item">
 								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/linear-regression/&title=Linear%20Regression&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
@@ -165,7 +246,7 @@
 									<i class="ion ion-logo-linkedin"></i>
 								</a>
 							</li>
-					
+
 							<li class="share-item">
 								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/linear-regression/&amp;media=http://localhost:4000/haidangBlog/img/ML1.jpg&amp;description=Linear%20Regression"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
@@ -338,6 +419,7 @@
 	</div>
 </div>
 
+
   <footer class="footer">
   <div class="container">
     <div class="row">
@@ -350,7 +432,7 @@
         </div>
         <div class="footer-bottom">
           <div class="copyright">
-            <p>&copy; 2018 Crafted & Designed by <a href="https://github.com/artemsheludko">Artem Sheludko</a></p>
+            <p>&copy; 2018 Hai Dang All Rights Reserved - Design followed by <a href="https://github.com/artemsheludko">Artem Sheludko</a></p>
           </div>
           <div class="footer-social">
             <ul class="list-reset">
@@ -376,6 +458,7 @@
     </div>
   </div>
 </footer> <!-- /.footer -->
+
   <script src="/haidangBlog/js/jquery-3.3.1.min.js"></script>
 <script src="/haidangBlog/js/simple-jekyll-search.min.js"></script>
 <script>
