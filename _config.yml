@@ -9,8 +9,8 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 #-------------------------------
 # About Section
-author-name:   Natali Anderson
-author-avatar: 09.jpg
+author-name:   Hai Dang
+author-avatar: author.jpg
 
 
 #-------------------------------
@@ -23,7 +23,7 @@ pinterest: https://www.pinterest.com/ # Add your Facebook handle
 
 #-------------------------------
 # Comment Section (Disqus)
-disqus-identifier: mr-brown # Add your shortname for Disqus Comment. For example mr-brown
+disqus-identifier: mr-Dang # Add your shortname for Disqus Comment. For example mr-brown
 
 
 #-------------------------------

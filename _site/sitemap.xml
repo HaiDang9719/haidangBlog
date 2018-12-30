@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://localhost:4000/haidangBlog/linear-regression/</loc>
+<lastmod>2018-12-30T00:00:00+07:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/haidangBlog/the-path-to-self-perfection/</loc>
+<lastmod>2018-08-23T20:03:30+07:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/haidangBlog/welcome-to-jekyll/</loc>
+<lastmod>2018-05-29T22:05:55+07:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/haidangBlog/404.html</loc>
+</url>
+<url>
+<loc>http://localhost:4000/haidangBlog/about/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/haidangBlog/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/haidangBlog/styleguide/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/haidangBlog/tags/</loc>
+</url>
+</urlset>
