@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Introduction to AI and Machine Learning",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/haidangBlog/introduction-to-ML/",
+      "date"     : "2018-12-31 00:00:00 +0700"
+    } ,
+  
+    {
       "title"    : "Linear Regression",
       "category" : "",
       "tags"     : "",
