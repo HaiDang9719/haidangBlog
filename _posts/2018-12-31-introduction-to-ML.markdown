@@ -69,7 +69,7 @@ comments: true
    * { \\({ 1 , z , z ^ { 2 } , \ldots , z ^ { n } } \\)} is vector in \\(P _ { n } ( \mathbb { R } ) \\)(all a is 1)
    * \\(\ {\{ e _ { i } \ }\} = \ { z ^ { i } \ } _ { i = 0 } ^ { n } \\) is basis of \\(P _ { n } ( \mathbb { R } ) \\)
    * \\(\forall v \in V = P _ { n } ( \mathbb { R } ) : \quad v = a _ { 0 } e _ { 0 } + \cdots + a _ { n } e _ { n } = \sum _ { i = 0 } ^ { n } a _ { j } e _ { i }\\), v is linear combination of the vector base. 
-   * Basis in vector space means:
+   * Basis vector in vector space means:
      * Directions
      * Landmarks
      * Features
