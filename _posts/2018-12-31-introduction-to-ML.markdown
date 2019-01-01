@@ -50,7 +50,7 @@ comments: true
    * To represent data in multi-dimensional space, we have: 
    
    | Rank  | Math Entity                     | Formula  |
-   | ----- |:-------------------------------:| -----:   | 
+   | ----- |:-------------------------------:|:--------:| 
    | 0     | Scalar (magnitude only)         | \\[v \in \mathbb {R} \\]    |
    | 1     | Vector (magnitude and direction)| \\[v \in \mathbb {R}^m, v = [vi] \\]    |
    | 2     | Matrix (table of numbers)       | \\[v \in \mathbb {R}^{ m \times n }, v = [vij] \\]    |
@@ -64,7 +64,7 @@ comments: true
    \\[h = f + g ; h ( z ) = \sum _ { i = 0 } ^ { n } \left( a _ { i } + b _ { i } \right) z ^ { i } \in P _ { n } ( \mathbb { R } ) \\]
    \\[v = \alpha f ; v ( z ) = \sum _ { i = 0 } ^ { n } \alpha a _ { i } z ^ { \prime } \in P _ { n } ( \mathbb { R } ) \\]
    
-     -> Pn(R) is a vector space.
+     -> \\(P _ { n } ( \mathbb { R } ) \\) is a vector space.
    
    * { \\({ 1 , z , z ^ { 2 } , \ldots , z ^ { n } } \\)} is vector in \\(P _ { n } ( \mathbb { R } ) \\)(all a is 1)
    * \\(\ {\{ e _ { i } \ }\} = \ { z ^ { i } \ } _ { i = 0 } ^ { n } \\) is basis of \\(P _ { n } ( \mathbb { R } ) \\)
@@ -76,7 +76,7 @@ comments: true
      * Words
      * Prototypes, patterns, templates
      * Regularities, abstractions
-   * Every vectors in vectors space can be decomposed by the basis:  \\(\xi = \left( e _ { 1 } , \dots , e _ { n } \right)\\)(ordered basis)
+   * Every vectors in vectors space can be decomposed by the basis vector:  \\(\xi = \left( e _ { 1 } , \dots , e _ { n } \right)\\)(ordered basis)
    \\[\stackrel { \forall v \in V } { \longrightarrow } \text { decomposition } [ v ] \varepsilon = \text { coordinates } \left( a _ { 1 } , \ldots , a _ { n } \right) \in \mathbb { R } ^ { n }\\]
      Each vectors is represented by the basis vectors and coordinate parameters that show the similarity between them (important note).
      
