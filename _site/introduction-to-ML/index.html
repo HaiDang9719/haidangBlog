@@ -47,7 +47,7 @@
       <div class="col col-12">
         <div class="header-box">
           <div class="logo-title">
-            <a href="/haidangBlog/" class="logo-text">Galada</a>
+            <a href="/haidangBlog/" class="logo-text">HDML</a>
           </div>
 
           <nav class="nav-menu">
@@ -162,8 +162,12 @@ config=TeX-AMS-MML_HTMLorMML"></script>
     <ol>
       <li>Function
         <ul>
-          <li>Affine function \[\mathbf{f(x)} = \mathbf{a}x+ \mathbf{b},  x \in \mathbb { R } \]</li>
-          <li>Quadratic function \[\mathbf{f(x)} = \mathbf{a}x^2+ \mathbf{b}x +c, a \ne 0, a,b,c \in \mathbb { R } \]</li>
+          <li>Affine function \[f ( x ) = \mathbf{a}x+ \mathbf{b},  x \in \mathbb { R } \]</li>
+          <li>Quadratic function \[f ( x ) = \mathbf{a}x^2+ \mathbf{b}x +c, a \ne 0, a,b,c \in \mathbb { R } \]</li>
+          <li><a href="https://en.wikipedia.org/wiki/Sigmoid_function">Logistic sigmoid</a>
+\[f ( x ) = \frac { 1 } { 1 + e ^ { - x } } \]</li>
+          <li><a href="https://en.wikipedia.org/wiki/Sigmoid_function">Hyperbolic tangent</a>
+\[f ( x ) = \tanh x = \frac { e ^ { x } - e ^ { - x } } { e ^ { x } + e ^ { - x } } \]</li>
           <li>We have two way to represent function on 2D space:
             <ul>
               <li>The first way, with the value of x, we can find the corresponding y by the function. The graph of the function is the set of those pair of x and y.</li>
@@ -176,15 +180,107 @@ config=TeX-AMS-MML_HTMLorMML"></script>
       </li>
     </ol>
   </li>
-  <li>Vector and vector space</li>
+  <li>
+    <p>Vector and vector space</p>
+
+    <p>4.1. Vector</p>
+    <ul>
+      <li>Vector is an object that has both direction and magnitude, it can be represented as a directed line segment and as a point in vector space. 
+<img src="../img/introduction-to-ml-vector.png" alt="color: white" /></li>
+    </ul>
+
+    <p>4.2. <a href="http://www.math.toronto.edu/gscott/WhatVS.pdf">Vector space</a></p>
+    <ul>
+      <li>Vector space is a set of vector that satisfy two conditions of two operation:
+        <ul>
+          <li>An operation called vector addition that takes two vectors v, w ∈ V , and produces a third vector, written v + w ∈ V .</li>
+          <li>An operation called scalar multiplication that takes a scalar c ∈ F and a vector v ∈ V , and produces a new vector, written cv ∈ V .</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>4.3. Meaning</p>
+    <ul>
+      <li>In machine learning, each vector contains multiple parts and each part represent for a characteristic of an object. These parts connect together by Cartesian product to create a coordinate space.
+\[V = \mathbb { R }^n = \mathbb { R } \times \mathbb { R }…\times\mathbb { R } : Cartesian-product\] 
+\[v \in V, v = (v1, v2, …, vn) := [vi], vi \in \mathbb { R }, \forall i \in {1 .. n} \]</li>
+      <li>To represent data in multi-dimensional space, we have:</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th style="text-align: center">Math Entity</th>
+          <th style="text-align: right">Formula</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0</td>
+          <td style="text-align: center">Scalar (magnitude only)</td>
+          <td style="text-align: right">\[v \in \mathbb {R} \]</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td style="text-align: center">Vector (magnitude and direction)</td>
+          <td style="text-align: right">\[v \in \mathbb {R}^m, v = [vi] \]</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td style="text-align: center">Matrix (table of numbers)</td>
+          <td style="text-align: right">\[v \in \mathbb {R}^{ m \times n }, v = [vij] \]</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td style="text-align: center">3-Tensor (cube of numbers)</td>
+          <td style="text-align: right">\[v \in \mathbb {R}^{ m \times n \times p }, v = [vijk], vijk \in \mathbb {R}, i \in {1,..,m}, j \in {1,..,n}, k \in {1,..,p} \]</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>4.4. Function space
+\[f ( z ) = a _ { 0 } + a _ { 1 } z + a _ { 2 } z ^ { 2 } + \cdots + a _ { n } z ^ { n } = \sum _ { i = 0 } ^ { n } a _ { i } z ^ { i } \in P _ { n } ( \mathbb { R } ) \]
+\[g ( z ) = b _ { 0 } + b _ { 1 } z + b _ { 2 } z ^ { 2 } + \ldots + b _ { n } z ^ { n } = \sum _ { i = 0 } ^ { n } b _ { i } z ^ { i } \in P _ { n } ( \mathbb { R } ) \]</p>
+    <ul>
+      <li>
+        <p>We suppose f and g are the vectors in vector space \(P _ { n } ( \mathbb { R } ) \), so two following operations must be satisfy: 
+\[h = f + g ; h ( z ) = \sum _ { i = 0 } ^ { n } \left( a _ { i } + b _ { i } \right) z ^ { i } \in P _ { n } ( \mathbb { R } ) \]
+\[v = \alpha f ; v ( z ) = \sum _ { i = 0 } ^ { n } \alpha a _ { i } z ^ { \prime } \in P _ { n } ( \mathbb { R } ) \]</p>
+
+        <p>-&gt; Pn(R) is a vector space.</p>
+      </li>
+      <li>{ \({ 1 , z , z ^ { 2 } , \ldots , z ^ { n } } \)} is vector in \(P _ { n } ( \mathbb { R } ) \)(all a is 1)</li>
+      <li>\(\ {{ e _ { i } \ }} = \ { z ^ { i } \ } _ { i = 0 } ^ { n } \) is basis of \(P _ { n } ( \mathbb { R } ) \)</li>
+      <li>\(\forall v \in V = P _ { n } ( \mathbb { R } ) : \quad v = a _ { 0 } e _ { 0 } + \cdots + a _ { n } e _ { n } = \sum _ { i = 0 } ^ { n } a _ { j } e _ { i }\), v is linear combination of the vector base.</li>
+      <li>Basis in vector space means:
+        <ul>
+          <li>Directions</li>
+          <li>Landmarks</li>
+          <li>Features</li>
+          <li>Words</li>
+          <li>Prototypes, patterns, templates</li>
+          <li>Regularities, abstractions</li>
+        </ul>
+      </li>
+      <li>Every vectors in vectors space can be decomposed by the basis:  \(\xi = \left( e _ { 1 } , \dots , e _ { n } \right)\)(ordered basis)
+\[\stackrel { \forall v \in V } { \longrightarrow } \text { decomposition } [ v ] \varepsilon = \text { coordinates } \left( a _ { 1 } , \ldots , a _ { n } \right) \in \mathbb { R } ^ { n }\]
+Each vectors is represented by the basis vectors and coordinate parameters that show the similarity between them (important note).</li>
+    </ul>
+  </li>
 </ol>
+
+<p>We will continue with basis vectors and coordinate vectors in the next part.</p>
 
 <p>I hope you like it!</p>
 
 <p>Source:</p>
 
-<p><a href="https://www.facebook.com/curiousAI/videos/1431500110327587/?fref=mentions">Machine Learning - Lecture 1</a>
-<a href="https://www.facebook.com/curiousAI/videos/1443931999084398/?hc_location=ufi">Machine Learning - Lecture 2</a></p>
+<p><a href="https://www.facebook.com/curiousAI/videos/1431500110327587/?fref=mentions">Machine Learning - Lecture 1</a></p>
+
+<p><a href="https://www.facebook.com/curiousAI/videos/1443924629085135/?hc_location=ufi">Machine Learning - Lecture 2.1</a></p>
+
+<p><a href="https://www.facebook.com/curiousAI/videos/1443931999084398/?hc_location=ufi">Machine Learning - Lecture 2.2</a></p>
 
 
 
@@ -407,7 +503,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
       <div class="col col-12">
         <div class="footer-top">
           <h2 class="logo-title">
-            <a href="/haidangBlog/" class="logo-text">Galada</a>
+            <a href="/haidangBlog/" class="logo-text">HDML</a>
           </h2>
           <div class="top"><i class="ion ion-ios-arrow-up"></i></div>
         </div>
