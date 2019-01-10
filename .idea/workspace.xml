@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="633aa5b8-0f6e-4114-840d-d692ec93cb07" name="Default Changelist" comment="" />
+    <list default="true" id="633aa5b8-0f6e-4114-840d-d692ec93cb07" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2018-08-23-the-path-to-self-perfection.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/introduction-to-ML/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/introduction-to-ML/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/linear-regression/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/linear-regression/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/_site/search.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_site/sitemap.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/tags/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/tags/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/the-path-to-self-perfection/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/welcome-to-jekyll/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/welcome-to-jekyll/index.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -15,18 +27,22 @@
     <session id="-1452223762">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Gemfile" value="1" />
-          <entry key="html" value="26" />
+          <entry key="html" value="27" />
           <entry key="ico" value="1" />
           <entry key="jpg" value="6" />
           <entry key="lock" value="1" />
-          <entry key="markdown" value="5" />
+          <entry key="markdown" value="8" />
           <entry key="md" value="4" />
           <entry key="scss" value="4" />
           <entry key="yml" value="4" />
@@ -34,9 +50,9 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="26" />
+          <entry key="HTML" value="27" />
           <entry key="Image" value="7" />
-          <entry key="Markdown" value="9" />
+          <entry key="Markdown" value="12" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="SCSS" value="4" />
           <entry key="YAML" value="4" />
@@ -45,7 +61,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="72" />
-          <entry key="markdown" value="9359" />
+          <entry key="markdown" value="12859" />
           <entry key="md" value="279" />
           <entry key="rmarkdown" value="2" />
           <entry key="yml" value="68" />
@@ -54,7 +70,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="72" />
-          <entry key="Markdown" value="9638" />
+          <entry key="Markdown" value="13138" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="YAML" value="68" />
         </counts>
@@ -65,77 +81,39 @@
     <favorites_list name="MachineLearning" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="368">
+                <caret line="60" column="115" selection-start-line="60" selection-start-column="115" selection-end-line="60" selection-end-column="115" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2018-12-30-linear-regression.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="290">
-                <caret line="60" column="57" lean-forward="true" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="57" />
+              <first_editor relative-caret-position="338">
+                <caret line="82" selection-start-line="82" selection-end-line="86" selection-end-column="94" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2018-12-31-introduction-to-ML.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="314">
-                <caret line="52" column="56" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
+              <first_editor>
+                <caret selection-end-line="7" selection-end-column="74" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_includes/footer.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="69" lean-forward="true" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_pages/styleguide.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-1327" />
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_includes/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="62" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_layouts/post.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="11" column="135" selection-start-line="11" selection-start-column="135" selection-end-line="11" selection-end-column="135" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#article#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -163,6 +141,7 @@
         <option value="$PROJECT_DIR$/_includes/header.html" />
         <option value="$PROJECT_DIR$/_includes/footer.html" />
         <option value="$PROJECT_DIR$/_posts/2018-12-31-introduction-to-ML.markdown" />
+        <option value="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" />
       </list>
     </option>
   </component>
@@ -186,7 +165,7 @@
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="726" />
+    <option name="height" value="725" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -282,24 +261,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1546110212901</updated>
-      <workItem from="1546110215847" duration="39889000" />
+      <workItem from="1546110215847" duration="40456000" />
+      <workItem from="1546486591075" duration="524000" />
+      <workItem from="1546766288609" duration="7425000" />
+      <workItem from="1547092361743" duration="4972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39889000" />
+    <option name="totallyTimeSpent" value="53377000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" sideWeight="0.50136983" side_tool="true" weight="0.2494043" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49863014" visible="true" weight="0.2494043" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49863014" visible="true" weight="0.2494043" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" visible="true" weight="0.20136987" />
-      <window_info anchor="bottom" id="Terminal" weight="0.329653" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" sideWeight="0.50136983" side_tool="true" weight="0.2494043" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329653" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -307,6 +285,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.20136987" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.329653" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -325,16 +307,7 @@
     <entry file="file://$PROJECT_DIR$/_includes/main.scss">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2018-08-23-the-path-to-self-perfection.markdown">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="315">
-            <caret line="7" column="741" selection-end-line="26" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2018-08-23-the-path-to-self-perfection.markdown" />
     <entry file="file://$PROJECT_DIR$/img/01.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -445,21 +418,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_config.yml">
+    <entry file="file://$PROJECT_DIR$/_includes/footer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+        <state relative-caret-position="120">
+          <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" column="135" selection-start-line="11" selection-start-column="135" selection-end-line="11" selection-end-column="135" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#article#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/_pages/styleguide.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
         </state>
       </provider>
     </entry>
@@ -470,17 +440,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_includes/footer.html">
+    <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="69" lean-forward="true" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
+        <state relative-caret-position="690">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_pages/styleguide.md">
+    <entry file="file://$PROJECT_DIR$/_layouts/post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="11" column="135" selection-start-line="11" selection-start-column="135" selection-end-line="11" selection-end-column="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2018-12-31-introduction-to-ML.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-1327" />
+          <first_editor>
+            <caret selection-end-line="7" selection-end-column="74" />
+          </first_editor>
           <second_editor />
         </state>
       </provider>
@@ -488,18 +467,18 @@
     <entry file="file://$PROJECT_DIR$/_posts/2018-12-30-linear-regression.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="290">
-            <caret line="60" column="57" lean-forward="true" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="57" />
+          <first_editor relative-caret-position="338">
+            <caret line="82" selection-start-line="82" selection-end-line="86" selection-end-column="94" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2018-12-31-introduction-to-ML.markdown">
+    <entry file="file://$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="314">
-            <caret line="52" column="56" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
+          <first_editor relative-caret-position="368">
+            <caret line="60" column="115" selection-start-line="60" selection-start-column="115" selection-end-line="60" selection-end-column="115" />
           </first_editor>
           <second_editor />
         </state>

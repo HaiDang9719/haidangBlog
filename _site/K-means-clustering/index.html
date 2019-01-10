@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>The path to self-perfection</title>
+  <title>K-means-clustering</title>
   <meta name='description' content='Galada is an easy and simple theme for Jekyll. Dark colors, give it a special exquisite look. A careful approach to design and features make it an ideal solution for a personal blog.'>
 
-  <link rel="canonical" href="http://localhost:4000/haidangBlog/the-path-to-self-perfection/">
+  <link rel="canonical" href="http://localhost:4000/haidangBlog/K-means-clustering/">
   <link rel="alternate" type="application/rss+xml" title="Galada Theme | Theme for Jekyll" href="/haidangBlog/feed.xml">
 
   <!-- Google Font -->
@@ -108,7 +108,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 	<div class="row">
 		<div class="col col-12">
 			<div class="post-image-box">
-				<div class="post-image" style="background-image: url(/haidangBlog/img/05.jpg)"></div>
+				<div class="post-image" style="background-image: url(/haidangBlog/img/knn-1.png)"></div>
 			</div>
 		</div>
 	</div>
@@ -121,53 +121,108 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 				<div class="post-head">
 					
-					<div class="post-tag">
-						
-						<a href="/haidangBlog/tags#Life" class="tag">Life</a>
-						
-					</div>
-					
-					<h1 class="post-title">The path to self-perfection</h1>
+					<h1 class="post-title">K-means-clustering</h1>
 					<div class="post-info">
 						<div class="post-info-author">
-							<div class="info-author-avatar" style="background-image: url(/haidangBlog/img/09.jpg)"></div>
+							<div class="info-author-avatar" style="background-image: url(/haidangBlog/img/author.jpg)"></div>
 							<span>by</span>
-							<span class="info-author-name">Natali Anderson</span>
+							<span class="info-author-name">Hai Dang</span>
 						</div>
 						<div class="post-date">
 							<span>
-								<time datetime="2018-08-23T20:03:30+07:00">Aug 23, 2018</time>
+								<time datetime="2019-01-03T00:00:00+07:00">Jan 03, 2019</time>
 							</span>
 						</div>
 					</div>
 				</div>
 
 				<div class="post-body">
-					<p>Unicorn vegan humblebrag whatever microdosing, yr pabst post-ironic chartreuse. IPhone irony fingerstache microdosing juice poutine. Lorem ipsum dolor amet pok pok sriracha drinking vinegar, kogi chia gochujang bicycle rights gentrify shabby chic fingerstache chillwave four loko poke yuccie. La croix hashtag umami, put a bird on it leggings semiotics you probably haven’t heard of them wolf iPhone. Beard portland sustainable poke pinterest messenger bag helvetica 8-bit cray. Keffiyeh PBR&amp;B helvetica organic palo santo, art party pop-up letterpress next level VHS selvage snackwave tumblr deep v. Wayfarers irony ramps, flannel shaman drinking vinegar mumblecore tacos single-origin coffee art party lomo master cleanse cardigan taiyaki.</p>
+					<h1 id="welcome-to-my-next-blog">Welcome to my next blog</h1>
+<p><strong>Hello</strong>, this is blog about K means clustering.</p>
+<h3 id="why-and-when">Why and When?</h3>
+<ul>
+  <li>K means clustering: We usually use this algorithm for unsupervised learning problem. With the unlabeled data, e.g we have multiple images of apple and mango, but we don’t know which one is apple and which one is mango. So, basically, we will create two clusters based on size, shape, … for these two kind of fruit and decide the most typical one will be the center of each cluster -&gt; this is K means clustering.</li>
+</ul>
 
-<p>Retro activated charcoal mustache selvage sartorial four loko brooklyn woke dreamcatcher lyft migas VHS. Bitters celiac flannel schlitz aesthetic echo park polaroid. Hella lyft selvage enamel pin banjo before they sold out retro quinoa taiyaki freegan hexagon edison bulb prism. Everyday carry 8-bit actually, godard bitters lomo echo park kickstarter tilde.</p>
+<h3 id="mathematical">Mathematical</h3>
+<ul>
+  <li>\(\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_N] \in \mathbb{R}^{d \times N}\) data point, \(K &lt; N\) is number of clusters.</li>
+  <li>\(\mathbf{y}_i = [y _ {i1}, y _ {i2}, \dots, y _ {iK}] \) is label vector for each vector data point \(\mathbf{x}_i\). If \(\mathbf{x}_i\) is belong to to cluster \(K\) mean \(\mathbf{y} _ {ik} = 1\) and \(y _ {ij} = 0, \forall j \neq k \). This representation is call one-hot.</li>
+</ul>
 
-<p>Gluten-free bicycle rights kogi ramps chartreuse lyft. Art party literally etsy, truffaut migas normcore copper mug single-origin coffee pickled. Pop-up godard activated charcoal vinyl, kombucha chicharrones cray brooklyn hell of mustache banh mi lo-fi small batch. Ugh literally cred gluten-free. Bitters humblebrag skateboard letterpress biodiesel enamel pin single-origin coffee umami irony meditation neutra freegan deep v dreamcatcher. Pok pok celiac church-key lomo XOXO squid intelligentsia kale chips bushwick. Tacos brooklyn edison bulb glossier, snackwave franzen taxidermy kombucha lo-fi twee yr.</p>
+<p>\[y_{ik} \in {0, 1},~~~ \sum_{k = 1}^K y_{ik} = 1 \]</p>
+<ul>
+  <li>Why we need to use this representation and when we use it?
+    <ul>
+      <li>K means clustering algorithm can not operate on label data directly, it should be numeric to calculate e.g the loss function below.</li>
+      <li>To transform categorical to numeric form, there are two way to convert: Integer Encoding and One-hot Encoding. There is a limitation of using Integer Encoding is that it works well in case the ordinal relationships exits in the problem, otherwise, it will create a mistake. More detail, you can further read <a href="https://machinelearningmastery.com/why-one-hot-encode-data-in-machine-learning/">here</a>.</li>
+    </ul>
+  </li>
+  <li>Loss function:</li>
+</ul>
 
-<p><img src="/haidangBlog/img/04.jpg" alt="" /></p>
+<p>\[\mathcal{L}(\mathbf{Y}, \mathbf{M}) = \sum _ {i=1}^N \sum _ {j=1}^K y _ {ij} |\mathbf{x}_i - \mathbf{m}_j|_2^2\]</p>
 
-<p>Typewriter jean shorts literally godard la croix. Put a bird on it wayfarers distillery taiyaki knausgaard +1, hella fixie. Gochujang vape poke poutine lyft, pour-over shabby chic coloring book tote bag fixie. Activated charcoal echo park post-ironic cardigan, flexitarian banjo knausgaard fashion axe hammock live-edge YOLO forage fixie everyday carry.</p>
+<ul>
+  <li>\(\mathbf{Y} = [\mathbf{y}_1; \mathbf{y}_2; \dots; \mathbf{y}_N]\) is lable vector and \(\mathbf{M} = [\mathbf{m}_1, \mathbf{m}_2, \dots \mathbf{m}_K]\) is center of cluster. So, to get the better result, we need to optimize</li>
+</ul>
 
-<p>Kickstarter +1 brunch hell of twee asymmetrical cardigan hella forage humblebrag. Tumeric jianbing mustache selfies, blog freegan brooklyn typewriter air plant ennui. Poke snackwave chia vaporware normcore. Chambray brooklyn poutine polaroid. Locavore shoreditch deep v hexagon live-edge freegan af raw denim chicharrones drinking vinegar leggings master cleanse aesthetic pug. Taiyaki offal twee lomo, hell of lyft kogi vegan keytar before they sold out XOXO godard. Slow-carb quinoa pitchfork tumblr biodiesel.</p>
+<p>\[\mathbf{Y}, \mathbf{M} = \arg\min_{\mathbf{Y}, \mathbf{M}} \sum _ {i=1}^N \sum _ {j=1}^K y _ {ij} |\mathbf{x}_i - \mathbf{m}_j|_2^2 \]</p>
 
-<p>Live-edge williamsburg semiotics organic. Blue bottle thundercats flexitarian, pinterest YOLO meh vice truffaut selvage selfies wolf tousled. Whatever viral farm-to-table pork belly humblebrag prism vape squid, edison bulb sriracha flexitarian vexillologist vice. Locavore blog wolf bicycle rights yr literally vaporware vinyl.</p>
+<p>\[\text{subject to:} ~~ y_{ij} \in {0, 1}~~ \forall i, j;~~~ \sum_{j = 1}^K y_{ij} = 1~~\forall i\]</p>
 
-<p>Next level lo-fi yuccie bitters echo park tacos single-origin coffee man braid sartorial. Kale chips PBR&amp;B ethical banjo chia hot chicken paleo small batch synth drinking vinegar. Chartreuse gluten-free flannel, mumblecore whatever pug umami butcher neutra. Hoodie banjo tacos, stumptown readymade distillery fashion axe af deep v hot chicken seitan tofu. Listicle vape portland, art party mlkshk yuccie YOLO austin 8-bit. Vaporware vinyl artisan, roof party deep v banjo cronut.</p>
+<ul>
+  <li>\(Y, M\) are the variables need to find to reach the optimal value of the above function. So, we have two ways:</li>
+  <li>
+    <p>The first way, fix \(Y\) to find \(M\):
+\[\mathbf{m} _ j = \arg\min _ {\mathbf{m}_j} \sum _ {i = 1}^{N} y _ {ij} |\mathbf{x}_i - \mathbf{m}_j |_2^2.\]</p>
 
-<p>Letterpress next level master cleanse mlkshk echo park celiac chillwave cray 90’s chia deep v. Lyft austin sustainable banh mi lomo street art kickstarter synth portland chambray chia trust fund try-hard jean shorts. Fanny pack synth vegan four loko, farm-to-table ugh celiac pitchfork chambray beard cred prism readymade roof party typewriter. Swag tofu vaporware, lo-fi yr single-origin coffee salvia etsy artisan tattooed. Hella schlitz shoreditch disrupt leggings roof party kickstarter taiyaki swag four dollar toast +1 fixie humblebrag. Pour-over air plant literally bespoke hella raw denim. Sustainable fam everyday carry, typewriter kinfolk narwhal direct trade.</p>
+    <p>We take the 2-sided derivative, then we can get the value (detail <a href="https://machinelearningcoban.com/2017/01/01/kmeans/">here</a>)
+\[\Rightarrow \mathbf{m} _ j = \frac{ \sum _ {i=1}^N y _ {ij} \mathbf{x}_i}{\sum _ {i=1}^N y _ {ij}}\]</p>
+  </li>
+  <li>The second way, fix \(M\) to find \(Y\) (detail <a href="https://machinelearningcoban.com/2017/01/01/kmeans/">here</a>):
+\[\mathbf{y} _ i = \arg\min _ {\mathbf{y}_i} \sum _ {j=1}^K y _ {ij}|\mathbf{x} _ i - \mathbf{m}_j|_2^2 \]</li>
+</ul>
 
-<p>Man braid sustainable affogato pinterest leggings. Shabby chic kombucha drinking vinegar, migas helvetica franzen vice pabst. Fashion axe YOLO hexagon ramps. Keffiyeh gluten-free williamsburg kombucha. Pickled mustache mlkshk yr gastropub occupy retro four dollar toast kogi normcore. Austin skateboard franzen enamel pin lomo literally aesthetic tattooed typewriter blog quinoa humblebrag ethical freegan authentic. Vaporware crucifix 90’s, venmo adaptogen bitters migas.</p>
+<h3 id="example">Example</h3>
+<p>5-tuples: T, E, P, A, F</p>
+<ul>
+  <li>Task: Find the center of each clusters</li>
+  <li>Experience: 1500 points and 3 clusters</li>
+  <li>Performance: compare the result with expected center we have created from the beginning.</li>
+  <li>Algorithm: K means clustering</li>
+  <li>Function: \((a, b) = f(A)\) \((a, b)\) is the coordinate of the center of cluster \(A\).</li>
+  <li>You can change the coordinate of test center point and increase the number of point in each cluster as well as number of cluster to check the accuracy.</li>
+  <li>
+    <p>The result also depend on separation between these clusters, if the clusters are quite mixed, the result will have a significant error.</p>
+
+    <p>Center point: \([2, 2], [8, 5], [3, 6], [9,8]\)</p>
+  </li>
+</ul>
+
+<p><img src="../img/k-means-clustering.png" alt="" />
+<em>Input data</em></p>
+
+<p>Center point: \([2.99181004 6.03338002], [9.01890293 8.09573328], [1.97276695 2.00616681], [8.00032512 4.9943995 ]\)</p>
+
+<p><img src="../img/k-means-clustering-after.png" alt="Result" />
+<em>Result</em></p>
+
+<ul>
+  <li>Source code: <a href="https://github.com/HaiDang9719/StudyML/blob/master/K_means_clustering/k-meansClusteringex1.py">Here</a></li>
+</ul>
+
+<p>I hope you like it!</p>
+
+<p>Source:</p>
+
+<p><a href="https://machinelearningcoban.com/2017/01/01/kmeans/">K means Clustering - ML cơ bản</a></p>
 
 
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/the-path-to-self-perfection/"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/K-means-clustering/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -175,7 +230,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=The%20path%20to%20self-perfection&url=http://localhost:4000/haidangBlog/the-path-to-self-perfection/"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=K-means-clustering&url=http://localhost:4000/haidangBlog/K-means-clustering/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -183,7 +238,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/the-path-to-self-perfection/&title=The%20path%20to%20self-perfection&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/K-means-clustering/&title=K-means-clustering&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -191,7 +246,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/the-path-to-self-perfection/&amp;media=http://localhost:4000/haidangBlog/img/05.jpg&amp;description=The%20path%20to%20self-perfection"
+								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/K-means-clustering/&amp;media=http://localhost:4000/haidangBlog/img/knn-1.png&amp;description=K-means-clustering"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Pinterest" rel="nofollow">
 									<i class="ion ion-logo-pinterest"></i>
@@ -203,16 +258,11 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 				<div class="post-navigation">
 					
-					<a href="/haidangBlog/welcome-to-jekyll/" class="prev">
+					<a href="/haidangBlog/introduction-to-ML/" class="prev">
 						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
-						<h2 class="post-nav-title">Welcome to Jekyll!</h2>
+						<h2 class="post-nav-title">Introduction to AI and Machine Learning - Part1</h2>
 					</a>
 					 
-					<a href="/haidangBlog/linear-regression/" class="next">
-						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
-						<h2 class="post-nav-title">Linear Regression</h2>
-					</a>
-					
 				</div>
 
 			</div>
@@ -222,7 +272,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
   <script>
     (function () {
       var d = document, s = d.createElement('script');
-      //s.src = '//mr-brown.disqus.com/embed.js';
+      //s.src = '//mr-Dang.disqus.com/embed.js';
       s.src = 'https://https-haidang9719-github-io-haidangblog.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
@@ -242,6 +292,20 @@ config=TeX-AMS-MML_HTMLorMML"></script>
   
   <div class="widget widget-recent">
     <h3 class="widget-title">Recent Posts</h3>
+    
+    <div class="recent-posts">
+      
+      <div class="recent-header">
+        <a class="recent-image" href="/haidangBlog/K-means-clustering/" style="background-image: url(/haidangBlog/img/knn-1.png)"></a>
+      </div>
+      
+      <div class="recent-content">
+        <h6 class="recent-title"><a href="/haidangBlog/K-means-clustering/">K-means-clustering</a></h6>
+        <div class="recent-date">
+          <time datetime="2019-01-03T00:00:00+07:00">January 3, 2019</time>
+        </div>
+      </div>
+    </div>
     
     <div class="recent-posts">
       
@@ -267,20 +331,6 @@ config=TeX-AMS-MML_HTMLorMML"></script>
         <h6 class="recent-title"><a href="/haidangBlog/linear-regression/">Linear Regression</a></h6>
         <div class="recent-date">
           <time datetime="2018-12-30T00:00:00+07:00">December 30, 2018</time>
-        </div>
-      </div>
-    </div>
-    
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/haidangBlog/the-path-to-self-perfection/" style="background-image: url(/haidangBlog/img/05.jpg)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/haidangBlog/the-path-to-self-perfection/">The path to self-perfection</a></h6>
-        <div class="recent-date">
-          <time datetime="2018-08-23T20:03:30+07:00">August 23, 2018</time>
         </div>
       </div>
     </div>
@@ -365,10 +415,6 @@ config=TeX-AMS-MML_HTMLorMML"></script>
     
       
         <li class="tag-item"><a href="/haidangBlog/tags#Jekyll" class="tag">Jekyll</a></li>
-      
-    
-      
-        <li class="tag-item"><a href="/haidangBlog/tags#Life" class="tag">Life</a></li>
       
     
     

@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "K-means-clustering",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/haidangBlog/K-means-clustering/",
+      "date"     : "2019-01-03 00:00:00 +0700"
+    } ,
+  
+    {
       "title"    : "Introduction to AI and Machine Learning - Part1",
       "category" : "",
       "tags"     : "",
@@ -14,14 +22,6 @@
       "tags"     : "",
       "url"      : "/haidangBlog/linear-regression/",
       "date"     : "2018-12-30 00:00:00 +0700"
-    } ,
-  
-    {
-      "title"    : "The path to self-perfection",
-      "category" : "",
-      "tags"     : "Life",
-      "url"      : "/haidangBlog/the-path-to-self-perfection/",
-      "date"     : "2018-08-23 20:03:30 +0700"
     } ,
   
     {
