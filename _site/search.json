@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "K-nearest-neighbor",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/haidangBlog/K-nearest-neighbor/",
+      "date"     : "2019-01-10 00:00:00 +0700"
+    } ,
+  
+    {
       "title"    : "K-means-clustering",
       "category" : "",
       "tags"     : "",

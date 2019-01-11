@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="633aa5b8-0f6e-4114-840d-d692ec93cb07" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/2019-01-10-K-nearest-neighbor.markdown" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2018-08-23-the-path-to-self-perfection.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/K-means-clustering/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/K-means-clustering/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/introduction-to-ML/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/introduction-to-ML/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/linear-regression/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/linear-regression/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/_site/search.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_site/sitemap.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/tags/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/tags/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_site/the-path-to-self-perfection/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/welcome-to-jekyll/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/welcome-to-jekyll/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -42,7 +41,7 @@
           <entry key="ico" value="1" />
           <entry key="jpg" value="6" />
           <entry key="lock" value="1" />
-          <entry key="markdown" value="8" />
+          <entry key="markdown" value="11" />
           <entry key="md" value="4" />
           <entry key="scss" value="4" />
           <entry key="yml" value="4" />
@@ -52,7 +51,7 @@
         <counts>
           <entry key="HTML" value="27" />
           <entry key="Image" value="7" />
-          <entry key="Markdown" value="12" />
+          <entry key="Markdown" value="15" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="SCSS" value="4" />
           <entry key="YAML" value="4" />
@@ -61,7 +60,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="72" />
-          <entry key="markdown" value="12859" />
+          <entry key="markdown" value="15144" />
           <entry key="md" value="279" />
           <entry key="rmarkdown" value="2" />
           <entry key="yml" value="68" />
@@ -70,7 +69,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="72" />
-          <entry key="Markdown" value="13138" />
+          <entry key="Markdown" value="15423" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="YAML" value="68" />
         </counts>
@@ -82,12 +81,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="368">
-                <caret line="60" column="115" selection-start-line="60" selection-start-column="115" selection-end-line="60" selection-end-column="115" />
+              <first_editor relative-caret-position="428">
+                <caret line="68" column="85" lean-forward="true" selection-start-line="64" selection-end-line="68" selection-end-column="85" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/2019-01-10-K-nearest-neighbor.markdown">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="-817">
+                <caret line="23" selection-start-line="23" selection-end-line="23" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_posts/2018-05-29-welcome-to-jekyll.markdown">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="375">
+                <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="18" />
               </first_editor>
               <second_editor />
             </state>
@@ -142,6 +165,8 @@
         <option value="$PROJECT_DIR$/_includes/footer.html" />
         <option value="$PROJECT_DIR$/_posts/2018-12-31-introduction-to-ML.markdown" />
         <option value="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" />
+        <option value="$PROJECT_DIR$/_posts/2018-01-10-K-nearest-neighbor.markdown" />
+        <option value="$PROJECT_DIR$/_posts/2019-01-10-K-nearest-neighbor.markdown" />
       </list>
     </option>
   </component>
@@ -264,18 +289,18 @@
       <workItem from="1546110215847" duration="40456000" />
       <workItem from="1546486591075" duration="524000" />
       <workItem from="1546766288609" duration="7425000" />
-      <workItem from="1547092361743" duration="4972000" />
+      <workItem from="1547092361743" duration="12843000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53377000" />
+    <option name="totallyTimeSpent" value="61248000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49863014" visible="true" weight="0.2494043" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49863014" visible="true" weight="0.2494043" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50136983" side_tool="true" weight="0.2494043" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -286,7 +311,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.20136987" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.20136987" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.329653" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -342,16 +367,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="390">
             <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2018-05-29-welcome-to-jekyll.markdown">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="60">
-            <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
           </first_editor>
           <second_editor />
         </state>
@@ -474,11 +489,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2018-05-29-welcome-to-jekyll.markdown">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="375">
+            <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="18" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="368">
-            <caret line="60" column="115" selection-start-line="60" selection-start-column="115" selection-end-line="60" selection-end-column="115" />
+          <first_editor relative-caret-position="428">
+            <caret line="68" column="85" lean-forward="true" selection-start-line="64" selection-end-line="68" selection-end-column="85" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2019-01-10-K-nearest-neighbor.markdown">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-817">
+            <caret line="23" selection-start-line="23" selection-end-line="23" />
           </first_editor>
           <second_editor />
         </state>

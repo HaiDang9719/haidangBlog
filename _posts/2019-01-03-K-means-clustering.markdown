@@ -60,6 +60,8 @@ comments: true
 
 * Source code: [Here](https://github.com/HaiDang9719/StudyML/blob/master/K_means_clustering/k-meansClusteringex1.py)
 
+* Application 
+
 I hope you like it!
 
 Source: 
