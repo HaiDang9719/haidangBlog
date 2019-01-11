@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Introduction to AI and Machine Learning - Part1</title>
+  <title>Gradient Descent</title>
   <meta name='description' content='Galada is an easy and simple theme for Jekyll. Dark colors, give it a special exquisite look. A careful approach to design and features make it an ideal solution for a personal blog.'>
 
-  <link rel="canonical" href="http://localhost:4000/haidangBlog/introduction-to-ML/">
+  <link rel="canonical" href="http://localhost:4000/haidangBlog/gradient-descent/">
   <link rel="alternate" type="application/rss+xml" title="Galada Theme | Theme for Jekyll" href="/haidangBlog/feed.xml">
 
   <!-- Google Font -->
@@ -108,7 +108,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 	<div class="row">
 		<div class="col col-12">
 			<div class="post-image-box">
-				<div class="post-image" style="background-image: url(/haidangBlog/img/introduction-to-ml.png)"></div>
+				<div class="post-image" style="background-image: url(/haidangBlog/img/gradient-descent-1.png)"></div>
 			</div>
 		</div>
 	</div>
@@ -121,7 +121,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 				<div class="post-head">
 					
-					<h1 class="post-title">Introduction to AI and Machine Learning - Part1</h1>
+					<h1 class="post-title">Gradient Descent</h1>
 					<div class="post-info">
 						<div class="post-info-author">
 							<div class="info-author-avatar" style="background-image: url(/haidangBlog/img/author.jpg)"></div>
@@ -130,164 +130,99 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 						</div>
 						<div class="post-date">
 							<span>
-								<time datetime="2018-12-31T00:00:00+07:00">Dec 31, 2018</time>
+								<time datetime="2019-01-10T00:00:00+07:00">Jan 10, 2019</time>
 							</span>
 						</div>
 					</div>
 				</div>
 
 				<div class="post-body">
-					<h1 id="welcome-to-the-introduction-series-about-ai-and-machine-learning---part1">Welcome to the introduction series about AI and Machine Learning - Part1</h1>
+					<h1 id="welcome-to-my-next-blog">Welcome to my next blog</h1>
+<p><strong>Hello</strong>, this is blog about gradient descent.</p>
+<h3 id="why-and-when">Why and When?</h3>
+<ul>
+  <li>Gradient descent is a method to find optimal point of the function. In machine learning, we try to get the optimal value for the functions such as loss function, … For some complex function, it is really hard to find the global optimal value. So, one of the basic way is to divide the function into multiple part with much less complex and try to find the local optimal value of these part and compare together to find the quite global optimal one, that is how gradient descent works.</li>
+</ul>
 
-<p><strong>Hello</strong>, machine learning and AI is one of “hot” topic in computer science nowadays. So, in this series, I would like to summary the basic concept and mathematics on this topic.</p>
-<ol>
-  <li>What is this?
+<h3 id="mathematical">Mathematical</h3>
+<ul>
+  <li>Gradient descent for function of one variable:
+\[x_{t+1} = x_{t} - \eta f’(x_{t})\]
     <ul>
-      <li>Artificial Intelligence: the ability of the machine that can simulate one of human intelligence abilities, e.g if we input a fish image, the machine knows this is a fish.</li>
-      <li>Machine Learning: the learning process of the machine to improve its performance through experience. To get the better understand, you can look at example of how the machine can recover colorful image from black-white image <a href="https://www.facebook.com/curiousAI/videos/1431500110327587/?fref=mentions">here</a>.</li>
-    </ul>
-  </li>
-  <li>General model of Machine Learning
-    <ul>
-      <li>T(Task): what we want the machine do</li>
-      <li>E(Experience): input data set</li>
-      <li>P(Performance): evaluation method</li>
-      <li>A(Algorithm): algorithm to find the optimization function in function space</li>
-      <li>F(Function space): function space for machine works</li>
-    </ul>
-
-    <p>-&gt; Machine Learning is process of computer to find automatically the best optimization function in function space. So, in the next part, we will focus on function, function space and how we represent a function space as well as how we can find an optimization function in that space.</p>
-  </li>
-  <li>Space of multi-variable functions and Gradients
-    <ol>
-      <li>Function
+      <li>\(n\) is learning rate. It represents for the magnitude of step that the value of \(x_{t}\) get closer to \(x^{*}\) (the optimal value we need). Big learning rate make the process is faster but it will wildly oscillate around the minima without converging, otherwise it take a very long time to process. Choose the appropriate learning rate is very important.</li>
+      <li>Let make an example:
         <ul>
-          <li>Affine function \[f ( x ) = \mathbf{a}x+ \mathbf{b},  x \in \mathbb { R } \]</li>
-          <li>Quadratic function \[f ( x ) = \mathbf{a}x^2+ \mathbf{b}x +c, a \ne 0, a,b,c \in \mathbb { R } \]</li>
-          <li><a href="https://en.wikipedia.org/wiki/Sigmoid_function">Logistic sigmoid</a>
-\[f ( x ) = \frac { 1 } { 1 + e ^ { - x } } \]</li>
-          <li><a href="https://en.wikipedia.org/wiki/Sigmoid_function">Hyperbolic tangent</a>
-\[f ( x ) = \tanh x = \frac { e ^ { x } - e ^ { - x } } { e ^ { x } + e ^ { - x } } \]</li>
-          <li>We have two way to represent function on 2D space:
+          <li>Function: \(\sin ( x ) \cos ( 2 x ) + x ^ { 2 }\)</li>
+          <li>Derivative Function: \(- 2 \sin ( x ) \sin ( 2 x ) + \cos ( x ) \cos ( 2 x ) + 2 x \)</li>
+          <li>We can make a simple python program to solve it:
             <ul>
-              <li>The first way, with the value of x, we can find the corresponding y by the function. The graph of the function is the set of those pair of x and y.</li>
-              <li>The second way, with the value of x, we keep the value of y constant and change the parameters of the function, it is called as level sets/curves/contour lines/ map.</li>
-              <li>Function space is set of function with different value of parameters. For example of affine function,  the change of value of <strong>a</strong> leads to the change of slope and the change of value of <strong>b</strong> to translate the function.</li>
+              <li>eta: learning rate</li>
+              <li>the program will show the result if the derivative function get the value lower than \(0.0001\). You can change the init value and learning rate to see the different.</li>
+              <li>source code <a href="https://github.com/HaiDang9719/StudyML/blob/master/Gradient_descent/example1.py">here</a></li>
             </ul>
           </li>
-          <li>After we have the function space, we need to find the value of parameters in the function space so that the function achieves the optimal value (peak or valley) by measure the direction, magnitude of the function,the distance between different functions and the direction that the function grows fastest.</li>
         </ul>
       </li>
-    </ol>
-  </li>
-  <li>
-    <p>Vector and vector space</p>
-
-    <p>4.1. Vector</p>
-    <ul>
-      <li>Vector is an object that has both direction and magnitude, it can be represented as a directed line segment and as a point in vector space. 
-<img src="../img/introduction-to-ml-vector.png" alt="color: white" /></li>
-    </ul>
-
-    <p>4.2. <a href="http://www.math.toronto.edu/gscott/WhatVS.pdf">Vector space</a></p>
-    <ul>
-      <li>Vector space is a set of vector that satisfy two conditions of two operation:
-        <ul>
-          <li>An operation called vector addition that takes two vectors v, w ∈ V , and produces a third vector, written v + w ∈ V .</li>
-          <li>An operation called scalar multiplication that takes a scalar c ∈ F and a vector v ∈ V , and produces a new vector, written cv ∈ V .</li>
-        </ul>
-      </li>
-    </ul>
-
-    <p>4.3. Meaning</p>
-    <ul>
-      <li>In machine learning, each vector contains multiple parts and each part represent for a characteristic of an object. These parts connect together by Cartesian product to create a coordinate space.
-\[V = \mathbb { R }^n = \mathbb { R } \times \mathbb { R }…\times\mathbb { R } : Cartesian-product\] 
-\[v \in V, v = (v1, v2, …, vn) := [vi], vi \in \mathbb { R }, \forall i \in {1 .. n} \]</li>
-      <li>To represent data in multi-dimensional space, we have:</li>
-    </ul>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th style="text-align: center">Math Entity</th>
-          <th style="text-align: center">Formula</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>0</td>
-          <td style="text-align: center">Scalar (magnitude only)</td>
-          <td style="text-align: center">\[v \in \mathbb {R} \]</td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td style="text-align: center">Vector (magnitude and direction)</td>
-          <td style="text-align: center">\[v \in \mathbb {R}^m, v = [vi] \]</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td style="text-align: center">Matrix (table of numbers)</td>
-          <td style="text-align: center">\[v \in \mathbb {R}^{ m \times n }, v = [vij] \]</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td style="text-align: center">3-Tensor (cube of numbers)</td>
-          <td style="text-align: center">\[v \in \mathbb {R}^{ m \times n \times p }, v = [vijk], vijk \in \mathbb {R}, i \in {1,..,m}, j \in {1,..,n}, k \in {1,..,p} \]</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p>4.4. Function space
-\[f ( z ) = a _ { 0 } + a _ { 1 } z + a _ { 2 } z ^ { 2 } + \cdots + a _ { n } z ^ { n } = \sum _ { i = 0 } ^ { n } a _ { i } z ^ { i } \in P _ { n } ( \mathbb { R } ) \]
-\[g ( z ) = b _ { 0 } + b _ { 1 } z + b _ { 2 } z ^ { 2 } + \ldots + b _ { n } z ^ { n } = \sum _ { i = 0 } ^ { n } b _ { i } z ^ { i } \in P _ { n } ( \mathbb { R } ) \]</p>
-    <ul>
-      <li>
-        <p>We suppose f and g are the vectors in vector space \(P _ { n } ( \mathbb { R } ) \), so two following operations must be satisfy: 
-\[h = f + g ; h ( z ) = \sum _ { i = 0 } ^ { n } \left( a _ { i } + b _ { i } \right) z ^ { i } \in P _ { n } ( \mathbb { R } ) \]
-\[v = \alpha f ; v ( z ) = \sum _ { i = 0 } ^ { n } \alpha a _ { i } z ^ { \prime } \in P _ { n } ( \mathbb { R } ) \]</p>
-
-        <p>-&gt; \(P _ { n } ( \mathbb { R } ) \) is a vector space.</p>
-      </li>
-      <li>{ \({ 1 , z , z ^ { 2 } , \ldots , z ^ { n } } \)} is vector in \(P _ { n } ( \mathbb { R } ) \)(all a is 1)</li>
-      <li>\(\ {{ e _ { i } \ }} = \ { z ^ { i } \ } _ { i = 0 } ^ { n } \) is basis of \(P _ { n } ( \mathbb { R } ) \)</li>
-      <li>\(\forall v \in V = P _ { n } ( \mathbb { R } ) : \quad v = a _ { 0 } e _ { 0 } + \cdots + a _ { n } e _ { n } = \sum _ { i = 0 } ^ { n } a _ { j } e _ { i }\), v is linear combination of the vector base.</li>
-      <li>Basis vector in vector space means:
-        <ul>
-          <li>Directions</li>
-          <li>Landmarks</li>
-          <li>Features</li>
-          <li>Words</li>
-          <li>Prototypes, patterns, templates</li>
-          <li>Regularities, abstractions</li>
-        </ul>
-      </li>
-      <li>Every vectors in vectors space can be decomposed by the basis vector:  \(\xi = \left( e _ { 1 } , \dots , e _ { n } \right)\)(ordered basis)
-\[\stackrel { \forall v \in V } { \longrightarrow } \text { decomposition } [ v ] \varepsilon = \text { coordinates } \left( a _ { 1 } , \ldots , a _ { n } \right) \in \mathbb { R } ^ { n }\]
-Each vectors is represented by the basis vectors and coordinate parameters that show the similarity between them (important note).</li>
     </ul>
   </li>
-</ol>
+</ul>
 
-<p>We will continue with basis vectors and coordinate vectors in the next part.</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"> 
+    <span class="k">def</span> <span class="nf">grad</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+    
+    <span class="k">def</span> <span class="nf">cost</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">myGD1</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">x0</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">it</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+            <span class="n">x_new</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">eta</span><span class="o">*</span><span class="n">grad</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">abs</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">x_new</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="n">e</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">x</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">it</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">it1</span><span class="p">)</span> <span class="o">=</span> <span class="n">myGD1</span><span class="p">(</span><span class="o">.</span><span class="mo">01</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">it2</span><span class="p">)</span> <span class="o">=</span> <span class="n">myGD1</span><span class="p">(</span><span class="o">.</span><span class="mo">01</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    </code></pre></figure>
+
+<ul>
+  <li>result:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"> 
+    <span class="no">Solution</span> <span class="n">x1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.272427</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.155893</span><span class="p">,</span> <span class="n">obtained</span> <span class="n">after</span> <span class="mi">278</span> <span class="n">iterations</span>
+    <span class="no">Solution</span> <span class="n">x2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.272387</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.155893</span><span class="p">,</span> <span class="n">obtained</span> <span class="n">after</span> <span class="mi">590</span> <span class="n">iterations</span>
+    </code></pre></figure>
+
+<ul>
+  <li>Gradient descent for multi-variable function
+\[\theta_{t+1} = \theta_{t} - \eta \nabla_{\theta} f(\theta_{t}) \]
+    <ul>
+      <li>\(\mathbf{\theta}\) is a vector</li>
+      <li>Let make an example:
+        <ul>
+          <li>Using gradient descent to find optimal value of the loss function of linear regression.</li>
+          <li>Source code: <a href="https://github.com/HaiDang9719/StudyML/blob/master/Gradient_descent/example2.py">Here</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../img/gradient-descent-ex2.png" alt="Result" /></p>
 
 <p>I hope you like it!</p>
 
 <p>Source:</p>
 
-<p><a href="https://www.facebook.com/curiousAI/videos/1431500110327587/?fref=mentions">Machine Learning - Lecture 1</a></p>
-
-<p><a href="https://www.facebook.com/curiousAI/videos/1443924629085135/?hc_location=ufi">Machine Learning - Lecture 2.1</a></p>
-
-<p><a href="https://www.facebook.com/curiousAI/videos/1443931999084398/?hc_location=ufi">Machine Learning - Lecture 2.2</a></p>
-
+<p><a href="https://machinelearningcoban.com/2017/01/12/gradientdescent/">Gradient descent 1 - ML cơ bản</a></p>
 
 
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/introduction-to-ML/"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/gradient-descent/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -295,7 +230,7 @@ Each vectors is represented by the basis vectors and coordinate parameters that 
 							</li>
 
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Introduction%20to%20AI%20and%20Machine%20Learning%20-%20Part1&url=http://localhost:4000/haidangBlog/introduction-to-ML/"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Gradient%20Descent&url=http://localhost:4000/haidangBlog/gradient-descent/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -303,7 +238,7 @@ Each vectors is represented by the basis vectors and coordinate parameters that 
 							</li>
 
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/introduction-to-ML/&title=Introduction%20to%20AI%20and%20Machine%20Learning%20-%20Part1&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/gradient-descent/&title=Gradient%20Descent&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -311,7 +246,7 @@ Each vectors is represented by the basis vectors and coordinate parameters that 
 							</li>
 
 							<li class="share-item">
-								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/introduction-to-ML/&amp;media=http://localhost:4000/haidangBlog/img/introduction-to-ml.png&amp;description=Introduction%20to%20AI%20and%20Machine%20Learning%20-%20Part1"
+								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/gradient-descent/&amp;media=http://localhost:4000/haidangBlog/img/gradient-descent-1.png&amp;description=Gradient%20Descent"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Pinterest" rel="nofollow">
 									<i class="ion ion-logo-pinterest"></i>
@@ -323,16 +258,11 @@ Each vectors is represented by the basis vectors and coordinate parameters that 
 
 				<div class="post-navigation">
 					
-					<a href="/haidangBlog/linear-regression/" class="prev">
+					<a href="/haidangBlog/K-nearest-neighbor/" class="prev">
 						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
-						<h2 class="post-nav-title">Linear Regression</h2>
+						<h2 class="post-nav-title">K-nearest-neighbor</h2>
 					</a>
 					 
-					<a href="/haidangBlog/K-means-clustering/" class="next">
-						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
-						<h2 class="post-nav-title">K-means-clustering</h2>
-					</a>
-					
 				</div>
 
 			</div>
