@@ -146,42 +146,104 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 <h3 id="mathematical">Mathematical</h3>
 <ul>
-  <li>\(\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_N] \in \mathbb{R}^{d \times N}\) data point, \(K &lt; N\) is number of clusters.</li>
-  <li>\(\mathbf{y}_i = [y _ {i1}, y _ {i2}, \dots, y _ {iK}] \) is label vector for each vector data point \(\mathbf{x}_i\). If \(\mathbf{x}_i\) is belong to to cluster \(K\) mean \(\mathbf{y} _ {ik} = 1\) and \(y _ {ij} = 0, \forall j \neq k \). This representation is call one-hot.</li>
+  <li>Input: \(\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_N] \in \mathbb{R}^{d \times N}\) data point and \(K\) number of clusters \(K &lt; N\).</li>
+  <li>Output: \(\mathbf{Y} = [y _ {i1}, y _ {i2}, \dots, y _ {iK}] \) is label vector for each vector data point \(\mathbf{x}_i\). If \(\mathbf{x}_i\) is belong to to cluster \(k\) mean \(\mathbf{y} _ {ik} = 1\) and \(y _ {ij} = 0, \forall j \neq k \). This representation is call one-hot. We use this representation because two reasons: Firstly, K means clustering algorithm can not operate on label data directly, it should be numeric to calculate e.g the loss function below. Secondly, it works well in non-ordinal relationship problems e.g fruit problems. More detail <a href="https://machinelearningmastery.com/why-one-hot-encode-data-in-machine-learning/">here</a>.</li>
 </ul>
 
 <p>\[y_{ik} \in {0, 1},~~~ \sum_{k = 1}^K y_{ik} = 1 \]</p>
 <ul>
-  <li>Why we need to use this representation and when we use it?
-    <ul>
-      <li>K means clustering algorithm can not operate on label data directly, it should be numeric to calculate e.g the loss function below.</li>
-      <li>To transform categorical to numeric form, there are two way to convert: Integer Encoding and One-hot Encoding. There is a limitation of using Integer Encoding is that it works well in case the ordinal relationships exits in the problem, otherwise, it will create a mistake. More detail, you can further read <a href="https://machinelearningmastery.com/why-one-hot-encode-data-in-machine-learning/">here</a>.</li>
-    </ul>
-  </li>
-  <li>Loss function:</li>
+  <li>Output: \(\mathbf{M} = [\mathbf{m}_1, \mathbf{m}_2, \dots \mathbf{m}_K]\) is the set of centroids (center of the cluster).</li>
+  <li>Loss function(total distance of every point to every centroids)</li>
 </ul>
 
 <p>\[\mathcal{L}(\mathbf{Y}, \mathbf{M}) = \sum _ {i=1}^N \sum _ {j=1}^K y _ {ij} |\mathbf{x}_i - \mathbf{m}_j|_2^2\]</p>
-
 <ul>
-  <li>\(\mathbf{Y} = [\mathbf{y}_1; \mathbf{y}_2; \dots; \mathbf{y}_N]\) is lable vector and \(\mathbf{M} = [\mathbf{m}_1, \mathbf{m}_2, \dots \mathbf{m}_K]\) is center of cluster. So, to get the better result, we need to optimize</li>
+  <li>\(|\mathbf{x}_i - \mathbf{m}_k|_2^2\) is square of Euclidean distance, it hard to solve the derivative Euclidean function, so in the most case we take the power of two of this function.</li>
+  <li>\(y _ {ik} |\mathbf{x}_i - \mathbf{m}_k|_2^2 =  \sum _ {j=1}^K y _ {ij} |\mathbf{x} _ i - \mathbf{m} _ j|_2^2 \) : Above we have, \(\mathbf{x}_i\) belongs to cluster \(k\) then the label of \(\mathbf{x}_i\) in cluster \(k\) is 1 and 0 in other clusters, so the total distance of \(\mathbf{x}_i\) to every centroids is equal the distance of \(\mathbf{x}_i\) to the cluster it is assigned.</li>
+  <li>Then, we have the loss function is the sum of all distance above. So, we have to minimize the loss function means: 
+\[\mathbf{Y}, \mathbf{M} = \arg\min_{\mathbf{Y}, \mathbf{M}} \sum _ {i=1}^N \sum _ {j=1}^K y _ {ij} |\mathbf{x}_i - \mathbf{m}_j|_2^2 \]</li>
 </ul>
-
-<p>\[\mathbf{Y}, \mathbf{M} = \arg\min_{\mathbf{Y}, \mathbf{M}} \sum _ {i=1}^N \sum _ {j=1}^K y _ {ij} |\mathbf{x}_i - \mathbf{m}_j|_2^2 \]</p>
 
 <p>\[\text{subject to:} ~~ y_{ij} \in {0, 1}~~ \forall i, j;~~~ \sum_{j = 1}^K y_{ij} = 1~~\forall i\]</p>
 
 <ul>
-  <li>\(Y, M\) are the variables need to find to reach the optimal value of the above function. So, we have two ways:</li>
-  <li>
-    <p>The first way, fix \(Y\) to find \(M\):
-\[\mathbf{m} _ j = \arg\min _ {\mathbf{m}_j} \sum _ {i = 1}^{N} y _ {ij} |\mathbf{x}_i - \mathbf{m}_j |_2^2.\]</p>
+  <li>How we solve this problem?</li>
+  <li>The first way, suppose we have label \(Y\) to find the centroid \(M\):
+    <ul>
+      <li>Task: Find the centroids</li>
+      <li>Experience: \(N\) data points, \(K\) cluster</li>
+      <li>Algorithm: Derivative</li>
+      <li>Performance: At each cluster, total distance of \(N\) data points to its centroid is minimum.</li>
+      <li>Function:
+\[\mathbf{m} _ j = \arg\min _ {\mathbf{m}_j} \sum _ {i = 1}^{N} y _ {ij} |\mathbf{x}_i - \mathbf{m}_j |_2^2.\]
+We take the 2-sided derivative, then we can get the value (detail <a href="https://machinelearningcoban.com/2017/01/01/kmeans/">here</a>)
+\[\Rightarrow \mathbf{m} _ j = \frac{ \sum _ {i=1}^N y _ {ij} \mathbf{x}_i}{\sum _ {i=1}^N y _ {ij}}\]</li>
+    </ul>
 
-    <p>We take the 2-sided derivative, then we can get the value (detail <a href="https://machinelearningcoban.com/2017/01/01/kmeans/">here</a>)
-\[\Rightarrow \mathbf{m} _ j = \frac{ \sum _ {i=1}^N y _ {ij} \mathbf{x}_i}{\sum _ {i=1}^N y _ {ij}}\]</p>
+    <p>=&gt; To get the minimum, the centroid should be the average of every point in its cluster.</p>
   </li>
-  <li>The second way, fix \(M\) to find \(Y\) (detail <a href="https://machinelearningcoban.com/2017/01/01/kmeans/">here</a>):
+  <li>The second way, suppose we have the centroid \(M\) to find the label \(Y\) (detail <a href="https://machinelearningcoban.com/2017/01/01/kmeans/">here</a>):
+    <ul>
+      <li>Task: Find the label (how we assign data point to cluster)</li>
+      <li>Experience: \(N\) data points, \(M\) centroids</li>
+      <li>Algorithm: Compare Euclidean distance between each data points to each cluster, a data point is assigned to a cluster if the distance between it to the centroid is minimum when comparing to other centroids.</li>
+      <li>Performance: the total distance of every data point is assigned to a cluster is minimal.</li>
+      <li>Function: 
 \[\mathbf{y} _ i = \arg\min _ {\mathbf{y}_i} \sum _ {j=1}^K y _ {ij}|\mathbf{x} _ i - \mathbf{m}_j|_2^2 \]</li>
+    </ul>
+
+    <p>We haven’t known the label, so every value of y is 1, so we can simplify the function as: 
+\[j = \arg\min_{j} |\mathbf{x}_i - \mathbf{m}_j|_2^2\]</p>
+  </li>
+</ul>
+
+<h3 id="how-it-works-in-programming">How it works in programming:</h3>
+<ul>
+  <li>In programming, we solve it by three steps:
+    <ul>
+      <li>Step 1: We choose k init centroid from the data set.</li>
+      <li>Step 2: Calculate the Euclidean distance to create the cluster (using the second way above)</li>
+      <li>Step 3: recalculate the centroids(using the first way)</li>
+      <li>=&gt; repeat step 2, 3 to until the after centroid is similar to the previous centroid.</li>
+      <li>The complexity of this algorithm is O(n<em>k</em>t), n is number of object, k is number of cluster and t is iteration. More detail <a href="https://www.researchgate.net/post/What_is_the_time_complexity_of_clustering_algorithms">here</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="extension">Extension</h3>
+<p>Large data set: What happens if we have a data set with millions of object?
+<img src="../img/k-means-clustering-mapreduce.png" alt="mapreduce" /></p>
+
+<ul>
+  <li>Parallel K-means Clustering Based on Map Reduce
+    <ul>
+      <li>One of the basic and importance thing is the distance computation is independent, so we can slip the data set into multiple chunks for parallel execute.</li>
+      <li>We use hadoop reprocess the big init data set.</li>
+      <li>Step 1: Mapper
+        <ul>
+          <li>Input: \(X = \begin{Bmatrix} x_1 , x_2 \ldots x_n \end{Bmatrix} \) objects, \(C = \begin{Bmatrix} c_1 , c_2 \ldots c_k \end{Bmatrix}\) centroid</li>
+          <li>Output: List pair of \((x_i, y_j)\) with \(1 \leq i \leq n\) and \(1 \leq j \leq k\).</li>
+          <li>Algorithm: Assign nearest objects to the centroids. So, we back to problem that we have known the center of the cluster and assign nearest object to that cluster, using the second way that I have mentioned in mathematical. You can find the detail pseudocode <a href="http://iip.ict.ac.cn/sites/default/files/publication/2009_Weizhong%20Zhao_Parallel%20K-means%20clustering%20based%20on%20mapreduce.pdf">here</a></li>
+        </ul>
+      </li>
+      <li>Step 2: Combiner
+        <ul>
+          <li>Input: Output of the step 1</li>
+          <li>Output: \(k\) pair of \((key, value)\) with \(key\) in the centroids, and \(value\) is sum of values of object that is assigned to the cluster and number of objects.</li>
+          <li>Algorithm: combine by \(key\) (centroids)</li>
+          <li>Pseudocode: <a href="http://iip.ict.ac.cn/sites/default/files/publication/2009_Weizhong%20Zhao_Parallel%20K-means%20clustering%20based%20on%20mapreduce.pdf">here</a></li>
+        </ul>
+      </li>
+      <li>Step 3: Reducer
+        <ul>
+          <li>Input: Output of step 2</li>
+          <li>Output: New list of centroid</li>
+          <li>Algorithm: Now, it becomes to problem that we already know the assignment of object in each cluster, now find the new centroid. Using the first way in mathematical session.</li>
+          <li>Pseudocode: <a href="http://iip.ict.ac.cn/sites/default/files/publication/2009_Weizhong%20Zhao_Parallel%20K-means%20clustering%20based%20on%20mapreduce.pdf">here</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="example">Example</h3>
@@ -203,7 +265,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 <p><img src="../img/k-means-clustering.png" alt="" />
 <em>Input data</em></p>
 
-<p>Center point: \([2.99181004 6.03338002], [9.01890293 8.09573328], [1.97276695 2.00616681], [8.00032512 4.9943995 ]\)</p>
+<p>Center point: \([2.99181004, 6.03338002], [9.01890293, 8.09573328], [1.97276695, 2.00616681], [8.00032512, 4.9943995 ]\)</p>
 
 <p><img src="../img/k-means-clustering-after.png" alt="Result" />
 <em>Result</em></p>
@@ -222,6 +284,12 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 <p>Source:</p>
 
 <p><a href="https://machinelearningcoban.com/2017/01/01/kmeans/">K means Clustering - ML cơ bản</a></p>
+
+<p><a href="https://www.researchgate.net/post/What_is_the_time_complexity_of_clustering_algorithms">K means Clustering - Complexity</a></p>
+
+<p><a href="http://iip.ict.ac.cn/sites/default/files/publication/2009_Weizhong%20Zhao_Parallel%20K-means%20clustering%20based%20on%20mapreduce.pdf">K means Clustering - map reduce</a></p>
+
+<p><a href="https://pdfs.semanticscholar.org/46a3/d830f379ae61c269c9425d615f359067a5a6.pdf">K means Clustering - map reduce example</a></p>
 
 
 					<div class="post-share">
