@@ -21,40 +21,20 @@ comments: true
       * eta: learning rate
       * the program will show the result if the derivative function get the value lower than \\(0.0001\\). You can change the init value and learning rate to see the different. 
       * source code [here](https://github.com/HaiDang9719/StudyML/blob/master/Gradient_descent/example1.py)
-    {% highlight ruby %} 
-    def grad(x):
-        return -2*np.sin(x)*np.sin(2*x)+ np.cos(x)*np.cos(2*x)+2*x
-    
-    def cost(x):
-        return x**2 + np.cos(2*x)*np.sin(x)
-    
-    def myGD1(eta, x0):
-        x = [x0]
-        for it in range(1000):
-            x_new = x[-1] - eta*grad(x[-1])
-            if abs(grad(x_new)) < 1e-4:
-                break
-            x.append(x_new)
-        return (x, it)
-    (x1, it1) = myGD1(.01, -5)
-    (x2, it2) = myGD1(.01, 5)
-    {% endhighlight %}
-    
-   * result: 
-    
-    {% highlight ruby %} 
-    Solution x1 = -0.272427, cost = -0.155893, obtained after 278 iterations
-    Solution x2 = -0.272387, cost = -0.155893, obtained after 590 iterations
-    {% endhighlight %}
     
 * Gradient descent for multi-variable function
 \\[\theta_{t+1} = \theta_{t} - \eta \nabla_{\theta} f(\theta_{t}) \\]
   * \\(\mathbf{\theta}\\) is a vector
+  * \\(\nabla_{\theta} f(\theta_{t}) \\) is gradient vector, (steepest) direction in input space.
+  * To ge better direction:
+    * Consider the curve of approximation function (approximation at \\(x _ {0}\\) can be \\(f _ {0} \\), \\(f _ {1} \\), \\(f _ {2} \\) ), Jacobian, Hessian
+    * Jacobian method: 
+      * Input: \\(x = \left( x _ { 1 } , \ldots , x _ { j } , \ldots , x _ { n } \right) ^ { \top }\\)
+      * Output: \\(f ( x ) = \left( f _ { 1 } ( x ) , \ldots , f _ { i } ( x ) , \ldots , f _ { m } ( x ) \right) ^ { \top }\\)
+      \\[\left[ J _ { i j } : = \partial _ { j } f _ { i } ( x ) \equiv \frac { \partial } { \partial x _ { I } } f _ { i } ( x ) \right]\\]
   * Let make an example: 
     * Using gradient descent to find optimal value of the loss function of linear regression.
     * Source code: [Here](https://github.com/HaiDang9719/StudyML/blob/master/Gradient_descent/example2.py)
-                       
-![Result](../img/gradient-descent-ex2.png)
 
 I hope you like it!
 

@@ -150,14 +150,43 @@ config=TeX-AMS-MML_HTMLorMML"></script>
       <li>Function: \(f(new fruit) -&gt; I_f\) : \(I_f\) means the label of fruit</li>
     </ul>
   </li>
-  <li>How it works? With this algorithm, the machine will try to guess the label of the new fruit based on the average of “voting” of the nearest neighbor of the new fruit. The nearer the neighbor is, the more value of the voting it has. As you can see, there is no learning in here, so we can call that is lazy learning.</li>
+  <li>How it works? With this algorithm, the machine will try to guess the label of the new fruit based on the average of “voting” of the nearest neighbor of the new fruit. The nearer the neighbor is, the more value of the voting it has. As you can see, it does not require training process before, so we can call that is lazy learning.</li>
 </ul>
 
 <h3 id="mathematical">Mathematical</h3>
 <ul>
-  <li>In this algorithm, the most important thing is how to find a good \(k\). A bad \(k\) can lead to a bad result.</li>
-  <li>The value of \(k\) is too low or too high can lead to the high inaccuracy (over-fitting -&gt; under-fitting)</li>
-  <li>One of possible way to choose k is \(\mathbf(sqrt(n))\) and should choose the odd value for \(k\), more explanation <a href="https://www.quora.com/How-can-I-choose-the-best-K-in-KNN-K-nearest-neighbour-classification">here</a></li>
+  <li>Input: \(X\) labeled data set, \(k\) number of nearest neighbors</li>
+  <li>Output:
+    <ul>
+      <li>Classification: class membership (predict label for test object)</li>
+      <li>Regression: the value for the object (mean value of nearest objects)</li>
+    </ul>
+  </li>
+  <li>Algorithm: Distance calculation and choose a good \(k\)</li>
+  <li>Distance calculation:
+    <ul>
+      <li>Euclidean Distance (n-space):
+\[\begin{aligned} d ( \mathbf { p } , \mathbf { q } ) = d ( \mathbf { q } , \mathbf { p } ) &amp; = \sqrt { \left( q _ { 1 } - p _ { 1 } \right) ^ { 2 } + \left( q _ { 2 } - p _ { 2 } \right) ^ { 2 } + \cdots + \left( q _ { n } - p _ { n } \right) ^ { 2 } } \ &amp; = \sqrt { \sum _ { i = 1 } ^ { n } \left( q _ { i } - p _ { i } \right) ^ { 2 } } \end{aligned}\]</li>
+      <li>Hamming Distance for categorical non-numeric attributes:
+\[D _ { H } = \sum _ { i = 1 } ^ { k } \left| p _ { i } - q _ { i } \right| \]
+\[\begin{array} { l } { i f p = q \Rightarrow 0 } \ { i f p \neq q \Rightarrow 1 } \end{array}\]</li>
+      <li>Manhattan Distance (\(p\) and \(q\) are vectors in \(n\) space dimension):
+\[d _ { 1 } ( \mathbf { p } , \mathbf { q } ) = | \mathbf { p } - \mathbf { q } | _ { 1 } = \sum _ { i = 1 } ^ { n } \left| p _ { i } - q _ { i } \right|\]
+\[\mathbf { p } = \left( p _ { 1 } , p _ { 2 } , \ldots , p _ { n } \right) \text { and } \mathbf { q } = \left( q _ { 1 } , q _ { 2 } , \ldots , q _ { n } \right)\]</li>
+      <li>Minkowski Distance is the generalization of Euclidean and Manhattan distance:
+        <ul>
+          <li>\(h\) is nore, \(h = 1\) is Manhattan distance, \(h = 2 \) is Euclidean distance
+\[d ( p , q ) = \sqrt [ n ] { \left| p _ { 1 } - q _ { 1 } \right| ^ { h } + \left| p _ { 2 } - q _ { 2 } \right| ^ { h } + \cdots + \left| p _ { n } - q _ { n } \right| ^ { h } }\]</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>how to find a good \(k\):
+    <ul>
+      <li>The value of \(k\) is too low or too high can lead to the high inaccuracy (over-fitting -&gt; under-fitting)</li>
+      <li>One of possible way to choose k is \(\mathbf(sqrt(n))\) and should choose the odd value for \(k\), more explanation <a href="https://www.quora.com/How-can-I-choose-the-best-K-in-KNN-K-nearest-neighbour-classification">here</a></li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="example">Example</h3>
