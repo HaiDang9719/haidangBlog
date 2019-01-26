@@ -14,6 +14,8 @@ In five steps for a machine learning problem (T, E, A, P, F), E(Experience) is i
 Data Normalization (feature scaling ):
 * \\(x _ { n o r m } = \frac { x - x _ { \min } } { x _ { \max } - x _ { \min } }\\) 
 * \\(x ^ { \prime } = \frac { x - \operatorname { mean } ( x ) } { \max ( x ) - \min ( x ) }\\)
+* Use case: image data
+* Unused case: Long-tail distribution
 
 Data Standardization:
 * \\(x ^ { \prime } = \frac { x - \overline { x } } { \sigma }\\) with \\(\overline { x } = \operatorname { average } ( x )\\) and \\(\sigma\\) is standard deviation.
