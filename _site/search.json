@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Data preparation for machine learning",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "/haidangBlog/data-preprocessing/",
+      "date"     : "2019-01-25 00:00:00 +0700"
+    } ,
+  
+    {
       "title"    : "Gradient Descent",
       "category" : "",
       "tags"     : "",

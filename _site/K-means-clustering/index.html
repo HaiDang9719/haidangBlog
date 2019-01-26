@@ -168,7 +168,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 <ul>
   <li>How we solve this problem?</li>
-  <li>The first way, suppose we have label \(Y\) to find the centroid \(M\):
+  <li>The first step, suppose we have label \(Y\) to find the centroid \(M\):
     <ul>
       <li>Task: Find the centroids</li>
       <li>Experience: \(N\) data points, \(K\) cluster</li>
@@ -182,7 +182,7 @@ We take the 2-sided derivative, then we can get the value (detail <a href="https
 
     <p>=&gt; To get the minimum, the centroid should be the average of every point in its cluster.</p>
   </li>
-  <li>The second way, suppose we have the centroid \(M\) to find the label \(Y\) (detail <a href="https://machinelearningcoban.com/2017/01/01/kmeans/">here</a>):
+  <li>The second step, suppose we have the centroid \(M\) to find the label \(Y\) (detail <a href="https://machinelearningcoban.com/2017/01/01/kmeans/">here</a>):
     <ul>
       <li>Task: Find the label (how we assign data point to cluster)</li>
       <li>Experience: \(N\) data points, \(M\) centroids</li>
@@ -245,6 +245,10 @@ We take the 2-sided derivative, then we can get the value (detail <a href="https
     </ul>
   </li>
 </ul>
+
+<p>Unknown \(k\): In case we don’t have the \(k\), we can use elbow method to determine number of clusters in a data set.
+\[\mathrm { WCSS } = \sum _ { \mathrm { i } \text { in Centroids } n }\sum _ { \mathrm { Pi } \text { in Cluster } 1 } \operatorname { distance } \left( \mathrm { P } _ { \mathrm { i } } , \mathrm { C } _ { 1 } \right) ^ { 2 }\] 
+    <img src="https://media.licdn.com/dms/image/C4E12AQGtYzxZcksIkQ/article-inline_image-shrink_1500_2232/0?e=1553731200&amp;v=beta&amp;t=aw7WXMvLTJxT6nw4o31o1UtwNkjV3A_oeip0q52rnWI" alt="" /></p>
 
 <h3 id="example">Example</h3>
 <p>5-tuples: T, E, P, A, F</p>
@@ -374,6 +378,20 @@ We take the 2-sided derivative, then we can get the value (detail <a href="https
     <div class="recent-posts">
       
       <div class="recent-header">
+        <a class="recent-image" href="/haidangBlog/data-preprocessing/" style="background-image: url(/haidangBlog/img/knn-1.png)"></a>
+      </div>
+      
+      <div class="recent-content">
+        <h6 class="recent-title"><a href="/haidangBlog/data-preprocessing/">Data preparation for machine learning</a></h6>
+        <div class="recent-date">
+          <time datetime="2019-01-25T00:00:00+07:00">January 25, 2019</time>
+        </div>
+      </div>
+    </div>
+    
+    <div class="recent-posts">
+      
+      <div class="recent-header">
         <a class="recent-image" href="/haidangBlog/gradient-descent/" style="background-image: url(/haidangBlog/img/gradient-descent-1.png)"></a>
       </div>
       
@@ -409,20 +427,6 @@ We take the 2-sided derivative, then we can get the value (detail <a href="https
         <h6 class="recent-title"><a href="/haidangBlog/K-means-clustering/">K-means-clustering</a></h6>
         <div class="recent-date">
           <time datetime="2019-01-03T00:00:00+07:00">January 3, 2019</time>
-        </div>
-      </div>
-    </div>
-    
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/haidangBlog/introduction-to-ML/" style="background-image: url(/haidangBlog/img/introduction-to-ml.png)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/haidangBlog/introduction-to-ML/">Introduction to AI and Machine Learning - Part1</a></h6>
-        <div class="recent-date">
-          <time datetime="2018-12-31T00:00:00+07:00">December 31, 2018</time>
         </div>
       </div>
     </div>

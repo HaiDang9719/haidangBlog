@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>K-nearest-neighbor</title>
+  <title>Data preparation for machine learning</title>
   <meta name='description' content='Galada is an easy and simple theme for Jekyll. Dark colors, give it a special exquisite look. A careful approach to design and features make it an ideal solution for a personal blog.'>
 
-  <link rel="canonical" href="http://localhost:4000/haidangBlog/K-nearest-neighbor/">
+  <link rel="canonical" href="http://localhost:4000/haidangBlog/data-preprocessing/">
   <link rel="alternate" type="application/rss+xml" title="Galada Theme | Theme for Jekyll" href="/haidangBlog/feed.xml">
 
   <!-- Google Font -->
@@ -108,7 +108,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 	<div class="row">
 		<div class="col col-12">
 			<div class="post-image-box">
-				<div class="post-image" style="background-image: url(/haidangBlog/img/knn2.jpg)"></div>
+				<div class="post-image" style="background-image: url(/haidangBlog/img/knn-1.png)"></div>
 			</div>
 		</div>
 	</div>
@@ -121,7 +121,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 				<div class="post-head">
 					
-					<h1 class="post-title">K-nearest-neighbor</h1>
+					<h1 class="post-title">Data preparation for machine learning</h1>
 					<div class="post-info">
 						<div class="post-info-author">
 							<div class="info-author-avatar" style="background-image: url(/haidangBlog/img/author.jpg)"></div>
@@ -130,7 +130,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 						</div>
 						<div class="post-date">
 							<span>
-								<time datetime="2019-01-10T00:00:00+07:00">Jan 10, 2019</time>
+								<time datetime="2019-01-25T00:00:00+07:00">Jan 25, 2019</time>
 							</span>
 						</div>
 					</div>
@@ -138,145 +138,28 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 				<div class="post-body">
 					<h1 id="welcome-to-my-next-blog">Welcome to my next blog</h1>
-<p><strong>Hello</strong>, this is blog about K nearest neighbor.</p>
+<p><strong>Hello</strong>, this is blog about how we prepare the data for machine learning.</p>
 <h3 id="why-and-when">Why and When?</h3>
-<ul>
-  <li>K nearest neighbor: we use this algorithm in classification and regression problems. Let make an example:
-    <ul>
-      <li>Task: Classification fruit</li>
-      <li>Experience: Three kind of labeled fruit</li>
-      <li>Performance: Evaluate the accuracy of return guess value of the machine</li>
-      <li>Algorithm: K nearest neighbor</li>
-      <li>Function: \(f(new fruit) -&gt; I_f\) : \(I_f\) means the label of fruit</li>
-    </ul>
-  </li>
-  <li>How it works? With this algorithm, the machine will try to guess the label of the new fruit based on the average of “voting” of the nearest neighbor of the new fruit. The nearer the neighbor is, the more value of the voting it has. As you can see, it does not require training process before, so we can call that is lazy learning.</li>
-</ul>
+<p>In five steps for a machine learning problem (T, E, A, P, F), E(Experience) is important and has significant effect on result. In case we input raw data without preprocessing, it can have negative effect on your result. So, prepare data first is really necessary for the problems that have complicated data set. And in this blog, I will present 4 way to prepare data: normalization, standardization, whitening, sphering.</p>
 
 <h3 id="mathematical">Mathematical</h3>
+<p>Data Normalization (feature scaling ):</p>
 <ul>
-  <li>Input: \(X\) labeled data set, \(k\) number of nearest neighbors</li>
-  <li>Output:
-    <ul>
-      <li>Classification: class membership (predict label for test object)</li>
-      <li>Regression: the value for the object (mean value of nearest objects)</li>
-    </ul>
-  </li>
-  <li>Algorithm: Distance calculation and choose a good \(k\)</li>
-  <li>Distance calculation:
-    <ul>
-      <li>Euclidean Distance (n-space):
-\[\begin{aligned} d ( \mathbf { p } , \mathbf { q } ) = d ( \mathbf { q } , \mathbf { p } ) &amp; = \sqrt { \left( q _ { 1 } - p _ { 1 } \right) ^ { 2 } + \left( q _ { 2 } - p _ { 2 } \right) ^ { 2 } + \cdots + \left( q _ { n } - p _ { n } \right) ^ { 2 } } \ &amp; = \sqrt { \sum _ { i = 1 } ^ { n } \left( q _ { i } - p _ { i } \right) ^ { 2 } } \end{aligned}\]</li>
-      <li>Hamming Distance for categorical non-numeric attributes:
-\[D _ { H } = \sum _ { i = 1 } ^ { k } \left| p _ { i } - q _ { i } \right| \]
-\[\begin{array} { l } { i f p = q \Rightarrow 0 } \ { i f p \neq q \Rightarrow 1 } \end{array}\]</li>
-      <li>Manhattan Distance (\(p\) and \(q\) are vectors in \(n\) space dimension):
-\[d _ { 1 } ( \mathbf { p } , \mathbf { q } ) = | \mathbf { p } - \mathbf { q } | _ { 1 } = \sum _ { i = 1 } ^ { n } \left| p _ { i } - q _ { i } \right|\]
-\[\mathbf { p } = \left( p _ { 1 } , p _ { 2 } , \ldots , p _ { n } \right) \text { and } \mathbf { q } = \left( q _ { 1 } , q _ { 2 } , \ldots , q _ { n } \right)\]</li>
-      <li>Minkowski Distance is the generalization of Euclidean and Manhattan distance:
-        <ul>
-          <li>\(h\) is nore, \(h = 1\) is Manhattan distance, \(h = 2 \) is Euclidean distance
-\[d ( p , q ) = \sqrt [ n ] { \left| p _ { 1 } - q _ { 1 } \right| ^ { h } + \left| p _ { 2 } - q _ { 2 } \right| ^ { h } + \cdots + \left| p _ { n } - q _ { n } \right| ^ { h } }\]</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>how to find a good \(k\):
-    <ul>
-      <li>The value of \(k\) is too low or too high can lead to the high inaccuracy (over-fitting -&gt; under-fitting)</li>
-      <li>One of possible way to choose k is \(\mathbf(sqrt(n))\) and should choose the odd value for \(k\), more explanation <a href="https://www.quora.com/How-can-I-choose-the-best-K-in-KNN-K-nearest-neighbour-classification">here</a></li>
-    </ul>
-  </li>
+  <li>\(x _ { n o r m } = \frac { x - x _ { \min } } { x _ { \max } - x _ { \min } }\)</li>
+  <li>\(x ^ { \prime } = \frac { x - \operatorname { mean } ( x ) } { \max ( x ) - \min ( x ) }\)</li>
 </ul>
 
-<h3 id="example">Example</h3>
+<p>Data Standardization:</p>
 <ul>
-  <li>Example1(<a href="">Source code</a>):
-    <ul>
-      <li>Task: Classification iris flower</li>
-      <li>Experience: Iris data set from scikit-learn library</li>
-      <li>Performance: using function accuracy_store from scikit-learn library</li>
-      <li>Algorithm: KNN</li>
-      <li>Function: \(f(x) -&gt; X\): \(x\) is unlabeled iris flower, \(X\) is labeled iris flower.</li>
-      <li>In this example, I try to using two method to improve the accuracy of the result:
-        <ul>
-          <li>Using different \(k\)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li>\(x ^ { \prime } = \frac { x - \overline { x } } { \sigma }\) with \(\overline { x } = \operatorname { average } ( x )\) and \(\sigma\) is standard deviation.</li>
 </ul>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  
-<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">14</span><span class="p">):</span>
-    <span class="n">clf</span> <span class="o">=</span> <span class="n">neighbors</span><span class="o">.</span><span class="no">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="nb">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">clf</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="no">X_test</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"k value: "</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Print results for 40 test data points:"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Predicted labels: "</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Ground truth    : "</span><span class="p">,</span> <span class="n">y_test</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
-
-    <span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">metrics</span> <span class="n">import</span> <span class="n">accuracy_score</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Accuracy: %.2f %%"</span> <span class="o">%</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)))</span></code></pre></figure>
-
-<ul>
-  <li>using evaluating weight of voting, means the nearer one has the higher voting value.</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  
-<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">14</span><span class="p">):</span>
-    <span class="n">clf</span> <span class="o">=</span> <span class="n">neighbors</span><span class="o">.</span><span class="no">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="nb">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">clf</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="no">X_test</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"k value: "</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Print results for 40 test data points:"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Predicted labels: "</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Ground truth    : "</span><span class="p">,</span> <span class="n">y_test</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">50</span><span class="p">])</span>
-
-    <span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">metrics</span> <span class="n">import</span> <span class="n">accuracy_score</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Accuracy: %.2f %%"</span> <span class="o">%</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)))</span></code></pre></figure>
-
-<ul>
-  <li>result:</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">k</span> <span class="ss">value:  </span><span class="mi">1</span>
-<span class="no">Print</span> <span class="n">results</span> <span class="k">for</span> <span class="mi">40</span> <span class="nb">test</span> <span class="n">data</span> <span class="ss">points:
-</span><span class="no">Predicted</span> <span class="ss">labels:  </span><span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mo">01</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2</span>
- <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
-<span class="no">Ground</span> <span class="n">truth</span>    <span class="p">:</span>  <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mo">01</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2</span>
- <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
-<span class="no">Accuracy</span><span class="p">:</span> <span class="mf">96.00</span> <span class="o">%</span>
-<span class="n">k</span> <span class="ss">value:  </span><span class="mi">2</span>
-<span class="no">Print</span> <span class="n">results</span> <span class="k">for</span> <span class="mi">40</span> <span class="nb">test</span> <span class="n">data</span> <span class="ss">points:
-</span><span class="no">Predicted</span> <span class="ss">labels:  </span><span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mo">01</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2</span>
- <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
-<span class="no">Ground</span> <span class="n">truth</span>    <span class="p">:</span>  <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mo">01</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2</span>
- <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
-<span class="no">Accuracy</span><span class="p">:</span> <span class="mf">92.00</span> <span class="o">%</span>
-<span class="n">k</span> <span class="ss">value:  </span><span class="mi">3</span>
-<span class="no">Print</span> <span class="n">results</span> <span class="k">for</span> <span class="mi">40</span> <span class="nb">test</span> <span class="n">data</span> <span class="ss">points:
-</span><span class="no">Predicted</span> <span class="ss">labels:  </span><span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mo">01</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2</span>
- <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
-<span class="no">Ground</span> <span class="n">truth</span>    <span class="p">:</span>  <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mo">01</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2</span>
- <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
-<span class="no">Accuracy</span><span class="p">:</span> <span class="mf">98.00</span> <span class="o">%</span></code></pre></figure>
-
-<p>I hope you like it!</p>
-
-<p>Source:</p>
-
-<p><a href="https://machinelearningcoban.com/2017/01/08/knn/">K nearest Neighbor - ML cơ bản</a></p>
 
 
 
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/K-nearest-neighbor/"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/data-preprocessing/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -284,7 +167,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=K-nearest-neighbor&url=http://localhost:4000/haidangBlog/K-nearest-neighbor/"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Data%20preparation%20for%20machine%20learning&url=http://localhost:4000/haidangBlog/data-preprocessing/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -292,7 +175,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/K-nearest-neighbor/&title=K-nearest-neighbor&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/data-preprocessing/&title=Data%20preparation%20for%20machine%20learning&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -300,7 +183,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/K-nearest-neighbor/&amp;media=http://localhost:4000/haidangBlog/img/knn2.jpg&amp;description=K-nearest-neighbor"
+								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/data-preprocessing/&amp;media=http://localhost:4000/haidangBlog/img/knn-1.png&amp;description=Data%20preparation%20for%20machine%20learning"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Pinterest" rel="nofollow">
 									<i class="ion ion-logo-pinterest"></i>
@@ -312,16 +195,11 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 				<div class="post-navigation">
 					
-					<a href="/haidangBlog/K-means-clustering/" class="prev">
+					<a href="/haidangBlog/gradient-descent/" class="prev">
 						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
-						<h2 class="post-nav-title">K-means-clustering</h2>
-					</a>
-					 
-					<a href="/haidangBlog/gradient-descent/" class="next">
-						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
 						<h2 class="post-nav-title">Gradient Descent</h2>
 					</a>
-					
+					 
 				</div>
 
 			</div>

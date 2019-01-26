@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="633aa5b8-0f6e-4114-840d-d692ec93cb07" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/_posts/2019-01-25-data-preprocessing.markdown" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2019-01-10-K-nearest-neighbor.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-01-10-K-nearest-neighbor.markdown" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2019-01-10-gradient-descent.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-01-10-gradient-descent.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/K-means-clustering/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/K-means-clustering/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/K-nearest-neighbor/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/K-nearest-neighbor/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/gradient-descent/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/gradient-descent/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/introduction-to-ML/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/introduction-to-ML/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/linear-regression/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/linear-regression/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/_site/search.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_site/sitemap.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/welcome-to-jekyll/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/welcome-to-jekyll/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,13 +28,15 @@
     <session id="-1452223762">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -37,7 +46,7 @@
           <entry key="ico" value="1" />
           <entry key="jpg" value="6" />
           <entry key="lock" value="1" />
-          <entry key="markdown" value="13" />
+          <entry key="markdown" value="14" />
           <entry key="md" value="4" />
           <entry key="png" value="5" />
           <entry key="scss" value="4" />
@@ -48,7 +57,7 @@
         <counts>
           <entry key="HTML" value="27" />
           <entry key="Image" value="12" />
-          <entry key="Markdown" value="17" />
+          <entry key="Markdown" value="18" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="SCSS" value="4" />
           <entry key="YAML" value="4" />
@@ -57,7 +66,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="72" />
-          <entry key="markdown" value="22975" />
+          <entry key="markdown" value="23866" />
           <entry key="md" value="279" />
           <entry key="rmarkdown" value="2" />
           <entry key="yml" value="68" />
@@ -66,7 +75,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="72" />
-          <entry key="Markdown" value="23254" />
+          <entry key="Markdown" value="24145" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="YAML" value="68" />
         </counts>
@@ -82,8 +91,20 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="480">
-                <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+              <first_editor relative-caret-position="255">
+                <caret line="12" column="16" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="16" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/2019-01-25-data-preprocessing.markdown">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="405">
+                <caret line="18" column="156" selection-start-line="18" selection-start-column="156" selection-end-line="18" selection-end-column="156" />
               </first_editor>
               <second_editor />
             </state>
@@ -94,7 +115,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-01-10-K-nearest-neighbor.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="2">
+              <first_editor relative-caret-position="-983">
                 <caret line="29" column="70" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="70" />
               </first_editor>
               <second_editor />
@@ -102,11 +123,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2019-01-10-gradient-descent.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="428">
+              <first_editor relative-caret-position="226">
                 <caret line="33" column="137" selection-start-line="33" selection-start-column="137" selection-end-line="33" selection-end-column="137" />
               </first_editor>
               <second_editor />
@@ -138,9 +159,10 @@
         <option value="$PROJECT_DIR$/_includes/footer.html" />
         <option value="$PROJECT_DIR$/_posts/2018-12-31-introduction-to-ML.markdown" />
         <option value="$PROJECT_DIR$/_posts/2018-01-10-K-nearest-neighbor.markdown" />
-        <option value="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" />
         <option value="$PROJECT_DIR$/_posts/2019-01-10-K-nearest-neighbor.markdown" />
         <option value="$PROJECT_DIR$/_posts/2019-01-10-gradient-descent.markdown" />
+        <option value="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" />
+        <option value="$PROJECT_DIR$/_posts/2019-01-25-data-preprocessing.markdown" />
       </list>
     </option>
   </component>
@@ -161,10 +183,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="725" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -264,15 +286,17 @@
       <workItem from="1546486591075" duration="524000" />
       <workItem from="1546766288609" duration="7425000" />
       <workItem from="1547092361743" duration="32874000" />
-      <workItem from="1547524835185" duration="7762000" />
+      <workItem from="1547524835185" duration="7901000" />
+      <workItem from="1548088510415" duration="260000" />
+      <workItem from="1548430517006" duration="4244000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89041000" />
+    <option name="totallyTimeSpent" value="93684000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49863014" visible="true" weight="0.2494043" />
@@ -286,7 +310,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.20136987" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.23150685" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.329653" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -477,11 +501,11 @@
     <entry file="file://$PROJECT_DIR$/img/k-means-clustering-mapreduce.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown">
+    <entry file="file://$PROJECT_DIR$/_posts/2019-01-10-gradient-descent.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="480">
-            <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+          <first_editor relative-caret-position="226">
+            <caret line="33" column="137" selection-start-line="33" selection-start-column="137" selection-end-line="33" selection-end-column="137" />
           </first_editor>
           <second_editor />
         </state>
@@ -490,18 +514,28 @@
     <entry file="file://$PROJECT_DIR$/_posts/2019-01-10-K-nearest-neighbor.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="2">
+          <first_editor relative-caret-position="-983">
             <caret line="29" column="70" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="70" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-01-10-gradient-descent.markdown">
+    <entry file="file://$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="428">
-            <caret line="33" column="137" selection-start-line="33" selection-start-column="137" selection-end-line="33" selection-end-column="137" />
+          <first_editor relative-caret-position="255">
+            <caret line="12" column="16" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="16" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2019-01-25-data-preprocessing.markdown">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="405">
+            <caret line="18" column="156" selection-start-line="18" selection-start-column="156" selection-end-line="18" selection-end-column="156" />
           </first_editor>
           <second_editor />
         </state>

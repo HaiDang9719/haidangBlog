@@ -27,7 +27,7 @@ comments: true
 \\[\text{subject to:} ~~ y_{ij} \in \{0, 1\}~~ \forall i, j;~~~ \sum_{j = 1}^K y_{ij} = 1~~\forall i\\]
 
 * How we solve this problem? 
-* The first way, suppose we have label \\(Y\\) to find the centroid \\(M\\): 
+* The first step, suppose we have label \\(Y\\) to find the centroid \\(M\\): 
   * Task: Find the centroids
   * Experience: \\(N\\) data points, \\(K\\) cluster
   * Algorithm: Derivative
@@ -39,7 +39,7 @@ comments: true
   
   => To get the minimum, the centroid should be the average of every point in its cluster. 
 
-* The second way, suppose we have the centroid \\(M\\) to find the label \\(Y\\) (detail [here](https://machinelearningcoban.com/2017/01/01/kmeans/)):
+* The second step, suppose we have the centroid \\(M\\) to find the label \\(Y\\) (detail [here](https://machinelearningcoban.com/2017/01/01/kmeans/)):
   * Task: Find the label (how we assign data point to cluster)
   * Experience: \\(N\\) data points, \\(M\\) centroids
   * Algorithm: Compare Euclidean distance between each data points to each cluster, a data point is assigned to a cluster if the distance between it to the centroid is minimum when comparing to other centroids. 
@@ -80,7 +80,9 @@ Large data set: What happens if we have a data set with millions of object?
       * Algorithm: Now, it becomes to problem that we already know the assignment of object in each cluster, now find the new centroid. Using the first way in mathematical session. 
       * Pseudocode: [here](http://iip.ict.ac.cn/sites/default/files/publication/2009_Weizhong%20Zhao_Parallel%20K-means%20clustering%20based%20on%20mapreduce.pdf) 
       
-    
+Unknown \\(k\\): In case we don't have the \\(k\\), we can use elbow method to determine number of clusters in a data set.
+\\[\mathrm { WCSS } = \sum _ { \mathrm { i } \text { in Centroids } n }\sum _ { \mathrm { Pi } \text { in Cluster } 1 } \operatorname { distance } \left( \mathrm { P } _ { \mathrm { i } } , \mathrm { C } _ { 1 } \right) ^ { 2 }\\] 
+    ![](https://media.licdn.com/dms/image/C4E12AQGtYzxZcksIkQ/article-inline_image-shrink_1500_2232/0?e=1553731200&v=beta&t=aw7WXMvLTJxT6nw4o31o1UtwNkjV3A_oeip0q52rnWI)
 
 ### Example
 5-tuples: T, E, P, A, F
