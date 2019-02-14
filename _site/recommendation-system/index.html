@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Welcome to Jekyll!</title>
+  <title>Recommendation System</title>
   <meta name='description' content='Galada is an easy and simple theme for Jekyll. Dark colors, give it a special exquisite look. A careful approach to design and features make it an ideal solution for a personal blog.'>
 
-  <link rel="canonical" href="http://localhost:4000/haidangBlog/welcome-to-jekyll/">
+  <link rel="canonical" href="http://localhost:4000/haidangBlog/recommendation-system/">
   <link rel="alternate" type="application/rss+xml" title="Galada Theme | Theme for Jekyll" href="/haidangBlog/feed.xml">
 
   <!-- Google Font -->
@@ -112,7 +112,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 	<div class="row">
 		<div class="col col-12">
 			<div class="post-image-box">
-				<div class="post-image" style="background-image: url(/haidangBlog/img/11.jpg)"></div>
+				<div class="post-image" style="background-image: url(/haidangBlog/img/content-base-recommendation-system-1.jpg)"></div>
 			</div>
 		</div>
 	</div>
@@ -125,13 +125,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 				<div class="post-head">
 					
-					<div class="post-tag">
-						
-						<a href="/haidangBlog/tags#Jekyll" class="tag">Jekyll</a>
-						
-					</div>
-					
-					<h1 class="post-title">Welcome to Jekyll!</h1>
+					<h1 class="post-title">Recommendation System</h1>
 					<div class="post-info">
 						<div class="post-info-author">
 							<div class="info-author-avatar" style="background-image: url(/haidangBlog/img/author.jpg)"></div>
@@ -140,33 +134,226 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 						</div>
 						<div class="post-date">
 							<span>
-								<time datetime="2018-05-29T22:05:55+07:00">May 29, 2018</time>
+								<time datetime="2019-01-28T00:00:00+07:00">Jan 28, 2019</time>
 							</span>
 						</div>
 					</div>
 				</div>
 
 				<div class="post-body">
-					<p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+					<h1 id="welcome-to-my-next-blog">Welcome to my next blog</h1>
+<p><strong>Hello</strong>, this is blog about Content-based Recommendation System.</p>
+<h3 id="why-and-when">Why and When?</h3>
+<ul>
+  <li>Long-tail phenomenon: 
+ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Long_tail.svg/1200px-Long_tail.svg.png" alt="" />
+ <em>Source: <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Long_tail.svg/1200px-Long_tail.svg.png">Wiki</a></em>
+    <ul>
+      <li>Vertical axis: popularity</li>
+      <li>Horizontal axis: items</li>
+      <li>Problems: Physical institutions only provide most popular items to the left of the vertical line while corresponding on-line institutions provide the entire range of items: the tail as well as the popular items -&gt; online-system must be recommend items to individual users instead of showing all available items of the system.</li>
+    </ul>
+  </li>
+  <li>The key idea of the content-based in recommendation system is that the system will recommend the products that is only related to the topics, articles, categories that the user has rated or interact before. Thus, it is useful in case the users have already rated or show their interest in a product and all products in the system are clearly categorized.</li>
+</ul>
 
-<p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<p>Content-based method for recommendation system has two negative points:</p>
+<ul>
+  <li>This method waste much information from users and this is bad because users’s information is valuable in many cases e.g suggest for people in a group,…</li>
+  <li>The content-based method only works well with the tagged items to build item profile.
+These drawbacks can be solved by using Neighborhood based collaborative filtering method.
+    <ul>
+      <li>User-user collaborative filtering</li>
+      <li>Item-item collaborative filtering</li>
+    </ul>
+  </li>
+</ul>
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+<h3 id="mathematical-for-content-based-recommendation-system">Mathematical for content-based recommendation system</h3>
+<ul>
+  <li>Utility Matrix: matrix with 2 classes of entities, which we shall refer to users and items. We assume that the matrix is sparse, which means most of entries are unknown.</li>
+  <li>How:
+    <ul>
+      <li>Ask users rate the item (can be rate from 1 -&gt; 5)</li>
+      <li>Make inferences from users’ behavior (binary value: 1 if users buy or view the item (like) and 0 if vice versa)</li>
+    </ul>
+  </li>
+  <li>Reprocess data:
+    <ul>
+      <li>Build item profile (feature vector for the item): \(\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_N]\)</li>
+    </ul>
+  </li>
+  <li>Input: \(n\) users, \(\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_m]\) for \(m\) items, utility matrix.</li>
+  <li>Task: Find optimal user’s model (find value of \(w\) and \(b\) in linear loss function)</li>
+  <li>Output: \(\theta _ { i }\) model user \(i\)</li>
+  <li>Performance: optimal value Loss function</li>
+  <li>
+    <p>Algorithm:
+\[\mathcal { L } _ { n } = \frac { 1 } { 2 } \sum _ { m : r _ { m n } = 1 } \left( \mathbf { x } _ { m } \mathbf { w } _ { n } + b _ { n } - y _ { m n } \right) ^ { 2 } + \frac { \lambda } { n } \left| \mathbf { w } _ { n } \right| _ { 2 } ^ { 2 }\]</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+    <ul>
+      <li>\(\frac { \lambda } { n } \left| \mathbf { w } _ { n } \right| _ { 2 } ^ { 2 }\) is regulation term and \(\lambda \) is a positive parameter.</li>
+      <li>In practical, we can take the average value with \(s _ { n } = \sum _ { m = 1 } ^ { M } r _ { m n }\) is the sum of rated items for user \(n\).</li>
+    </ul>
 
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+    <p>\[\mathcal { L } _ { n } = \frac { 1 } { 2 s _ { n } } \sum _ { m : r _ { m n } = 1 } \left( \mathbf { x } _ { m } \mathbf { w } _ { n } + b _ { n } - y _ { m n } \right) ^ { 2 } + \frac { \lambda } { s _ { n } } \left| \mathbf { w } _ { n } \right| _ { 2 } ^ { 2 }\]</p>
+    <ul>
+      <li>This formula can be shortened by calculate only on the rated item of user \(n\).
+        <ul>
+          <li>\(\hat { \mathbf { x } } _ { n }\) is sub matrix of feature matrix \(X\) (feature matrix of rated items of user \(n\))</li>
+          <li>\(\hat { \mathbf { y } } _ { n }\) is sub vector of \(y\) (only rated value).
+\[\mathcal { L } _ { n } = \frac { 1 } { 2 s _ { n } } \left| \hat { \mathbf { X } } _ { n } \mathbf { w } _ { n } + b _ { n } \mathbf { e } _ { n } - \hat { \mathbf { y } } _ { n } \right| _ { 2 } ^ { 2 } + \frac { \lambda } { 2 s _ { n } } \left| \mathbf { w } _ { n } \right| _ { 2 } ^ { 2 }\]</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
+<h3 id="mathematical-for-neighborhood-based-collaborative-filtering">Mathematical for neighborhood-based collaborative filtering</h3>
+<p>Similarity function:</p>
+<ul>
+  <li>Cosine similarity:
+\[\text { cosine } _ { - } \operatorname { similarity } \left( \mathbf { u } _ { 1 } , \mathbf { u } _ { 2 } \right) = \cos \left( \mathbf { u } _ { 1 } , \mathbf { u } _ { 2 } \right) = \frac { \mathbf { u } _ { 1 } ^ { T } \mathbf { u } _ { 2 } } { \left| \mathbf { u } _ { 1 } \right| _ { 2 } \cdot \left| \mathbf { u } _ { 2 } \right| _ { 2 } }\]</li>
+  <li>Jaccard: 
+\[J ( u _ 1 , u _ 2 ) = \frac { | u _ 1 \cap u _ 2 | } { | u _ 1 \cup u _ 2 | }\]</li>
+</ul>
+
+<h5 id="programming-step-user-user-collaborative-filtering">Programming step User-User collaborative filtering:</h5>
+
+<p>Step 1: Normalized utility matrix</p>
+<ul>
+  <li>Calculate the mean value of each user columns in utility matrix</li>
+  <li>Minus each value in user column with the mean value of that column:
+    <ul>
+      <li>Positive value means this user like the item</li>
+      <li>Negative value means this user does not like the item</li>
+      <li>Unknown value is represented as 0</li>
+      <li>To optimize the storage, we can store this matrix as a spare matrix that only stores non-zero value and its position.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Step 2: Create similarity matrix for users with one of two similarity function above</p>
+
+<p>Step 3: Predict missing value in utility matrix</p>
+<ul>
+  <li>Algorithm: Predict rating of user \(u\) for item \(i\)
+\[\hat { \boldsymbol { y } } _ { i , u } = \frac { \sum _ { u _ { j } \in \mathcal { N } ( u , i ) } \overline { y } _ { i , u _ { j } } \operatorname { sim } \left( u , u _ { j } \right) } { \sum _ { u _ { j } \in \mathcal { N } ( u , i ) } \left| \operatorname { sim } \left( u , u _ { j } \right) \right| }\]
+    <ul>
+      <li>\(\mathcal { N } ( u , i )\) is \(k\) users has highest similarity to user \(u\) has rated \(i\)</li>
+      <li>\(\overline { \boldsymbol { y } } _ { i , u _ { j } }\) is rated value in normalised utility matrix of user \( u _ { j }\) on item \(i\)</li>
+      <li>\(\operatorname { sim } \left( u , u _ { j } \right)\) is similarity value between user \(u\) and user \(u _ { j }\)</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="programming-step-item-item-collaborative-filtering">Programming step Item-Item collaborative filtering:</h5>
+
+<p>Step 1: Normalized utility matrix</p>
+<ul>
+  <li>Calculate the mean value of each item columns in utility matrix</li>
+  <li>Minus each value in item column with the mean value of that column.</li>
+  <li>Positive value means this user like the item
+    <ul>
+      <li>Negative value means this user does not like the item</li>
+      <li>Unknown value is represented as 0</li>
+      <li>To optimize the storage, we can store this matrix as a spare matrix that only stores non-zero value and its position.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Step 2: Create similarity matrix for items with one of two similarity function above</p>
+
+<p>Step 3: Predict missing value in utility matrix</p>
+<ul>
+  <li>Algorithm: Predict rating of user \(u\) for item \(i\)
+\[\hat { \boldsymbol { y } } _ { i , u } = \frac { \sum _ { i _ { j } \in \mathcal { N } ( i , u ) } \overline { y } _ { i _ { j } , u } \operatorname { sim } \left( i , i _ { j } \right) } { \sum _ { i _ { j } \in \mathcal { N } ( i , u ) } \left| \operatorname { sim } \left( i , i _ { j } \right) \right| }\]
+    <ul>
+      <li>\(\mathcal { N } ( i , u )\) is \(k\) items has highest similarity to item \(i\) has been rated by user \(u\)</li>
+      <li>\(\overline { \boldsymbol { y } } _ { i _ { j } , u }\) is rated value in normalised utility matrix of item \( i _ { j }\) has been rated by user \(u\)</li>
+      <li>\(\operatorname { sim } \left( i , i _ { j } \right)\) is similarity value between item \(i\) and item \(i _ { j }\)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="extension">Extension</h3>
+
+<h5 id="optimize-time-complexity-in-computing-similarity-function-for-big-data">Optimize time complexity in computing similarity function for big data</h5>
+<p><img src="../img/recommendation-system-slow-algorithm.jpg" alt="" />
+ <em>Source: <a href="http://www.giaithuatlaptrinh.com/?p=1320">Giaithuatlaptrinh</a></em></p>
+<ul>
+  <li>Problem:
+    <ul>
+      <li>We use two loop, so the time complexity in here is: \(O \left( N ^ { 2 } \right)\) -&gt; impossible in large number of users (millions of users)</li>
+    </ul>
+  </li>
+  <li>Task: Optimal time complexity</li>
+  <li>Performance: Reduce time complexity to \(O \left( N \right)\)</li>
+  <li>Algorithm: Using LSH(Locality Sensitive Hashing) function</li>
+  <li>Requirement: if \(J ( A , B ) \geq s\), then \(A, B\) is belong to a cluster(with high probability)</li>
+</ul>
+
+<p><img src="../img/recommendation-system-fast-2.jpg" alt="" />
+ <em>Source: <a href="http://www.giaithuatlaptrinh.com/?p=1320">Giaithuatlaptrinh</a></em></p>
+
+<p>Now, we apply the hash function to the original recommendation method:</p>
+
+<p><img src="../img/recommendation-system-fast-1.jpg" alt="" />
+ <em>Source: <a href="http://www.giaithuatlaptrinh.com/?p=1320">Giaithuatlaptrinh</a></em></p>
+
+<ul>
+  <li>The MinHash will return the minimum value of permutation index of items viewed by user \(A\).</li>
+  <li>With the random permutation, the probability that an item has the the minimum index in random permutation \(S\) for set \(M\) of \(I\) items is \(1 / M\) -&gt; the probability that \(h ( A ) = h ( B )\) is the probability that we select an item (any) in \(A \cup B\) and that item has the minimum index value in \(A \cup B\).
+\[\operatorname { Pr } [ h ( A ) = h ( B ) ] = \frac { | A \cap B | } { | A \cup B | }\] -&gt; this formula is the same is the Jaccard similarity function.</li>
+  <li>Problem:
+    <ul>
+      <li>The hash function is not satisfy the requirement high probability that two users satisfy the threshold for similarity are belongs to same group. With the current algorithm, for example the threshold is \(0.5 \), the probability that two users has similarity value is \(0.5 \) is \(0.5\).</li>
+      <li>High storage requirement for describing the hash function.</li>
+    </ul>
+  </li>
+  <li>Solution for the first problem:
+    <ul>
+      <li>Algorithm:
+        <ul>
+          <li>Create \(K\) minHash function \(h _ { 1 } ( . ) , \dots , h _ { K } ( . )\). Each minHash function uses a different random permutation.</li>
+          <li>Device \(K\) into \(p\) groups and each group has \(r\) functions.</li>
+          <li>The probability that two users \(A and B\) belongs to a group is \(P _ { 1 } = \operatorname { Pr } \left[ h _ { 1 } ( A ) = h _ { 1 } ( B ) \right] \cdot \operatorname { Pr } \left[ h _ { 2 } ( A ) = h _ { 2 } ( B ) \right] \cdots \operatorname { Pr } \left[ h _ { r } ( A ) = h _ { r } ( B ) \right] = x ^ { r }\)</li>
+          <li>The probability that two users does not belongs to any groups is \( P _ { 2 } = \left( 1 - x ^ { r } \right) ^ { p } \).
+-&gt; The probability that two users belongs to at least a group minHash is \(P _ { 3 } = 1 - \left( 1 - x ^ { r } \right) ^ { p }\).</li>
+          <li>Let back to the previous an example with \( K = 20, p = 10, r = 2, J(A,B) = 0.5 ==&gt; P =  1 - \left( 1 - x ^ { 2 } \right) ^ { 10 } \sim 94 \% \) is must more larger than the previous probability is \(0.5\).</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Solution for the second problem:
+    <ul>
+      <li>Algorithm: Minwise Independent Hashing</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Finial solution you can find the sudo-code here:<br />
+<img src="../img/recommendation-system-fast-3.jpg" alt="" />
+ <em>Source: <a href="http://www.giaithuatlaptrinh.com/?p=1320">Giaithuatlaptrinh</a></em>
+I hope you like it!</p>
+
+<p>Source:</p>
+
+<p><a href="http://infolab.stanford.edu/~ullman/mmds/ch9.pdf">Recommendation Systems - standford</a></p>
+
+<p><a href="https://machinelearningcoban.com/2017/05/17/contentbasedrecommendersys/">Content-based Recommendation system</a></p>
+
+<p><a href="https://machinelearningcoban.com/2017/05/24/collaborativefiltering/">Neighborhood-Based Collaborative Filtering</a></p>
+
+<p><a href="http://www.giaithuatlaptrinh.com/?p=1320">Recommendation system in big data</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Random_permutation">Random Permutaiton</a></p>
 
 
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/welcome-to-jekyll/"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/recommendation-system/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -174,7 +361,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Welcome%20to%20Jekyll!&url=http://localhost:4000/haidangBlog/welcome-to-jekyll/"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Recommendation%20System&url=http://localhost:4000/haidangBlog/recommendation-system/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -182,7 +369,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/welcome-to-jekyll/&title=Welcome%20to%20Jekyll!&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/recommendation-system/&title=Recommendation%20System&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -190,7 +377,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/welcome-to-jekyll/&amp;media=http://localhost:4000/haidangBlog/img/11.jpg&amp;description=Welcome%20to%20Jekyll!"
+								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/recommendation-system/&amp;media=http://localhost:4000/haidangBlog/img/content-base-recommendation-system-1.jpg&amp;description=Recommendation%20System"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Pinterest" rel="nofollow">
 									<i class="ion ion-logo-pinterest"></i>
@@ -201,12 +388,12 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 				</div>
 
 				<div class="post-navigation">
-					 
-					<a href="/haidangBlog/linear-regression/" class="next">
-						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
-						<h2 class="post-nav-title">Linear Regression</h2>
-					</a>
 					
+					<a href="/haidangBlog/matrix-factorization-collaborative-filtering/" class="prev">
+						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
+						<h2 class="post-nav-title">Matrix Factorization Collaborative Filtering</h2>
+					</a>
+					 
 				</div>
 
 			</div>

@@ -81,7 +81,12 @@ Large data set: What happens if we have a data set with millions of object?
       * Pseudocode: [here](http://iip.ict.ac.cn/sites/default/files/publication/2009_Weizhong%20Zhao_Parallel%20K-means%20clustering%20based%20on%20mapreduce.pdf) 
       
 Unknown \\(k\\): In case we don't have the \\(k\\), we can use elbow method to determine number of clusters in a data set.
-\\[\mathrm { WCSS } = \sum _ { \mathrm { i } \text { in Centroids } n }\sum _ { \mathrm { Pi } \text { in Cluster } 1 } \operatorname { distance } \left( \mathrm { P } _ { \mathrm { i } } , \mathrm { C } _ { 1 } \right) ^ { 2 }\\] 
+* Input: \\(X = \begin{Bmatrix} x_1 , x_2 \ldots x_n \end{Bmatrix} \\) objects, \\(P_j = \begin{Bmatrix} x_i , x _ {i + 1} \ldots x_j \end{Bmatrix} \\) set of objects in cluster j, \\(M = \begin{Bmatrix} 1 , 2 \ldots k \end{Bmatrix}\\) the potential value for k
+* Ouput: optimal \\(k\\) (the \\(k\\) is that the value of WCSS at this \\(k\\) will only change slightly, the elbow of the graph ).
+* Algorithm: 
+\\[\mathsf { WCSS } = \sum _ { { j = 1 } }^{i \in \mathsf { M }}\sum _ { { P_j }  \in \mathsf { Cluster } _j } \mathsf { distance } \left( { P } _ { { j } } , { C } _ { j } \right) ^ { 2 }\\] 
+* Performance: Let draw an imaginary line with two value of \\(\mathsf { WCSS }\\). The elbow of the graph will be the point that has largest distance to the imaginary line.
+* Function: \\(R ^ {m*n}\\) 
     ![](https://media.licdn.com/dms/image/C4E12AQGtYzxZcksIkQ/article-inline_image-shrink_1500_2232/0?e=1553731200&v=beta&t=aw7WXMvLTJxT6nw4o31o1UtwNkjV3A_oeip0q52rnWI)
 
 ### Example
@@ -119,3 +124,5 @@ Source:
 [K means Clustering - map reduce](http://iip.ict.ac.cn/sites/default/files/publication/2009_Weizhong%20Zhao_Parallel%20K-means%20clustering%20based%20on%20mapreduce.pdf)
 
 [K means Clustering - map reduce example](https://pdfs.semanticscholar.org/46a3/d830f379ae61c269c9425d615f359067a5a6.pdf)
+
+[Elbow method](https://www.linkedin.com/pulse/finding-optimal-number-clusters-k-means-through-elbow-asanka-perera/)

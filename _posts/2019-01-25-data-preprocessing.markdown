@@ -15,8 +15,14 @@ Data Normalization (feature scaling ):
 * \\(x _ { n o r m } = \frac { x - x _ { \min } } { x _ { \max } - x _ { \min } }\\) 
 * \\(x ^ { \prime } = \frac { x - \operatorname { mean } ( x ) } { \max ( x ) - \min ( x ) }\\)
 * Use case: image data
-* Unused case: Long-tail distribution
+* Unused case: Long-tail distribution. It is used to describe a case that some part of the distribution is small and often is arbitrary, but in some cases may be specified objectively and have a significant meaning to the model.
 
 Data Standardization:
 * \\(x ^ { \prime } = \frac { x - \overline { x } } { \sigma }\\) with \\(\overline { x } = \operatorname { average } ( x )\\) and \\(\sigma\\) is standard deviation.
+* Use case: it is used to put all features in the same scale.
+
+PCA Whitening:
+* Principle Components Analysis (PCA) is a algorithm to reduce dimensionality to speed up significantly unsupervised feature learning algorithm.
+* Input: \\(\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_N] \\), \\(x _ i \in \Re ^ { 2 }\\).
+* Ouput: 
 

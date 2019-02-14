@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Welcome to Jekyll!</title>
+  <title>Introduction to AI and Machine Learning - Part2</title>
   <meta name='description' content='Galada is an easy and simple theme for Jekyll. Dark colors, give it a special exquisite look. A careful approach to design and features make it an ideal solution for a personal blog.'>
 
-  <link rel="canonical" href="http://localhost:4000/haidangBlog/welcome-to-jekyll/">
+  <link rel="canonical" href="http://localhost:4000/haidangBlog/introduction-to-ML-part2/">
   <link rel="alternate" type="application/rss+xml" title="Galada Theme | Theme for Jekyll" href="/haidangBlog/feed.xml">
 
   <!-- Google Font -->
@@ -112,7 +112,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 	<div class="row">
 		<div class="col col-12">
 			<div class="post-image-box">
-				<div class="post-image" style="background-image: url(/haidangBlog/img/11.jpg)"></div>
+				<div class="post-image" style="background-image: url(/haidangBlog/img/introduction-to-ml.png)"></div>
 			</div>
 		</div>
 	</div>
@@ -125,13 +125,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 				<div class="post-head">
 					
-					<div class="post-tag">
-						
-						<a href="/haidangBlog/tags#Jekyll" class="tag">Jekyll</a>
-						
-					</div>
-					
-					<h1 class="post-title">Welcome to Jekyll!</h1>
+					<h1 class="post-title">Introduction to AI and Machine Learning - Part2</h1>
 					<div class="post-info">
 						<div class="post-info-author">
 							<div class="info-author-avatar" style="background-image: url(/haidangBlog/img/author.jpg)"></div>
@@ -140,33 +134,60 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 						</div>
 						<div class="post-date">
 							<span>
-								<time datetime="2018-05-29T22:05:55+07:00">May 29, 2018</time>
+								<time datetime="2019-01-28T00:00:00+07:00">Jan 28, 2019</time>
 							</span>
 						</div>
 					</div>
 				</div>
 
 				<div class="post-body">
-					<p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+					<h1 id="welcome-to-the-introduction-series-about-ai-and-machine-learning---part2">Welcome to the introduction series about AI and Machine Learning - Part2</h1>
+<p>Basis vector</p>
+<ul>
+  <li>The key idea of basic vector is to identify a vector in vector space, so it can have different meanings:
+    <ul>
+      <li>Directions
+        <ul>
+          <li>Landmarks</li>
+          <li>Features</li>
+          <li>Words</li>
+          <li>Prototypes, patterns, templates</li>
+          <li>Regularities, abstractions</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Each vectors can be decomposed as a linear combination of basic vector \(\mathcal { E } = \left( e _ { 1 } , \ldots , e _ { n } \right)\) and parameters(coordinate) with \( { R } ^ { n }\) is coordinate space as the diagram below: 
+\[\stackrel { \forall v \in V } { \longrightarrow } \text { decomposition } [ v ] _ { \mathcal { E } } = \text { coordinates } \left( a _ { 1 } , \ldots , a _ { n } \right) \in \mathbb { R } ^ { n }\]</li>
+  <li>The parameter \(a _ { i }\) represents for the similarity between \(v\) and \(e\), e.g \(a _ { i } &gt; 1\) means \(v _ { i }\) and \(e _ { i }\) are same direction.</li>
+  <li>Exampe: \(\mathbb { R } ^ { n } \supset v = \left( x _ { 1 } , \ldots , x _ { n } \right)\)
+\(u _ { 1 } = ( 1,0 , \ldots , 0 ) , \ldots , u _ { n } = ( 0 , \ldots , 0,1 ) \Rightarrow [ v ] u = \left( x _ { 1 } , \ldots , x _ { n } \right)\)
+    <ul>
+      <li>The value \(u _ { i }\) is called standard basis vector.</li>
+    </ul>
+  </li>
+  <li>How about polynomial space: 
+\[P _ { n } ( \mathbb { R } ) \supset v ( z ) = \sum _ { i = 0 } ^ { n } a _ { i } z ^ { i } , a _ { i } \in \mathbb { R } \forall i = 0 , \ldots , n :\]</li>
+</ul>
 
-<p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<p>\[\mathcal { E } = \begin{Bmatrix}  e _ { i } = z ^ { i } \end{Bmatrix} _ { i = 0 } ^ { n } \Rightarrow [ v ] \varepsilon = \left( a _ { 0 } , \ldots , a _ { n } \right) \in \mathbb { R } ^ { n + 1 }\]</p>
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+<ul>
+  <li>\(V \stackrel { \mathcal { E } } { \rightarrow } \mathbb { R } ^ { n }\): Every vector space through basis vectors \(\mathcal { E }\) can be transformed to vectors in \(\mathbb { R } ^ { n }\).</li>
+  <li>Dimension \(n\) is the minimum number of basis vectors to represent \(\forall v \in V\).
+Linear transformation &lt;-&gt; matrix
+<img src="" alt="" /></li>
+</ul>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+<p>I hope you like it!</p>
 
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
-
+<p>Source:</p>
 
 
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/welcome-to-jekyll/"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/introduction-to-ML-part2/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -174,7 +195,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Welcome%20to%20Jekyll!&url=http://localhost:4000/haidangBlog/welcome-to-jekyll/"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Introduction%20to%20AI%20and%20Machine%20Learning%20-%20Part2&url=http://localhost:4000/haidangBlog/introduction-to-ML-part2/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -182,7 +203,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/welcome-to-jekyll/&title=Welcome%20to%20Jekyll!&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/introduction-to-ML-part2/&title=Introduction%20to%20AI%20and%20Machine%20Learning%20-%20Part2&summary=&source=Galada%20Theme%20%7C%20Theme%20for%20Jekyll"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -190,7 +211,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 							</li>
 
 							<li class="share-item">
-								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/welcome-to-jekyll/&amp;media=http://localhost:4000/haidangBlog/img/11.jpg&amp;description=Welcome%20to%20Jekyll!"
+								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/introduction-to-ML-part2/&amp;media=http://localhost:4000/haidangBlog/img/introduction-to-ml.png&amp;description=Introduction%20to%20AI%20and%20Machine%20Learning%20-%20Part2"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Pinterest" rel="nofollow">
 									<i class="ion ion-logo-pinterest"></i>
@@ -201,10 +222,15 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 				</div>
 
 				<div class="post-navigation">
+					
+					<a href="/haidangBlog/data-preprocessing/" class="prev">
+						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
+						<h2 class="post-nav-title">Data preparation for machine learning</h2>
+					</a>
 					 
-					<a href="/haidangBlog/linear-regression/" class="next">
+					<a href="/haidangBlog/matrix-factorization-collaborative-filtering/" class="next">
 						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
-						<h2 class="post-nav-title">Linear Regression</h2>
+						<h2 class="post-nav-title">Matrix Factorization Collaborative Filtering</h2>
 					</a>
 					
 				</div>

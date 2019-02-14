@@ -79,6 +79,10 @@
               
                 
               
+                
+              
+                
+              
             </ul>
           </nav>
           <div class="nav-buttons">
@@ -246,9 +250,16 @@ We take the 2-sided derivative, then we can get the value (detail <a href="https
   </li>
 </ul>
 
-<p>Unknown \(k\): In case we don’t have the \(k\), we can use elbow method to determine number of clusters in a data set.
-\[\mathrm { WCSS } = \sum _ { \mathrm { i } \text { in Centroids } n }\sum _ { \mathrm { Pi } \text { in Cluster } 1 } \operatorname { distance } \left( \mathrm { P } _ { \mathrm { i } } , \mathrm { C } _ { 1 } \right) ^ { 2 }\] 
-    <img src="https://media.licdn.com/dms/image/C4E12AQGtYzxZcksIkQ/article-inline_image-shrink_1500_2232/0?e=1553731200&amp;v=beta&amp;t=aw7WXMvLTJxT6nw4o31o1UtwNkjV3A_oeip0q52rnWI" alt="" /></p>
+<p>Unknown \(k\): In case we don’t have the \(k\), we can use elbow method to determine number of clusters in a data set.</p>
+<ul>
+  <li>Input: \(X = \begin{Bmatrix} x_1 , x_2 \ldots x_n \end{Bmatrix} \) objects, \(P_j = \begin{Bmatrix} x_i , x _ {i + 1} \ldots x_j \end{Bmatrix} \) set of objects in cluster j, \(M = \begin{Bmatrix} 1 , 2 \ldots k \end{Bmatrix}\) the potential value for k</li>
+  <li>Ouput: optimal \(k\) (the \(k\) is that the value of WCSS at this \(k\) will only change slightly, the elbow of the graph ).</li>
+  <li>Algorithm: 
+\[\mathsf { WCSS } = \sum _ { { j = 1 } }^{i \in \mathsf { M }}\sum _ { { P_j }  \in \mathsf { Cluster } _j } \mathsf { distance } \left( { P } _ { { j } } , { C } _ { j } \right) ^ { 2 }\]</li>
+  <li>Performance: Let draw an imaginary line with two value of \(\mathsf { WCSS }\). The elbow of the graph will be the point that has largest distance to the imaginary line.</li>
+  <li>Function: \(R ^ {m*n}\) 
+  <img src="https://media.licdn.com/dms/image/C4E12AQGtYzxZcksIkQ/article-inline_image-shrink_1500_2232/0?e=1553731200&amp;v=beta&amp;t=aw7WXMvLTJxT6nw4o31o1UtwNkjV3A_oeip0q52rnWI" alt="" /></li>
+</ul>
 
 <h3 id="example">Example</h3>
 <p>5-tuples: T, E, P, A, F</p>
@@ -294,6 +305,8 @@ We take the 2-sided derivative, then we can get the value (detail <a href="https
 <p><a href="http://iip.ict.ac.cn/sites/default/files/publication/2009_Weizhong%20Zhao_Parallel%20K-means%20clustering%20based%20on%20mapreduce.pdf">K means Clustering - map reduce</a></p>
 
 <p><a href="https://pdfs.semanticscholar.org/46a3/d830f379ae61c269c9425d615f359067a5a6.pdf">K means Clustering - map reduce example</a></p>
+
+<p><a href="https://www.linkedin.com/pulse/finding-optimal-number-clusters-k-means-through-elbow-asanka-perera/">Elbow method</a></p>
 
 
 					<div class="post-share">
@@ -378,6 +391,45 @@ We take the 2-sided derivative, then we can get the value (detail <a href="https
     <div class="recent-posts">
       
       <div class="recent-header">
+        <a class="recent-image" href="/haidangBlog/recommendation-system/" style="background-image: url(/haidangBlog/img/content-base-recommendation-system-1.jpg)"></a>
+      </div>
+      
+      <div class="recent-content">
+        <h6 class="recent-title"><a href="/haidangBlog/recommendation-system/">Recommendation System</a></h6>
+        <div class="recent-date">
+          <time datetime="2019-01-28T00:00:00+07:00">January 28, 2019</time>
+        </div>
+      </div>
+    </div>
+    
+    <div class="recent-posts">
+      
+      
+      <div class="recent-content">
+        <h6 class="recent-title"><a href="/haidangBlog/matrix-factorization-collaborative-filtering/">Matrix Factorization Collaborative Filtering</a></h6>
+        <div class="recent-date">
+          <time datetime="2019-01-28T00:00:00+07:00">January 28, 2019</time>
+        </div>
+      </div>
+    </div>
+    
+    <div class="recent-posts">
+      
+      <div class="recent-header">
+        <a class="recent-image" href="/haidangBlog/introduction-to-ML-part2/" style="background-image: url(/haidangBlog/img/introduction-to-ml.png)"></a>
+      </div>
+      
+      <div class="recent-content">
+        <h6 class="recent-title"><a href="/haidangBlog/introduction-to-ML-part2/">Introduction to AI and Machine Learning - Part2</a></h6>
+        <div class="recent-date">
+          <time datetime="2019-01-28T00:00:00+07:00">January 28, 2019</time>
+        </div>
+      </div>
+    </div>
+    
+    <div class="recent-posts">
+      
+      <div class="recent-header">
         <a class="recent-image" href="/haidangBlog/data-preprocessing/" style="background-image: url(/haidangBlog/img/knn-1.png)"></a>
       </div>
       
@@ -385,48 +437,6 @@ We take the 2-sided derivative, then we can get the value (detail <a href="https
         <h6 class="recent-title"><a href="/haidangBlog/data-preprocessing/">Data preparation for machine learning</a></h6>
         <div class="recent-date">
           <time datetime="2019-01-25T00:00:00+07:00">January 25, 2019</time>
-        </div>
-      </div>
-    </div>
-    
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/haidangBlog/gradient-descent/" style="background-image: url(/haidangBlog/img/gradient-descent-1.png)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/haidangBlog/gradient-descent/">Gradient Descent</a></h6>
-        <div class="recent-date">
-          <time datetime="2019-01-10T00:00:00+07:00">January 10, 2019</time>
-        </div>
-      </div>
-    </div>
-    
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/haidangBlog/K-nearest-neighbor/" style="background-image: url(/haidangBlog/img/knn2.jpg)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/haidangBlog/K-nearest-neighbor/">K-nearest-neighbor</a></h6>
-        <div class="recent-date">
-          <time datetime="2019-01-10T00:00:00+07:00">January 10, 2019</time>
-        </div>
-      </div>
-    </div>
-    
-    <div class="recent-posts">
-      
-      <div class="recent-header">
-        <a class="recent-image" href="/haidangBlog/K-means-clustering/" style="background-image: url(/haidangBlog/img/knn-1.png)"></a>
-      </div>
-      
-      <div class="recent-content">
-        <h6 class="recent-title"><a href="/haidangBlog/K-means-clustering/">K-means-clustering</a></h6>
-        <div class="recent-date">
-          <time datetime="2019-01-03T00:00:00+07:00">January 3, 2019</time>
         </div>
       </div>
     </div>
