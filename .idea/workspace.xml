@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="633aa5b8-0f6e-4114-840d-d692ec93cb07" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_posts/2019-01-28-introduction-to-ML-part2.markdown" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_posts/2019-01-28-matrix-factorization-collaborative-filtering.markdown" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_posts/2019-01-28-recommendation-system.markdown" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/recommendation-system-fast-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/recommendation-system-fast-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/recommendation-system-fast-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/recommendation-system-fast.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/recommendation-system-slow-algorithm.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2019-01-25-data-preprocessing.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-01-25-data-preprocessing.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2019-01-28-matrix-factorization-collaborative-filtering.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2019-01-28-recommendation-system.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2019-01-28-recommendation-system.markdown" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/404.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/K-means-clustering/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/K-means-clustering/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/K-nearest-neighbor/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/K-nearest-neighbor/index.html" afterDir="false" />
@@ -20,8 +15,12 @@
       <change beforePath="$PROJECT_DIR$/_site/data-preprocessing/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/data-preprocessing/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/gradient-descent/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/gradient-descent/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/introduction-to-ML-part2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/introduction-to-ML-part2/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/introduction-to-ML/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/introduction-to-ML/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/linear-regression/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/linear-regression/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/matrix-factorization-collaborative-filtering/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/page/2/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/recommendation-system/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/recommendation-system/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/_site/search.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_site/sitemap.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_site/styleguide/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/_site/styleguide/index.html" afterDir="false" />
@@ -58,43 +57,44 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="Gemfile" value="1" />
-          <entry key="html" value="27" />
+          <entry key="Gemfile" value="3" />
+          <entry key="html" value="28" />
           <entry key="ico" value="1" />
           <entry key="jpg" value="6" />
           <entry key="lock" value="1" />
-          <entry key="markdown" value="30" />
-          <entry key="md" value="4" />
+          <entry key="markdown" value="32" />
+          <entry key="md" value="5" />
           <entry key="png" value="5" />
           <entry key="scss" value="4" />
-          <entry key="yml" value="4" />
+          <entry key="yml" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="27" />
+          <entry key="HTML" value="28" />
           <entry key="Image" value="12" />
-          <entry key="Markdown" value="34" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="Markdown" value="37" />
+          <entry key="PLAIN_TEXT" value="4" />
           <entry key="SCSS" value="4" />
-          <entry key="YAML" value="4" />
+          <entry key="YAML" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="Gemfile" value="8" />
           <entry key="html" value="72" />
-          <entry key="markdown" value="33027" />
+          <entry key="markdown" value="36412" />
           <entry key="md" value="279" />
           <entry key="rmarkdown" value="2" />
-          <entry key="yml" value="68" />
+          <entry key="yml" value="146" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="72" />
-          <entry key="Markdown" value="33306" />
-          <entry key="PLAIN_TEXT" value="2" />
-          <entry key="YAML" value="68" />
+          <entry key="Markdown" value="36691" />
+          <entry key="PLAIN_TEXT" value="10" />
+          <entry key="YAML" value="146" />
         </counts>
       </usages-collector>
     </session>
@@ -108,8 +108,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-01-28-introduction-to-ML-part2.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="450">
-                <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+              <first_editor relative-caret-position="309">
+                <caret line="25" column="72" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="72" />
               </first_editor>
               <second_editor />
             </state>
@@ -120,8 +120,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-01-28-recommendation-system.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="221">
-                <caret line="125" column="128" selection-start-line="125" selection-start-column="128" selection-end-line="125" selection-end-column="128" />
+              <first_editor relative-caret-position="415">
+                <caret line="196" column="2" selection-start-line="196" selection-start-column="2" selection-end-line="196" selection-end-column="2" />
               </first_editor>
               <second_editor />
             </state>
@@ -129,13 +129,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown">
+        <entry file="file://$PROJECT_DIR$/_pages/styleguide.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="1545">
-                <caret line="103" column="33" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="33" />
+              <first_editor relative-caret-position="1245">
+                <caret line="81" selection-start-line="81" selection-end-line="92" selection-end-column="18" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="18" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -157,7 +175,6 @@
         <option value="$PROJECT_DIR$/_posts/2018-12-30-linear-regression.rmarkdown" />
         <option value="$PROJECT_DIR$/_pages/about.md" />
         <option value="$PROJECT_DIR$/_includes/disqus-comments.html" />
-        <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/_posts/2018-12-30-linear-regression.markdown" />
         <option value="$PROJECT_DIR$/_layouts/post.html" />
         <option value="$PROJECT_DIR$/_includes/header.html" />
@@ -171,6 +188,8 @@
         <option value="$PROJECT_DIR$/_posts/2019-01-28-neighborhood-based-collaborative-filtering.markdown" />
         <option value="$PROJECT_DIR$/_posts/2019-01-28-content-base-recommendation-system.markdown" />
         <option value="$PROJECT_DIR$/_posts/2019-01-28-introduction-to-ML-part2.markdown" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/_posts/2019-01-28-recommendation-system.markdown" />
       </list>
     </option>
@@ -195,7 +214,7 @@
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="726" />
+    <option name="height" value="725" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -209,16 +228,6 @@
             <path>
               <item name="MachineLearning" type="b2602c69:ProjectViewProjectNode" />
               <item name="MachineLearning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MachineLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MachineLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="_includes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MachineLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MachineLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="_layouts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MachineLearning" type="b2602c69:ProjectViewProjectNode" />
@@ -240,11 +249,6 @@
               <item name="MachineLearning" type="462c0819:PsiDirectoryNode" />
               <item name="_sass" type="462c0819:PsiDirectoryNode" />
               <item name="4-layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MachineLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MachineLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -308,12 +312,12 @@
       <workItem from="1549200236429" duration="254000" />
       <workItem from="1549301236389" duration="11838000" />
       <workItem from="1550030782748" duration="7888000" />
-      <workItem from="1550090446806" duration="7829000" />
+      <workItem from="1550090446806" duration="35727000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141250000" />
+    <option name="totallyTimeSpent" value="169148000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -391,9 +395,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -459,32 +460,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_pages/styleguide.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_includes/header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="62" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_layouts/post.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" column="135" selection-start-line="11" selection-start-column="135" selection-end-line="11" selection-end-column="135" />
         </state>
       </provider>
     </entry>
@@ -500,14 +479,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/img/k-means-clustering-mapreduce.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-01-28-matrix-factorization-collaborative-filtering.markdown">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2018-12-31-introduction-to-ML.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -560,16 +531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-01-28-introduction-to-ML-part2.markdown">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="450">
-            <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2019-01-03-K-means-clustering.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -580,11 +541,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="135" selection-start-line="11" selection-start-column="135" selection-end-line="11" selection-end-column="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2019-01-28-matrix-factorization-collaborative-filtering.markdown">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2019-01-28-introduction-to-ML-part2.markdown">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="309">
+            <caret line="25" column="72" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="72" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_pages/styleguide.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="1245">
+            <caret line="81" selection-start-line="81" selection-end-line="92" selection-end-column="18" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2019-01-28-recommendation-system.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="221">
-            <caret line="125" column="128" selection-start-line="125" selection-start-column="128" selection-end-line="125" selection-end-column="128" />
+          <first_editor relative-caret-position="415">
+            <caret line="196" column="2" selection-start-line="196" selection-start-column="2" selection-end-line="196" selection-end-column="2" />
           </first_editor>
           <second_editor />
         </state>

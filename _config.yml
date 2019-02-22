@@ -1,8 +1,8 @@
 #-------------------------------
 # General Site Settings
 
-title: Galada Theme | Theme for Jekyll
-description: Galada is an easy and simple theme for Jekyll. Dark colors, give it a special exquisite look. A careful approach to design and features make it an ideal solution for a personal blog. # this means to ignore newlines until "baseurl:"
+title: HDML | HaiDang Machine Learning Blog
+description: Machine Learning and AI Blog. # this means to ignore newlines until "baseurl:"
 baseurl: "/haidangBlog" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -49,6 +49,7 @@ permalink: ':title/'
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-pseudo
 
 paginate: 7
 paginate_path: "/page/:num"

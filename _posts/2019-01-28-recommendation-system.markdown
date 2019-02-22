@@ -4,6 +4,8 @@ title: "Recommendation System"
 image: content-base-recommendation-system-1.jpg
 author: Hai Dang
 comments: true
+header-includes:
+  - \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 ---
 # Welcome to my next blog
 **Hello**, this is blog about Content-based Recommendation System.
@@ -94,28 +96,25 @@ Step 3: Predict missing value in utility matrix
 ### Extension
 
 ##### Optimize time complexity in computing similarity function for big data
+
 ![](../img/recommendation-system-slow-algorithm.jpg)
  *Source: [Giaithuatlaptrinh](http://www.giaithuatlaptrinh.com/?p=1320)*
+   
 * Problem:
   * We use two loop, so the time complexity in here is: \\(O \left( N ^ { 2 } \right)\\) -> impossible in large number of users (millions of users)
 * Task: Optimal time complexity
 * Performance: Reduce time complexity to \\(O \left( N \right)\\)
 * Algorithm: Using LSH(Locality Sensitive Hashing) function 
 * Requirement: if \\(J ( A , B ) \geq s\\), then \\(A, B\\) is belong to a cluster(with high probability)
-
-
-![](../img/recommendation-system-fast-2.jpg)
- *Source: [Giaithuatlaptrinh](http://www.giaithuatlaptrinh.com/?p=1320)*
- 
-Now, we apply the hash function to the original recommendation method:
-
+* Solution: 
 ![](../img/recommendation-system-fast-1.jpg)
+![](../img/recommendation-system-fast-2.jpg)
  *Source: [Giaithuatlaptrinh](http://www.giaithuatlaptrinh.com/?p=1320)*
  
 * The MinHash will return the minimum value of permutation index of items viewed by user \\(A\\).
 * With the random permutation, the probability that an item has the the minimum index in random permutation \\(S\\) for set \\(M\\) of \\(I\\) items is \\(1 / M\\) -> the probability that \\(h ( A ) = h ( B )\\) is the probability that we select an item (any) in \\(A \cup B\\) and that item has the minimum index value in \\(A \cup B\\).
   \\[\operatorname { Pr } [ h ( A ) = h ( B ) ] = \frac { | A \cap B | } { | A \cup B | }\\] -> this formula is the same is the Jaccard similarity function. 
-* Problem:
+* Problem of the above solution:
   * The hash function is not satisfy the requirement high probability that two users satisfy the threshold for similarity are belongs to same group. With the current algorithm, for example the threshold is \\(0.5 \\), the probability that two users has similarity value is \\(0.5 \\) is \\(0.5\\).
   * High storage requirement for describing the hash function.
 * Solution for the first problem: 
@@ -129,9 +128,75 @@ Now, we apply the hash function to the original recommendation method:
 * Solution for the second problem:    
   * Algorithm: Minwise Independent Hashing 
 
-Finial solution you can find the sudo-code here:  
+Final solution you can find the sudo-code here:  
 ![](../img/recommendation-system-fast-3.jpg)
  *Source: [Giaithuatlaptrinh](http://www.giaithuatlaptrinh.com/?p=1320)*
+ 
+##### Matrix Factorization
+* Problem: 
+  * With content-based recommendation method, we found two drawbacks: this method lose completely users information and it requires a clear item profile matrix. 
+  * With the big data, collaborative filtering is not a good solution because it take too much storage for storing the matrix similarity.
+* Solution: Matrix Factorization (a kind of combination of two method above):
+  * To avoid loosing users information and requirement of known item profile matrix, we let both users model \\(X\\) and item profile \\(W\\) are unknown variable and they are needed to be optimal value. 
+    * \\(X\\) is all item profile matrix: \\(\left[ \begin{array} { c } { \mathbf { x } _ { 1 } } \\ { \mathbf { x } _ { 2 } } \\ { \dots } \\ { \mathbf { x } _ { M } } \end{array} \right]\\) and \\(\mathbf { X } \in \mathbb { R } ^ { M \times K }\\).
+    * \\(W\\) is all user model matrix: \\(\left[ \begin{array} { l l l l } { \mathbf { w } _ { 1 } } & { \mathbf { w } _ { 2 } } & { \dots } & { \mathbf { w } _ { N } } \end{array} \right]\\) and \\(\mathbf { W } \in \mathbb { R } ^ { K \times N }\\).
+    * \\(K\\) represent for latent features of each vector in \\(X, W\\) matrix.
+  * The storage need to store \\(X\\) and \\(W\\) is \\(K(M + N)\\) is better than \\(N ^ 2\\) or \\(M ^ 2 \\) in collaborative filtering method. 
+  * Function: Quite same as Loss function in content-based method
+  \\[\mathcal { L } ( \mathbf { X } , \mathbf { W } ) = \frac { 1 } { 2 s } \sum _ { n = 1 } ^ { N } \sum _ { m : r _ { m m } = 1 } \left( y _ { m n } - \mathbf { x } _ { m } \mathbf { w } _ { n } \right) ^ { 2 } + \frac { \lambda } { 2 } \left( \| \mathbf { X } \| _ { F } ^ { 2 } + \| \mathbf { W } \| _ { F } ^ { 2 } \right)\\]
+  * Task: Find \\(\mathbf { X } , \mathbf { W }\\), so that the Loss function has the minimum value.
+  * Algorithm: Gradient Descent
+  * Detail mathematical solution:
+  
+  Step1: Fix \\(X\\), Find \\(W\\)
+  \\[\mathcal { L } ( \mathbf { W } ) = \frac { 1 } { 2 s } \sum _ { n = 1 } ^ { N } \sum _ { m : r _ { m n } = 1 } \left( y _ { m n } - \mathbf { x } _ { m } \mathbf { w } _ { n } \right) ^ { 2 } + \frac { \lambda } { 2 } \| \mathbf { W } \| _ { F } ^ { 2 }\\]
+    * We can see it is a sum of \\(N\\) users, so we can optimize each users first and reduce the form to only rated value with \\(\hat { \mathbf { X } } _ { n }\\) matrix for rated item (row) and \\(\hat { \mathbf { y } } _ { n }\\) rated value.
+    \\[\mathcal { L } \left( \mathbf { w } _ { n } \right) = \frac { 1 } { 2 s } \left\| \hat { \mathbf { y } } _ { n } - \hat { \mathbf { X } } _ { n } \mathbf { w } _ { n } \right\| ^ { 2 } + \frac { \lambda } { 2 } \left\| \mathbf { w } _ { n } \right\| _ { 2 } ^ { 2 }\\]
+    * Now, we can use derivative method to find \\(w _ {n} \\):
+    \\[\mathbf { w } _ { n } = \mathbf { w } _ { n } - \eta \left( - \frac { 1 } { s } \hat { \mathbf { X } } _ { n } ^ { T } \left( \hat { \mathbf { y } } _ { n } - \hat { \mathbf { x } } _ { n } \mathbf { w } _ { n } \right) + \lambda \mathbf { w } _ { n } \right)\\]
+  
+  Step2: Fix \\(W\\), Find \\(X\\)
+  \\[\mathcal { L } ( \mathbf { X } ) = \frac { 1 } { 2 s } \sum _ { n = 1 } ^ { N } \sum _ { m : r _ { m n } = 1 } \left( y _ { m n } - \mathbf { x } _ { m } \mathbf { w } _ { n } \right) ^ { 2 } + \frac { \lambda } { 2 } \| \mathbf { X } \| _ { F } ^ { 2 }\\]
+    * We do quite same to step 1, we do the optimization for each vector item (\\(\mathbf { \hat { N } } _ { m }\\) is matrix for rated users (column) and \\(\hat { \mathbf { y } } ^ { m }\\) is rated value)
+    \\[\mathcal { L } \left( \mathbf { x } _ { m } \right) = \frac { 1 } { 2 s } \left\| \hat { \mathbf { y } } ^ { m } - \mathbf { x } _ { m } \hat { \mathbf { w } } _ { m } \right\| _ { 2 } ^ { 2 } + \frac { \lambda } { 2 } \left\| \mathbf { x } _ { m } \right\| _ { 2 } ^ { 2 }\\]
+    * Now, we can use derivative method to find \\(x _ {m} \\):
+    \\[\mathbf { x } _ { m } = \mathbf { x } _ { m } - \eta \left( - \frac { 1 } { s } \left( \hat { \mathbf { y } } ^ { m } - \mathbf { x } _ { m } \mathbf { \hat { W } } _ { m } \right) \mathbf { \hat { w } } _ { m } ^ { T } + \lambda \mathbf { x } _ { m } \right)\\]
+    
+##### Singular Value Decomposition(SVD)
+
+1. Eigenvalues and eigenvectors: square matrix \\(\mathbf { A } \in \mathbb { R } ^ { n \times n }\\), vector \\(\mathbf { x } \neq \mathbf { 0 } \in \mathbb { R } ^ { n }\\) and a value \\(\lambda\\)
+    \\[\mathbf { A } \mathbf { x } = \lambda \mathbf { x }\\]
+* If \\(\mathbf { A }\\) is Eigenvectors of \\(\mathbf { x }\\) with eigenvalue \\(\lambda\\) -> \\(k\mathbf { x }\\) is also the the eigenvectors of \\(mathbf { X }\\).
+* Square matrix \\(n\\) has \\(n\\) eigenvalues.
+* Symmetric matrix, all eigenvalues are the real number.
+* Positive definite matrix, all eigenvalues are the positive real number.
+* Positive semi-definite matrix, all eigenvalues are the non-negative real number.
+2. Orthogonal and orthonormal system
+* Orthogonal is \\(\mathbf { u } _ { 1 } , \mathbf { u } _ { 2 } , \ldots , \mathbf { u } _ { m } \in \mathbb { R } ^ { m }\\) and each vector \\(\mathbf { u } _ { i }\\) must satisfy: 
+\\[\mathbf { u } _ { i } \neq \mathbf { 0 } ; \quad \mathbf { u } _ { i } ^ { T } \mathbf { u } _ { j } = 0 \forall 1 \leq i \neq j \leq m\\]
+* Orthonormal is  \\(\mathbf { u } _ { 1 } , \mathbf { u } _ { 2 } , \ldots , \mathbf { u } _ { m } \in \mathbb { R } ^ { m }\\) and each vector \\(\mathbf { u } _ { i }\\) must satisfy: 
+\\[\mathbf { u } _ { i } ^ { T } \mathbf { u } _ { j } =  \begin{Bmatrix}\begin{array} { c c c } { 1 } & { \text { if } } & { i = j } 
+\\\\ { 0 } & { \text { otherwise } } \end{array} \end{Bmatrix}\\] 
+* Orthogonal matrix: \\(\mathbf { U } = \left[ \mathbf { u } _ { 1 } , \mathbf { u } _ { 2 } , \ldots ,\mathbf { u } _ { m } \right]\\), unitary matrix of \\(m\\) degrees: \\(\mathbf { I }\\)
+ \\[\mathbf { U } \mathbf { U } ^ { T } = \mathbf { U } ^ { T } \mathbf { U } = \mathbf { I }\\]
+  * \\(\mathbf { U } ^ { - 1 } = \mathbf { U } ^ { T }\\)
+  * \\(\mathbf { U }\\) is orthogonal matrix -> \\(\mathbf { U } ^ { T }\\) is also orthogonal matrix.
+  * \\(\operatorname { det } ( \mathbf { U } ) = \operatorname { det } \left( \mathbf { U } ^ { T } \right)\\) and \\(\operatorname { det } ( \mathbf { U } ) \operatorname { det } \left( \mathbf { U } ^ { T } \right) = \operatorname { det } ( \mathbf { I } ) = 1\\)
+  * Rotate two vectors \\(\mathbf { x } , \mathbf { y } \in \mathbb { R } ^ { m }\\) with orthogonal matrix, we get \\(\mathbf { U } \mathbf { x } , \mathbf { U } \mathbf { y }\\) that satisfies: 
+  \\[( \mathbf { U } \mathbf { x } ) ^ { T } ( \mathbf { U } \mathbf { y } ) = \mathbf { x } ^ { T } \mathbf { U } ^ { T } \mathbf { U } \mathbf { y } = \mathbf { x } ^ { T } \mathbf { y }\\]
+3. Singular Value Decomposition (SVD)
+
+3.1 Definition
+\\[\mathbf { A } _ { m \times n } = \mathbf { U } _ { m \times m } \boldsymbol { \Sigma } _ { m \times n } \left( \mathbf { V } _ { n \times n } \right) ^ { T }\\]
+* \\(\mathbf { U } , \mathbf { V }\\) is orthogonal matrix
+* \\(\boldsymbol { \Sigma }\\) is diagonal trix of non-square matrix \\(\sigma _ { 1 } \geq \sigma _ { 2 } \geq \cdots \geq \sigma _ { r } \geq 0 = 0 = \cdots = 0\\) and \\(r\\) is the rank of the matrix.
+
+3.2 Compact SVD
+\\[\mathbf { A } = \sigma _ { 1 } \mathbf { u } _ { 1 } \mathbf { v } _ { 1 } ^ { T } + \sigma _ { 2 } \mathbf { u } _ { 2 } \mathbf { v } _ { 2 } ^ { 2 } + \cdots + \sigma _ { r } \mathbf { u } _ { r } \mathbf { v } _ { r } ^ { T }\\]
+* \\(\mathbf { u } _ { 1 } \mathbf { v } _ { i } ^ { T } , 1 \leq i \leq r\\) is matrix with rank is 1.
+* 
+
+
 I hope you like it!
 
 Source: 
@@ -142,6 +207,10 @@ Source:
 
 [Neighborhood-Based Collaborative Filtering](https://machinelearningcoban.com/2017/05/24/collaborativefiltering/)
 
+[Matrix Factorization](https://machinelearningcoban.com/2017/05/31/matrixfactorization/)
+
 [Recommendation system in big data](http://www.giaithuatlaptrinh.com/?p=1320)
 
 [Random Permutaiton](https://en.wikipedia.org/wiki/Random_permutation)
+
+[Singular Value Decomposition](https://machinelearningcoban.com/2017/06/07/svd/)
