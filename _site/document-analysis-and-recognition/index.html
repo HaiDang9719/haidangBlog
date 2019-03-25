@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Recommendation System</title>
+  <title>DAR - Document analysis and recognition</title>
   <meta name='description' content='Machine Learning and AI Blog.'>
 
-  <link rel="canonical" href="http://localhost:4000/haidangBlog/recommendation-system/">
+  <link rel="canonical" href="http://localhost:4000/haidangBlog/document-analysis-and-recognition/">
   <link rel="alternate" type="application/rss+xml" title="HDML | HaiDang Machine Learning Blog" href="/haidangBlog/feed.xml">
 
   <!-- Google Font -->
@@ -125,7 +125,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 				<div class="post-head">
 					
-					<h1 class="post-title">Recommendation System</h1>
+					<h1 class="post-title">DAR - Document analysis and recognition</h1>
 					<div class="post-info">
 						<div class="post-info-author">
 							<div class="info-author-avatar" style="background-image: url(/haidangBlog/img/author.jpg)"></div>
@@ -134,7 +134,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 						</div>
 						<div class="post-date">
 							<span>
-								<time datetime="2019-01-28T00:00:00+01:00">Jan 28, 2019</time>
+								<time datetime="2019-03-11T00:00:00+01:00">Mar 11, 2019</time>
 							</span>
 						</div>
 					</div>
@@ -144,325 +144,12 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 					<h1 id="welcome-to-my-next-blog">Welcome to my next blog</h1>
 <p><strong>Hello</strong>, this is blog about Content-based Recommendation System.</p>
 <h3 id="why-and-when">Why and When?</h3>
-<ul>
-  <li>Long-tail phenomenon: 
- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Long_tail.svg/1200px-Long_tail.svg.png" alt="" />
- <em>Source: <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Long_tail.svg/1200px-Long_tail.svg.png">Wiki</a></em>
-    <ul>
-      <li>Vertical axis: popularity</li>
-      <li>Horizontal axis: items</li>
-      <li>Problems: Physical institutions only provide most popular items to the left of the vertical line while corresponding on-line institutions provide the entire range of items: the tail as well as the popular items -&gt; online-system must be recommend items to individual users instead of showing all available items of the system.</li>
-    </ul>
-  </li>
-  <li>The key idea of the content-based in recommendation system is that the system will recommend the products that is only related to the topics, articles, categories that the user has rated or interact before. Thus, it is useful in case the users have already rated or show their interest in a product and all products in the system are clearly categorized.</li>
-</ul>
-
-<p>Content-based method for recommendation system has two negative points:</p>
-<ul>
-  <li>This method waste much information from users and this is bad because users’s information is valuable in many cases e.g suggest for people in a group,…</li>
-  <li>The content-based method only works well with the tagged items to build item profile.
-These drawbacks can be solved by using Neighborhood based collaborative filtering method.
-    <ul>
-      <li>User-user collaborative filtering</li>
-      <li>Item-item collaborative filtering</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="mathematical-for-content-based-recommendation-system">Mathematical for content-based recommendation system</h3>
-<ul>
-  <li>Utility Matrix: matrix with 2 classes of entities, which we shall refer to users and items. We assume that the matrix is sparse, which means most of entries are unknown.</li>
-  <li>How:
-    <ul>
-      <li>Ask users rate the item (can be rate from 1 -&gt; 5)</li>
-      <li>Make inferences from users’ behavior (binary value: 1 if users buy or view the item (like) and 0 if vice versa)</li>
-    </ul>
-  </li>
-  <li>Reprocess data:
-    <ul>
-      <li>Build item profile (feature vector for the item): \(\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_N]\)</li>
-    </ul>
-  </li>
-  <li>Input: \(n\) users, \(\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_m]\) for \(m\) items, utility matrix.</li>
-  <li>Task: Find optimal user’s model (find value of \(w\) and \(b\) in linear loss function)</li>
-  <li>Output: \(\theta _ { i }\) model user \(i\)</li>
-  <li>Performance: optimal value Loss function</li>
-  <li>
-    <p>Algorithm:
-\[\mathcal { L } _ { n } = \frac { 1 } { 2 } \sum _ { m : r _ { m n } = 1 } \left( \mathbf { x } _ { m } \mathbf { w } _ { n } + b _ { n } - y _ { m n } \right) ^ { 2 } + \frac { \lambda } { n } \left| \mathbf { w } _ { n } \right| _ { 2 } ^ { 2 }\]</p>
-
-    <ul>
-      <li>\(\frac { \lambda } { n } \left| \mathbf { w } _ { n } \right| _ { 2 } ^ { 2 }\) is regulation term and \(\lambda \) is a positive parameter.</li>
-      <li>In practical, we can take the average value with \(s _ { n } = \sum _ { m = 1 } ^ { M } r _ { m n }\) is the sum of rated items for user \(n\).</li>
-    </ul>
-
-    <p>\[\mathcal { L } _ { n } = \frac { 1 } { 2 s _ { n } } \sum _ { m : r _ { m n } = 1 } \left( \mathbf { x } _ { m } \mathbf { w } _ { n } + b _ { n } - y _ { m n } \right) ^ { 2 } + \frac { \lambda } { s _ { n } } \left| \mathbf { w } _ { n } \right| _ { 2 } ^ { 2 }\]</p>
-    <ul>
-      <li>This formula can be shortened by calculate only on the rated item of user \(n\).
-        <ul>
-          <li>\(\hat { \mathbf { x } } _ { n }\) is sub matrix of feature matrix \(X\) (feature matrix of rated items of user \(n\))</li>
-          <li>\(\hat { \mathbf { y } } _ { n }\) is sub vector of \(y\) (only rated value).
-\[\mathcal { L } _ { n } = \frac { 1 } { 2 s _ { n } } \left| \hat { \mathbf { X } } _ { n } \mathbf { w } _ { n } + b _ { n } \mathbf { e } _ { n } - \hat { \mathbf { y } } _ { n } \right| _ { 2 } ^ { 2 } + \frac { \lambda } { 2 s _ { n } } \left| \mathbf { w } _ { n } \right| _ { 2 } ^ { 2 }\]</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="mathematical-for-neighborhood-based-collaborative-filtering">Mathematical for neighborhood-based collaborative filtering</h3>
-<p>Similarity function:</p>
-<ul>
-  <li>Cosine similarity:
-\[\text { cosine } _ { - } \operatorname { similarity } \left( \mathbf { u } _ { 1 } , \mathbf { u } _ { 2 } \right) = \cos \left( \mathbf { u } _ { 1 } , \mathbf { u } _ { 2 } \right) = \frac { \mathbf { u } _ { 1 } ^ { T } \mathbf { u } _ { 2 } } { \left| \mathbf { u } _ { 1 } \right| _ { 2 } \cdot \left| \mathbf { u } _ { 2 } \right| _ { 2 } }\]</li>
-  <li>Jaccard: 
-\[J ( u _ 1 , u _ 2 ) = \frac { | u _ 1 \cap u _ 2 | } { | u _ 1 \cup u _ 2 | }\]</li>
-</ul>
-
-<h5 id="programming-step-user-user-collaborative-filtering">Programming step User-User collaborative filtering:</h5>
-
-<p>Step 1: Normalized utility matrix</p>
-<ul>
-  <li>Calculate the mean value of each user columns in utility matrix</li>
-  <li>Minus each value in user column with the mean value of that column:
-    <ul>
-      <li>Positive value means this user like the item</li>
-      <li>Negative value means this user does not like the item</li>
-      <li>Unknown value is represented as 0</li>
-      <li>To optimize the storage, we can store this matrix as a spare matrix that only stores non-zero value and its position.</li>
-    </ul>
-  </li>
-</ul>
-
-<p>Step 2: Create similarity matrix for users with one of two similarity function above</p>
-
-<p>Step 3: Predict missing value in utility matrix</p>
-<ul>
-  <li>Algorithm: Predict rating of user \(u\) for item \(i\)
-\[\hat { \boldsymbol { y } } _ { i , u } = \frac { \sum _ { u _ { j } \in \mathcal { N } ( u , i ) } \overline { y } _ { i , u _ { j } } \operatorname { sim } \left( u , u _ { j } \right) } { \sum _ { u _ { j } \in \mathcal { N } ( u , i ) } \left| \operatorname { sim } \left( u , u _ { j } \right) \right| }\]
-    <ul>
-      <li>\(\mathcal { N } ( u , i )\) is \(k\) users has highest similarity to user \(u\) has rated \(i\)</li>
-      <li>\(\overline { \boldsymbol { y } } _ { i , u _ { j } }\) is rated value in normalised utility matrix of user \( u _ { j }\) on item \(i\)</li>
-      <li>\(\operatorname { sim } \left( u , u _ { j } \right)\) is similarity value between user \(u\) and user \(u _ { j }\)</li>
-    </ul>
-  </li>
-</ul>
-
-<h5 id="programming-step-item-item-collaborative-filtering">Programming step Item-Item collaborative filtering:</h5>
-
-<p>Step 1: Normalized utility matrix</p>
-<ul>
-  <li>Calculate the mean value of each item columns in utility matrix</li>
-  <li>Minus each value in item column with the mean value of that column.</li>
-  <li>Positive value means this user like the item
-    <ul>
-      <li>Negative value means this user does not like the item</li>
-      <li>Unknown value is represented as 0</li>
-      <li>To optimize the storage, we can store this matrix as a spare matrix that only stores non-zero value and its position.</li>
-    </ul>
-  </li>
-</ul>
-
-<p>Step 2: Create similarity matrix for items with one of two similarity function above</p>
-
-<p>Step 3: Predict missing value in utility matrix</p>
-<ul>
-  <li>Algorithm: Predict rating of user \(u\) for item \(i\)
-\[\hat { \boldsymbol { y } } _ { i , u } = \frac { \sum _ { i _ { j } \in \mathcal { N } ( i , u ) } \overline { y } _ { i _ { j } , u } \operatorname { sim } \left( i , i _ { j } \right) } { \sum _ { i _ { j } \in \mathcal { N } ( i , u ) } \left| \operatorname { sim } \left( i , i _ { j } \right) \right| }\]
-    <ul>
-      <li>\(\mathcal { N } ( i , u )\) is \(k\) items has highest similarity to item \(i\) has been rated by user \(u\)</li>
-      <li>\(\overline { \boldsymbol { y } } _ { i _ { j } , u }\) is rated value in normalised utility matrix of item \( i _ { j }\) has been rated by user \(u\)</li>
-      <li>\(\operatorname { sim } \left( i , i _ { j } \right)\) is similarity value between item \(i\) and item \(i _ { j }\)</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="extension">Extension</h3>
-
-<h5 id="optimize-time-complexity-in-computing-similarity-function-for-big-data">Optimize time complexity in computing similarity function for big data</h5>
-
-<p><img src="../img/recommendation-system-slow-algorithm.jpg" alt="" />
- <em>Source: <a href="http://www.giaithuatlaptrinh.com/?p=1320">Giaithuatlaptrinh</a></em></p>
-
-<ul>
-  <li>Problem:
-    <ul>
-      <li>We use two loop, so the time complexity in here is: \(O \left( N ^ { 2 } \right)\) -&gt; impossible in large number of users (millions of users)</li>
-    </ul>
-  </li>
-  <li>Task: Optimal time complexity</li>
-  <li>Performance: Reduce time complexity to \(O \left( N \right)\)</li>
-  <li>Algorithm: Using LSH(Locality Sensitive Hashing) function</li>
-  <li>Requirement: if \(J ( A , B ) \geq s\), then \(A, B\) is belong to a cluster(with high probability)</li>
-  <li>
-    <p>Solution: 
-<img src="../img/recommendation-system-fast-1.jpg" alt="" />
-<img src="../img/recommendation-system-fast-2.jpg" alt="" />
- <em>Source: <a href="http://www.giaithuatlaptrinh.com/?p=1320">Giaithuatlaptrinh</a></em></p>
-  </li>
-  <li>The MinHash will return the minimum value of permutation index of items viewed by user \(A\).</li>
-  <li>With the random permutation, the probability that an item has the the minimum index in random permutation \(S\) for set \(M\) of \(I\) items is \(1 / M\) -&gt; the probability that \(h ( A ) = h ( B )\) is the probability that we select an item (any) in \(A \cup B\) and that item has the minimum index value in \(A \cup B\).
-\[\operatorname { Pr } [ h ( A ) = h ( B ) ] = \frac { | A \cap B | } { | A \cup B | }\] -&gt; this formula is the same is the Jaccard similarity function.</li>
-  <li>Problem of the above solution:
-    <ul>
-      <li>The hash function is not satisfy the requirement high probability that two users satisfy the threshold for similarity are belongs to same group. With the current algorithm, for example the threshold is \(0.5 \), the probability that two users has similarity value is \(0.5 \) is \(0.5\).</li>
-      <li>High storage requirement for describing the hash function.</li>
-    </ul>
-  </li>
-  <li>Solution for the first problem:
-    <ul>
-      <li>Algorithm:
-        <ul>
-          <li>Create \(K\) minHash function \(h _ { 1 } ( . ) , \dots , h _ { K } ( . )\). Each minHash function uses a different random permutation.</li>
-          <li>Device \(K\) into \(p\) groups and each group has \(r\) functions.</li>
-          <li>The probability that two users \(A and B\) belongs to a group is \(P _ { 1 } = \operatorname { Pr } \left[ h _ { 1 } ( A ) = h _ { 1 } ( B ) \right] \cdot \operatorname { Pr } \left[ h _ { 2 } ( A ) = h _ { 2 } ( B ) \right] \cdots \operatorname { Pr } \left[ h _ { r } ( A ) = h _ { r } ( B ) \right] = x ^ { r }\)</li>
-          <li>The probability that two users does not belongs to any groups is \( P _ { 2 } = \left( 1 - x ^ { r } \right) ^ { p } \).
--&gt; The probability that two users belongs to at least a group minHash is \(P _ { 3 } = 1 - \left( 1 - x ^ { r } \right) ^ { p }\).</li>
-          <li>Let back to the previous an example with \( K = 20, p = 10, r = 2, J(A,B) = 0.5 ==&gt; P =  1 - \left( 1 - x ^ { 2 } \right) ^ { 10 } \sim 94 \% \) is must more larger than the previous probability is \(0.5\).</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Solution for the second problem:
-    <ul>
-      <li>Algorithm: Minwise Independent Hashing</li>
-    </ul>
-  </li>
-</ul>
-
-<p>Final solution you can find the sudo-code here:<br />
-<img src="../img/recommendation-system-fast-3.jpg" alt="" />
- <em>Source: <a href="http://www.giaithuatlaptrinh.com/?p=1320">Giaithuatlaptrinh</a></em></p>
-
-<h5 id="matrix-factorization">Matrix Factorization</h5>
-<ul>
-  <li>Problem:
-    <ul>
-      <li>With content-based recommendation method, we found two drawbacks: this method lose completely users information and it requires a clear item profile matrix.</li>
-      <li>With the big data, collaborative filtering is not a good solution because it take too much storage for storing the matrix similarity.</li>
-    </ul>
-  </li>
-  <li>Solution: Matrix Factorization (a kind of combination of two method above):
-    <ul>
-      <li>To avoid loosing users information and requirement of known item profile matrix, we let both users model \(X\) and item profile \(W\) are unknown variable and they are needed to be optimal value.
-        <ul>
-          <li>\(X\) is all item profile matrix: \(\left[ \begin{array} { c } { \mathbf { x } _ { 1 } } \ { \mathbf { x } _ { 2 } } \ { \dots } \ { \mathbf { x } _ { M } } \end{array} \right]\) and \(\mathbf { X } \in \mathbb { R } ^ { M \times K }\).</li>
-          <li>\(W\) is all user model matrix: \(\left[ \begin{array} { l l l l } { \mathbf { w } _ { 1 } } &amp; { \mathbf { w } _ { 2 } } &amp; { \dots } &amp; { \mathbf { w } _ { N } } \end{array} \right]\) and \(\mathbf { W } \in \mathbb { R } ^ { K \times N }\).</li>
-          <li>\(K\) represent for latent features of each vector in \(X, W\) matrix.</li>
-        </ul>
-      </li>
-      <li>The storage need to store \(X\) and \(W\) is \(K(M + N)\) is better than \(N ^ 2\) or \(M ^ 2 \) in collaborative filtering method.</li>
-      <li>Function: Quite same as Loss function in content-based method
-\[\mathcal { L } ( \mathbf { X } , \mathbf { W } ) = \frac { 1 } { 2 s } \sum _ { n = 1 } ^ { N } \sum _ { m : r _ { m m } = 1 } \left( y _ { m n } - \mathbf { x } _ { m } \mathbf { w } _ { n } \right) ^ { 2 } + \frac { \lambda } { 2 } \left( | \mathbf { X } | _ { F } ^ { 2 } + | \mathbf { W } | _ { F } ^ { 2 } \right)\]</li>
-      <li>Task: Find \(\mathbf { X } , \mathbf { W }\), so that the Loss function has the minimum value.</li>
-      <li>Algorithm: Gradient Descent</li>
-      <li>Detail mathematical solution:</li>
-    </ul>
-
-    <p>Step1: Fix \(X\), Find \(W\)
-\[\mathcal { L } ( \mathbf { W } ) = \frac { 1 } { 2 s } \sum _ { n = 1 } ^ { N } \sum _ { m : r _ { m n } = 1 } \left( y _ { m n } - \mathbf { x } _ { m } \mathbf { w } _ { n } \right) ^ { 2 } + \frac { \lambda } { 2 } | \mathbf { W } | _ { F } ^ { 2 }\]</p>
-    <ul>
-      <li>We can see it is a sum of \(N\) users, so we can optimize each users first and reduce the form to only rated value with \(\hat { \mathbf { X } } _ { n }\) matrix for rated item (row) and \(\hat { \mathbf { y } } _ { n }\) rated value.
-  \[\mathcal { L } \left( \mathbf { w } _ { n } \right) = \frac { 1 } { 2 s } \left| \hat { \mathbf { y } } _ { n } - \hat { \mathbf { X } } _ { n } \mathbf { w } _ { n } \right| ^ { 2 } + \frac { \lambda } { 2 } \left| \mathbf { w } _ { n } \right| _ { 2 } ^ { 2 }\]</li>
-      <li>Now, we can use derivative method to find \(w _ {n} \):
-  \[\mathbf { w } _ { n } = \mathbf { w } _ { n } - \eta \left( - \frac { 1 } { s } \hat { \mathbf { X } } _ { n } ^ { T } \left( \hat { \mathbf { y } } _ { n } - \hat { \mathbf { x } } _ { n } \mathbf { w } _ { n } \right) + \lambda \mathbf { w } _ { n } \right)\]</li>
-    </ul>
-
-    <p>Step2: Fix \(W\), Find \(X\)
-\[\mathcal { L } ( \mathbf { X } ) = \frac { 1 } { 2 s } \sum _ { n = 1 } ^ { N } \sum _ { m : r _ { m n } = 1 } \left( y _ { m n } - \mathbf { x } _ { m } \mathbf { w } _ { n } \right) ^ { 2 } + \frac { \lambda } { 2 } | \mathbf { X } | _ { F } ^ { 2 }\]</p>
-    <ul>
-      <li>We do quite same to step 1, we do the optimization for each vector item (\(\mathbf { \hat { N } } _ { m }\) is matrix for rated users (column) and \(\hat { \mathbf { y } } ^ { m }\) is rated value)
-  \[\mathcal { L } \left( \mathbf { x } _ { m } \right) = \frac { 1 } { 2 s } \left| \hat { \mathbf { y } } ^ { m } - \mathbf { x } _ { m } \hat { \mathbf { w } } _ { m } \right| _ { 2 } ^ { 2 } + \frac { \lambda } { 2 } \left| \mathbf { x } _ { m } \right| _ { 2 } ^ { 2 }\]</li>
-      <li>Now, we can use derivative method to find \(x _ {m} \):
-  \[\mathbf { x } _ { m } = \mathbf { x } _ { m } - \eta \left( - \frac { 1 } { s } \left( \hat { \mathbf { y } } ^ { m } - \mathbf { x } _ { m } \mathbf { \hat { W } } _ { m } \right) \mathbf { \hat { w } } _ { m } ^ { T } + \lambda \mathbf { x } _ { m } \right)\]</li>
-    </ul>
-  </li>
-</ul>
-
-<h5 id="singular-value-decompositionsvd">Singular Value Decomposition(SVD)</h5>
-
-<ol>
-  <li>Eigenvalues and eigenvectors: square matrix \(\mathbf { A } \in \mathbb { R } ^ { n \times n }\), vector \(\mathbf { x } \neq \mathbf { 0 } \in \mathbb { R } ^ { n }\) and a value \(\lambda\)
- \[\mathbf { A } \mathbf { x } = \lambda \mathbf { x }\]
-    <ul>
-      <li>If \(\mathbf { A }\) is Eigenvectors of \(\mathbf { x }\) with eigenvalue \(\lambda\) -&gt; \(k\mathbf { x }\) is also the the eigenvectors of \(mathbf { X }\).</li>
-      <li>Square matrix \(n\) has \(n\) eigenvalues.</li>
-      <li>Symmetric matrix, all eigenvalues are the real number.</li>
-      <li>Positive definite matrix, all eigenvalues are the positive real number.</li>
-      <li>Positive semi-definite matrix, all eigenvalues are the non-negative real number.</li>
-    </ul>
-  </li>
-  <li>Orthogonal and orthonormal system
-    <ul>
-      <li>Orthogonal is \(\mathbf { u } _ { 1 } , \mathbf { u } _ { 2 } , \ldots , \mathbf { u } _ { m } \in \mathbb { R } ^ { m }\) and each vector \(\mathbf { u } _ { i }\) must satisfy: 
-\[\mathbf { u } _ { i } \neq \mathbf { 0 } ; \quad \mathbf { u } _ { i } ^ { T } \mathbf { u } _ { j } = 0 \forall 1 \leq i \neq j \leq m\]</li>
-      <li>Orthonormal is  \(\mathbf { u } _ { 1 } , \mathbf { u } _ { 2 } , \ldots , \mathbf { u } _ { m } \in \mathbb { R } ^ { m }\) and each vector \(\mathbf { u } _ { i }\) must satisfy: 
-\[\mathbf { u } _ { i } ^ { T } \mathbf { u } _ { j } =  \begin{Bmatrix}\begin{array} { c c c } { 1 } &amp; { \text { if } } &amp; { i = j } 
-\\ { 0 } &amp; { \text { otherwise } } \end{array} \end{Bmatrix}\]</li>
-      <li>Orthogonal matrix: \(\mathbf { U } = \left[ \mathbf { u } _ { 1 } , \mathbf { u } _ { 2 } , \ldots ,\mathbf { u } _ { m } \right]\), unitary matrix of \(m\) degrees: \(\mathbf { I }\)
- \[\mathbf { U } \mathbf { U } ^ { T } = \mathbf { U } ^ { T } \mathbf { U } = \mathbf { I }\]
-        <ul>
-          <li>\(\mathbf { U } ^ { - 1 } = \mathbf { U } ^ { T }\)</li>
-          <li>\(\mathbf { U }\) is orthogonal matrix -&gt; \(\mathbf { U } ^ { T }\) is also orthogonal matrix.</li>
-          <li>\(\operatorname { det } ( \mathbf { U } ) = \operatorname { det } \left( \mathbf { U } ^ { T } \right)\) and \(\operatorname { det } ( \mathbf { U } ) \operatorname { det } \left( \mathbf { U } ^ { T } \right) = \operatorname { det } ( \mathbf { I } ) = 1\)</li>
-          <li>Rotate two vectors \(\mathbf { x } , \mathbf { y } \in \mathbb { R } ^ { m }\) with orthogonal matrix, we get \(\mathbf { U } \mathbf { x } , \mathbf { U } \mathbf { y }\) that satisfies: 
-\[( \mathbf { U } \mathbf { x } ) ^ { T } ( \mathbf { U } \mathbf { y } ) = \mathbf { x } ^ { T } \mathbf { U } ^ { T } \mathbf { U } \mathbf { y } = \mathbf { x } ^ { T } \mathbf { y }\]</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Singular Value Decomposition (SVD)</li>
-</ol>
-
-<p>3.1 Definition
-\[\mathbf { A } _ { m \times n } = \mathbf { U } _ { m \times m } \boldsymbol { \Sigma } _ { m \times n } \left( \mathbf { V } _ { n \times n } \right) ^ { T }\]</p>
-<ul>
-  <li>\(\mathbf { U } , \mathbf { V }\) is orthogonal matrix</li>
-  <li>\(\boldsymbol { \Sigma }\) is diagonal in non-square matrix \(\sigma _ { 1 } \geq \sigma _ { 2 } \geq \cdots \geq \sigma _ { r } \geq 0 = 0 = \cdots = 0\) and \(r\) is the rank of the matrix.</li>
-</ul>
-
-<p>3.2 Compact SVD
-\[\mathbf { A } = \sigma _ { 1 } \mathbf { u } _ { 1 } \mathbf { v } _ { 1 } ^ { T } + \sigma _ { 2 } \mathbf { u } _ { 2 } \mathbf { v } _ { 2 } ^ { 2 } + \cdots + \sigma _ { r } \mathbf { u } _ { r } \mathbf { v } _ { r } ^ { T }\]</p>
-<ul>
-  <li>\(\mathbf { u } _ { 1 } \mathbf { v } _ { i } ^ { T } , 1 \leq i \leq r\) is matrix with rank is 1.</li>
-  <li>Each element in matrix \(A\) is a multiplication of orthogonal matrix and diagonal in non-square matrix. So, it only cares about to \(r\) non-zero element in ‘main diagonal’ and it can be shortened like: 
-\[\mathbf {A} = \mathbf { U } _ { r } \Sigma _ { r }( \mathbf { V } _ { r })^{ T }\]</li>
-</ul>
-
-<p>3.3 Truncated SVD (Low rank approximation)
-\[\mathbf {A} \approx \mathbf { A } _ { k } = \mathbf { U } _ { k } \Sigma_{ k }( \mathbf { V } _ { k }) ^ { T } = \sigma _ { 1 } \mathbf { u } _ { 1 } \mathbf { v } _ { 1 } ^ { T }+\sigma _ { 2 } \mathbf { u } _ { 2 } \mathbf { v } _ { 2 } ^ { 2 } +\cdots+\sigma _ { k } \mathbf { u } _ { k } \mathbf { v } k ^ { T }\]</p>
-<ul>
-  <li>Due to the fact that the values on the diagonal are not negative and in decreasing order, so it is possible to take the approximation of A as the sum of \(k &lt; r\) matrix has rank 1.</li>
-  <li>Principle:
-\[\left||\mathbf{A}-\mathbf{ A } _ { k }\right||_ { F } ^ { 2 }=\sum _ { i = k+1 } ^ { r } \sigma _ { i } ^ { 2 }\]</li>
-  <li>Proven: detail <a href="https://machinelearningcoban.com/2017/06/07/svd/">here</a></li>
-  <li>Approximation error: 
-\[\frac{\left||\mathbf { A } - \mathbf { A } _ { k } \right|| _ { F } ^ { 2 } } {||\mathbf { A } \ || _ { F } ^ { 2 }}=\frac{\sum _ { i = k + 1 } ^ { r } \sigma _ { i } ^ { 2 }}{\sum _ { j = 1 } ^ { r } \sigma _ { j } ^ { 2 }}\]
--&gt; Need to choose best \(K\) for minimum approximation error</li>
-</ul>
-
-<p>I hope you like it!</p>
-
-<p>Source:</p>
-
-<p><a href="http://infolab.stanford.edu/~ullman/mmds/ch9.pdf">Recommendation Systems - standford</a></p>
-
-<p><a href="https://machinelearningcoban.com/2017/05/17/contentbasedrecommendersys/">Content-based Recommendation system</a></p>
-
-<p><a href="https://machinelearningcoban.com/2017/05/24/collaborativefiltering/">Neighborhood-Based Collaborative Filtering</a></p>
-
-<p><a href="https://machinelearningcoban.com/2017/05/31/matrixfactorization/">Matrix Factorization</a></p>
-
-<p><a href="http://www.giaithuatlaptrinh.com/?p=1320">Recommendation system in big data</a></p>
-
-<p><a href="https://en.wikipedia.org/wiki/Random_permutation">Random Permutaiton</a></p>
-
-<p><a href="https://machinelearningcoban.com/2017/06/07/svd/">Singular Value Decomposition</a></p>
 
 
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/recommendation-system/"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/document-analysis-and-recognition/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -470,7 +157,7 @@ These drawbacks can be solved by using Neighborhood based collaborative filterin
 							</li>
 
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Recommendation%20System&url=http://localhost:4000/haidangBlog/recommendation-system/"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=DAR%20-%20Document%20analysis%20and%20recognition&url=http://localhost:4000/haidangBlog/document-analysis-and-recognition/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -478,7 +165,7 @@ These drawbacks can be solved by using Neighborhood based collaborative filterin
 							</li>
 
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/recommendation-system/&title=Recommendation%20System&summary=&source=HDML%20%7C%20HaiDang%20Machine%20Learning%20Blog"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/document-analysis-and-recognition/&title=DAR%20-%20Document%20analysis%20and%20recognition&summary=&source=HDML%20%7C%20HaiDang%20Machine%20Learning%20Blog"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -486,7 +173,7 @@ These drawbacks can be solved by using Neighborhood based collaborative filterin
 							</li>
 
 							<li class="share-item">
-								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/recommendation-system/&amp;media=http://localhost:4000/haidangBlog/img/content-base-recommendation-system-1.jpg&amp;description=Recommendation%20System"
+								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/document-analysis-and-recognition/&amp;media=http://localhost:4000/haidangBlog/img/content-base-recommendation-system-1.jpg&amp;description=DAR%20-%20Document%20analysis%20and%20recognition"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Pinterest" rel="nofollow">
 									<i class="ion ion-logo-pinterest"></i>
@@ -498,16 +185,11 @@ These drawbacks can be solved by using Neighborhood based collaborative filterin
 
 				<div class="post-navigation">
 					
-					<a href="/haidangBlog/introduction-to-ML-part2/" class="prev">
+					<a href="/haidangBlog/recommendation-system/" class="prev">
 						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
-						<h2 class="post-nav-title">Introduction to AI and Machine Learning - Part2</h2>
+						<h2 class="post-nav-title">Recommendation System</h2>
 					</a>
 					 
-					<a href="/haidangBlog/document-analysis-and-recognition/" class="next">
-						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
-						<h2 class="post-nav-title">DAR - Document analysis and recognition</h2>
-					</a>
-					
 				</div>
 
 			</div>

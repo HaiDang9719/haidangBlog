@@ -28,10 +28,8 @@ GEM
       rouge (>= 1.7, < 4)
       safe_yaml (~> 1.0)
     jekyll-paginate (1.1.0)
-    jekyll-pseudocode (0.1.3)
+    jekyll-pseudo (0.1.6)
       jekyll
-    jekyll-pseudocode-b (0.1.2)
-      jekyll (~> 3.0)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
     jekyll-sitemap (0.10.0)
@@ -66,8 +64,7 @@ DEPENDENCIES
   bundler
   jekyll (>= 3.8.4)
   jekyll-paginate
-  jekyll-pseudocode (~> 0.1.3)
-  jekyll-pseudocode-b
+  jekyll-pseudo (~> 0.1.3)
   jekyll-sitemap
   tzinfo-data
 

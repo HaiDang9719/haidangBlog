@@ -189,12 +189,23 @@ Final solution you can find the sudo-code here:
 3.1 Definition
 \\[\mathbf { A } _ { m \times n } = \mathbf { U } _ { m \times m } \boldsymbol { \Sigma } _ { m \times n } \left( \mathbf { V } _ { n \times n } \right) ^ { T }\\]
 * \\(\mathbf { U } , \mathbf { V }\\) is orthogonal matrix
-* \\(\boldsymbol { \Sigma }\\) is diagonal trix of non-square matrix \\(\sigma _ { 1 } \geq \sigma _ { 2 } \geq \cdots \geq \sigma _ { r } \geq 0 = 0 = \cdots = 0\\) and \\(r\\) is the rank of the matrix.
+* \\(\boldsymbol { \Sigma }\\) is diagonal in non-square matrix \\(\sigma _ { 1 } \geq \sigma _ { 2 } \geq \cdots \geq \sigma _ { r } \geq 0 = 0 = \cdots = 0\\) and \\(r\\) is the rank of the matrix.
 
 3.2 Compact SVD
 \\[\mathbf { A } = \sigma _ { 1 } \mathbf { u } _ { 1 } \mathbf { v } _ { 1 } ^ { T } + \sigma _ { 2 } \mathbf { u } _ { 2 } \mathbf { v } _ { 2 } ^ { 2 } + \cdots + \sigma _ { r } \mathbf { u } _ { r } \mathbf { v } _ { r } ^ { T }\\]
 * \\(\mathbf { u } _ { 1 } \mathbf { v } _ { i } ^ { T } , 1 \leq i \leq r\\) is matrix with rank is 1.
-* 
+* Each element in matrix \\(A\\) is a multiplication of orthogonal matrix and diagonal in non-square matrix. So, it only cares about to \\(r\\) non-zero element in 'main diagonal' and it can be shortened like: 
+\\[\mathbf {A} = \mathbf { U } _ { r } \Sigma _ { r }( \mathbf { V } _ { r }\)^{ T }\\]
+
+3.3 Truncated SVD (Low rank approximation)
+\\[\mathbf {A} \approx \mathbf { A } _ { k } = \mathbf { U } _ { k } \Sigma_{ k }( \mathbf { V } _ { k }) ^ { T } = \sigma _ { 1 } \mathbf { u } _ { 1 } \mathbf { v } _ { 1 } ^ { T }+\sigma _ { 2 } \mathbf { u } _ { 2 } \mathbf { v } _ { 2 } ^ { 2 } +\cdots+\sigma _ { k } \mathbf { u } _ { k } \mathbf { v } k ^ { T }\\]
+* Due to the fact that the values on the diagonal are not negative and in decreasing order, so it is possible to take the approximation of A as the sum of \\(k < r\\) matrix has rank 1.
+* Principle:
+\\[\left\||\mathbf{A}-\mathbf{ A } _ { k }\right\||_ { F } ^ { 2 }=\sum _ { i = k+1 } ^ { r } \sigma _ { i } ^ { 2 }\\]
+* Proven: detail [here](https://machinelearningcoban.com/2017/06/07/svd/)
+* Approximation error: 
+\\[\frac{\left\||\mathbf { A } - \mathbf { A } _ { k } \right\|| _ { F } ^ { 2 } } {\||\mathbf { A } \ || _ { F } ^ { 2 }}=\frac{\sum _ { i = k + 1 } ^ { r } \sigma _ { i } ^ { 2 }}{\sum _ { j = 1 } ^ { r } \sigma _ { j } ^ { 2 }}\\]
+-> Need to choose best \\(K\\) for minimum approximation error
 
 
 I hope you like it!
