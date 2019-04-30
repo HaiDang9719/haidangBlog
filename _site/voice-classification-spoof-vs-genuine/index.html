@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Introduction to AI and Machine Learning - Part2</title>
+  <title>Voice classification spoof vs genuine</title>
   <meta name='description' content='Machine Learning and AI Blog.'>
 
-  <link rel="canonical" href="http://localhost:4000/haidangBlog/introduction-to-ML-part2/">
+  <link rel="canonical" href="http://localhost:4000/haidangBlog/voice-classification-spoof-vs-genuine/">
   <link rel="alternate" type="application/rss+xml" title="HDML | HaiDang Machine Learning Blog" href="/haidangBlog/feed.xml">
 
   <!-- Google Font -->
@@ -125,7 +125,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 				<div class="post-head">
 					
-					<h1 class="post-title">Introduction to AI and Machine Learning - Part2</h1>
+					<h1 class="post-title">Voice classification spoof vs genuine</h1>
 					<div class="post-info">
 						<div class="post-info-author">
 							<div class="info-author-avatar" style="background-image: url(/haidangBlog/img/author.jpg)"></div>
@@ -134,60 +134,197 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 						</div>
 						<div class="post-date">
 							<span>
-								<time datetime="2019-01-28T00:00:00+01:00">Jan 28, 2019</time>
+								<time datetime="2019-04-29T00:00:00+02:00">Apr 29, 2019</time>
 							</span>
 						</div>
 					</div>
 				</div>
 
 				<div class="post-body">
-					<h1 id="welcome-to-the-introduction-series-about-ai-and-machine-learning---part2">Welcome to the introduction series about AI and Machine Learning - Part2</h1>
-<p>Basis vector</p>
+					<h1 id="welcome-to-the-voice-classification-spoof-vs-genuine">Welcome to the voice classification spoof vs genuine</h1>
+<h3 id="pipeline">Pipeline:</h3>
+
+<p>INPUT -&gt; FRONT-END -&gt; BACK-END -&gt; OUTPUT</p>
+
+<h3 id="input">Input:</h3>
 <ul>
-  <li>The key idea of basic vector is to identify a vector in vector space, so it can have different meanings:
+  <li>The number of wav audio file have been divided into three data sets train, develop and evaluation set.</li>
+</ul>
+
+<h3 id="front-end-audio-pre-processing">Front-end: Audio pre-processing:</h3>
+<ul>
+  <li>Mel-spectrogram:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  
+  <span class="k">def</span> <span class="nf">windows</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">window_size</span><span class="p">):</span>
+      <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+          <span class="k">yield</span> <span class="nb">int</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">window_size</span><span class="p">)</span>
+          <span class="n">start</span> <span class="o">+=</span> <span class="p">(</span><span class="n">window_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+  </code></pre></figure>
+
+<ul>
+  <li>Each audio file has different lengths, the “windows” will slice the audio file into multiple small signals which have the same length to make it more convenient and more precisely to process.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  
+  <span class="k">def</span> <span class="nf">extract_features</span><span class="p">(</span><span class="n">parent_dir</span><span class="p">,</span><span class="n">file_ext</span><span class="o">=</span><span class="s">"*.wav"</span><span class="p">,</span><span class="n">bands</span> <span class="o">=</span> <span class="mi">256</span><span class="p">,</span> <span class="n">frames</span> <span class="o">=</span> <span class="mi">51</span><span class="p">):</span>
+      <span class="n">window_size</span> <span class="o">=</span> <span class="mi">512</span> <span class="o">*</span> <span class="p">(</span><span class="n">frames</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">log_specgrams</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent_dir</span><span class="p">,</span> <span class="n">file_ext</span><span class="p">)):</span>
+          <span class="n">sound_clip</span><span class="p">,</span><span class="n">s</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="mi">16000</span><span class="p">)</span>
+          <span class="n">label</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="p">[</span><span class="s">'fname'</span><span class="p">]</span> <span class="o">==</span> <span class="n">fn</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'/'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">identifier</span><span class="o">.</span><span class="n">values</span>
+          <span class="k">for</span> <span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">)</span> <span class="ow">in</span> <span class="n">windows</span><span class="p">(</span><span class="n">sound_clip</span><span class="p">,</span><span class="n">window_size</span><span class="p">):</span>
+              <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sound_clip</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">])</span> <span class="o">==</span> <span class="n">window_size</span><span class="p">):</span>
+                  <span class="n">signal</span> <span class="o">=</span> <span class="n">sound_clip</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+                  <span class="n">melspec</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">melspectrogram</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="mi">16000</span><span class="p">,</span> <span class="n">n_mels</span> <span class="o">=</span> <span class="n">bands</span><span class="p">)</span>
+                  <span class="n">logspec</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">amplitude_to_db</span><span class="p">(</span><span class="n">melspec</span><span class="p">)</span>
+                  <span class="n">logspec</span> <span class="o">=</span> <span class="n">logspec</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+                  <span class="n">log_specgrams</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logspec</span><span class="p">)</span>
+                  <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+      <span class="n">log_specgrams</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">log_specgrams</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">log_specgrams</span><span class="p">),</span><span class="n">bands</span><span class="p">,</span><span class="n">frames</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">log_specgrams</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">log_specgrams</span><span class="p">))),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)):</span>
+          <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+      <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">features</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">str</span><span class="p">)</span> 
+  </code></pre></figure>
+
+<ul>
+  <li>The method is used to convert the signal to frequency is Mel-spectrogram. Mel-spectrogram is visual representation of frequencies over time. To convert a sound to an spectrogram, we apply a filter bank representation of this sound. A sound file is divided into multiple short-time frames according to a certain window_length and time step. The signal changes overtime, thus to get the frequencies from signal, we need to applied Fourier Transform on each short time frames with the assumption that signal does not change at that period of time, otherwise it makes no sense, and the result is an approximation of the frequencies contours by concatenating the whole frames. Each frames will be apply window function to counteract the assumption made by the FFT that data is infinite and to reduce spectral leakage. Then, we can now do an N-point FFT into each frames to calculate the frequency spectrum:
+  \[P=\frac{\left|F F T\left(x_{i}\right)\right|^{2}}{N} \]</li>
+  <li>Then, the frequency can be converted to Mel scale and vice versa through these equations: 
+  \[m=2595 \log _{10}\left(1+\frac{f}{700}\right)\]
+  \[f=700\left(10^{m / 2595}-1\right)\]</li>
+  <li>Those steps above have been made by default of the framework <strong>librosa.feature.melspectrogram</strong>. There are multiple parameters (y=None, sr=22050, S=None, n_fft=2048, hop_length=512, power=2.0, <em>*kwargs) have been used in this framework. These files in the data set have the sampling rate is 16kHz, so *sr</em> need to be changed into 16000 instead of default value of 22050. Then the spectrogram is convert from amplitude to db and flattened. As a result, the input for the deep learning cnn model will be (?, 60, 41, 1).</li>
+  <li>FFT vs CQT/CQCCs:
     <ul>
-      <li>Directions
-        <ul>
-          <li>Landmarks</li>
-          <li>Features</li>
-          <li>Words</li>
-          <li>Prototypes, patterns, templates</li>
-          <li>Regularities, abstractions</li>
-        </ul>
+      <li>One of another traditional way is used (Fast) Fourier Transform (FFT). This technique is extremely powerful in time-frequency analysis, however it may lack frequency resolution at lower frequencies and temporal resolution at higher frequencies. In the other hand, one of efficient methods had been found in ASV 2015 for that problem is constant Q transform (CQT). The difference is that FFT imposes the regular spaced frequency bins while CQT employs geometrically spaced frequency bins, so CQT can across the entire spectrum and then get the a higher frequency resolution at lower frequencies and higher temporal resolution at higher frequencies. With this technique, it reflects more precisely the human perception system. Additionally, the baseline of feature extraction is proposed from ASV 2015 has shown that it will be more efficient to combine the CQT with traditional cepstral analysis called constant Q cepstral coefficients (CQCCs).</li>
+      <li>Q factor is a measure of selectivity of each filter and is defined as a ratio between center frequency \(f_{k}\) and bandwidth \(\delta f\):
+  \[Q=\frac{f_{k}}{\delta f}\]
+        <h3 id="back-end-deep-learning-model-cnn">Back-end: Deep learning model CNN</h3>
       </li>
     </ul>
   </li>
-  <li>Each vectors can be decomposed as a linear combination of basic vector \(\mathcal { E } = \left( e _ { 1 } , \ldots , e _ { n } \right)\) and parameters(coordinate) with \( { R } ^ { n }\) is coordinate space as the diagram below: 
-\[\stackrel { \forall v \in V } { \longrightarrow } \text { decomposition } [ v ] _ { \mathcal { E } } = \text { coordinates } \left( a _ { 1 } , \ldots , a _ { n } \right) \in \mathbb { R } ^ { n }\]</li>
-  <li>The parameter \(a _ { i }\) represents for the similarity between \(v\) and \(e\), e.g \(a _ { i } &gt; 1\) means \(v _ { i }\) and \(e _ { i }\) are same direction.</li>
-  <li>Exampe: \(\mathbb { R } ^ { n } \supset v = \left( x _ { 1 } , \ldots , x _ { n } \right)\)
-\(u _ { 1 } = ( 1,0 , \ldots , 0 ) , \ldots , u _ { n } = ( 0 , \ldots , 0,1 ) \Rightarrow [ v ] u = \left( x _ { 1 } , \ldots , x _ { n } \right)\)
-    <ul>
-      <li>The value \(u _ { i }\) is called standard basis vector.</li>
-    </ul>
-  </li>
-  <li>How about polynomial space: 
-\[P _ { n } ( \mathbb { R } ) \supset v ( z ) = \sum _ { i = 0 } ^ { n } a _ { i } z ^ { i } , a _ { i } \in \mathbb { R } \forall i = 0 , \ldots , n :\]</li>
 </ul>
 
-<p>\[\mathcal { E } = \begin{Bmatrix}  e _ { i } = z ^ { i } \end{Bmatrix} _ { i = 0 } ^ { n } \Rightarrow [ v ] \varepsilon = \left( a _ { 0 } , \ldots , a _ { n } \right) \in \mathbb { R } ^ { n + 1 }\]</p>
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  
+<span class="k">def</span> <span class="nf">weight_variable</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+    <span class="n">initial</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">bias_variable</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+    <span class="n">initial</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">shape</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+    </code></pre></figure>
 
 <ul>
-  <li>\(V \stackrel { \mathcal { E } } { \rightarrow } \mathbb { R } ^ { n }\): Every vector space through basis vectors \(\mathcal { E }\) can be transformed to vectors in \(\mathbb { R } ^ { n }\).</li>
-  <li>Dimension \(n\) is the minimum number of basis vectors to represent \(\forall v \in V\).
-Linear transformation &lt;-&gt; matrix
-<img src="" alt="" /></li>
+  <li>The method named weight_variable and bias_variable will return Tensorflow variable of defined shapes, where bias variable is initialized with all ones and weight variable with zero mean and standard deviation of 0.1.</li>
 </ul>
 
-<p>I hope you like it!</p>
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  
+<span class="k">def</span> <span class="nf">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">W</span><span class="p">,</span><span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s">'SAME'</span><span class="p">)</span>
 
-<p>Source:</p>
+<span class="k">def</span> <span class="nf">apply_convolution</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">kernel_size</span><span class="p">,</span><span class="n">num_channels</span><span class="p">,</span><span class="n">depth</span><span class="p">):</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="n">kernel_size</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">num_channels</span><span class="p">,</span> <span class="n">depth</span><span class="p">])</span>
+    <span class="n">biases</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="n">depth</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="p">),</span><span class="n">biases</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">apply_max_pool</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">kernel_size</span><span class="p">,</span><span class="n">stride_size</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                          <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride_size</span><span class="p">,</span> <span class="n">stride_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s">'SAME'</span><span class="p">)</span>
+    </code></pre></figure>
+
+<ul>
+  <li>The Conv2d method is just a wrapper over Tensorflow conv2d function. It will be called by apply_convolution function, which takes input data, kernel/filer size, a number of channels in the input and output depth or number of channels in the output. It then gets weight and bias variables, applies convolution, adds the bias to the results and finally applies non-linearity (RELU). Max-Pooling can be applied using apply_max_pool function. It takes input data (usually output of convolution layer), kernel and stride size.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  
+<span class="n">frames</span> <span class="o">=</span> <span class="mi">41</span>
+<span class="n">bands</span> <span class="o">=</span> <span class="mi">60</span>
+
+<span class="n">feature_size</span> <span class="o">=</span> <span class="mi">2460</span> <span class="c1">#60x41
+</span><span class="n">num_labels</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">num_channels</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">kernel_size</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">num_hidden</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">training_iterations</span> <span class="o">=</span> <span class="mi">2000</span>
+    </code></pre></figure>
+
+<ul>
+  <li>Tensorflow placeholder for input and output data are defined next. A convolution function is applied with a filter size of 30 and depth of 16 (number of channels, we will get as output from convolution layer, depth as sampling rate). Next, the convolution output is flattened out for the fully connected layer input. There are 200 neurons in the fully connected layer as defined by the above configuration. The Sigmoid function is used as non-linearity in this layer. Lastly, the Softmax layer is defined to output probabilities of the class labels.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  
+<span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span><span class="n">bands</span><span class="p">,</span><span class="n">frames</span><span class="p">,</span><span class="n">num_channels</span><span class="p">])</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span><span class="n">num_labels</span><span class="p">])</span>
+
+<span class="n">cov</span> <span class="o">=</span> <span class="n">apply_convolution</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">kernel_size</span><span class="p">,</span><span class="n">num_channels</span><span class="p">,</span><span class="n">depth</span><span class="p">)</span>
+
+<span class="n">shape</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()</span><span class="o">.</span><span class="n">as_list</span><span class="p">()</span>
+<span class="n">cov_flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
+
+<span class="n">f_weights</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">depth</span><span class="p">,</span> <span class="n">num_hidden</span><span class="p">])</span>
+<span class="n">f_biases</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="n">num_hidden</span><span class="p">])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">cov_flat</span><span class="p">,</span> <span class="n">f_weights</span><span class="p">),</span><span class="n">f_biases</span><span class="p">))</span>
+
+<span class="n">out_weights</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="n">num_hidden</span><span class="p">,</span> <span class="n">num_labels</span><span class="p">])</span>
+<span class="n">out_biases</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="n">num_labels</span><span class="p">])</span>
+<span class="n">y_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">out_weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">out_biases</span><span class="p">)</span>
+    </code></pre></figure>
+
+<ul>
+  <li>The negative log-likelihood cost function will be minimised using Adam optimizer, the code provided below initialize cost function and optimizer. Also, define the code for accuracy calculation of the prediction by model.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  
+<span class="n">loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">Y</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_</span><span class="p">))</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+<span class="n">correct_prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">correct_prediction</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+    </code></pre></figure>
+
+<ul>
+  <li>Now the following code will train the CNN model using a batch size of 50 for 2000 iterations. After the training, it classifies testing set and prints out the achieved accuracy of the model along with plotting cost as a function of a number of iterations.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  
+<span class="n">cost_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">initialize_all_variables</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">itr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_iterations</span><span class="p">):</span>    
+        <span class="n">offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">itr</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">tr_labels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">batch_size</span><span class="p">)</span>
+        <span class="n">batch_x</span> <span class="o">=</span> <span class="n">tr_features</span><span class="p">[</span><span class="n">offset</span><span class="p">:(</span><span class="n">offset</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">),</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+        <span class="n">batch_y</span> <span class="o">=</span> <span class="n">tr_labels</span><span class="p">[</span><span class="n">offset</span><span class="p">:(</span><span class="n">offset</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">),</span> <span class="p">:]</span>
+        
+        <span class="n">_</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">loss</span><span class="p">],</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">Y</span> <span class="p">:</span> <span class="n">batch_y</span><span class="p">})</span>
+        <span class="n">cost_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost_history</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+    
+    <span class="k">print</span><span class="p">(</span><span class="s">'Test accuracy: '</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">ts_features</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">ts_labels</span><span class="p">})</span> <span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cost_history</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">total_iterations</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">cost_history</span><span class="p">)])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    </code></pre></figure>
+
+<ul>
+  <li>The accuracy achieved around 90%.</li>
+</ul>
 
 
 					<div class="post-share">
 						<ul class="share-list list-reset">
 							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/introduction-to-ML-part2/"
+								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/haidangBlog/voice-classification-spoof-vs-genuine/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Facebook" rel="nofollow">
 									<i class="ion ion-logo-facebook"></i>
@@ -195,7 +332,7 @@ Linear transformation &lt;-&gt; matrix
 							</li>
 
 							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Introduction%20to%20AI%20and%20Machine%20Learning%20-%20Part2&url=http://localhost:4000/haidangBlog/introduction-to-ML-part2/"
+								<a class="share-twitter" href="https://twitter.com/intent/tweet?text=Voice%20classification%20spoof%20vs%20genuine&url=http://localhost:4000/haidangBlog/voice-classification-spoof-vs-genuine/"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Twitter" rel="nofollow">
 									<i class="ion ion-logo-twitter"></i>
@@ -203,7 +340,7 @@ Linear transformation &lt;-&gt; matrix
 							</li>
 
 							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/introduction-to-ML-part2/&title=Introduction%20to%20AI%20and%20Machine%20Learning%20-%20Part2&summary=&source=HDML%20%7C%20HaiDang%20Machine%20Learning%20Blog"
+								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/haidangBlog/voice-classification-spoof-vs-genuine/&title=Voice%20classification%20spoof%20vs%20genuine&summary=&source=HDML%20%7C%20HaiDang%20Machine%20Learning%20Blog"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on LinkedIn" rel="nofollow">
 									<i class="ion ion-logo-linkedin"></i>
@@ -211,7 +348,7 @@ Linear transformation &lt;-&gt; matrix
 							</li>
 
 							<li class="share-item">
-								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/introduction-to-ML-part2/&amp;media=http://localhost:4000/haidangBlog/img/introduction-to-ml.png&amp;description=Introduction%20to%20AI%20and%20Machine%20Learning%20-%20Part2"
+								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/voice-classification-spoof-vs-genuine/&amp;media=http://localhost:4000/haidangBlog/img/introduction-to-ml.png&amp;description=Voice%20classification%20spoof%20vs%20genuine"
 								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
 								title="Share on Pinterest" rel="nofollow">
 									<i class="ion ion-logo-pinterest"></i>
@@ -223,16 +360,11 @@ Linear transformation &lt;-&gt; matrix
 
 				<div class="post-navigation">
 					
-					<a href="/haidangBlog/data-preprocessing/" class="prev">
+					<a href="/haidangBlog/document-analysis-and-recognition/" class="prev">
 						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
-						<h2 class="post-nav-title">Data preparation for machine learning</h2>
+						<h2 class="post-nav-title">DAR - Document analysis and recognition</h2>
 					</a>
 					 
-					<a href="/haidangBlog/recommendation-system/" class="next">
-						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
-						<h2 class="post-nav-title">Recommendation System</h2>
-					</a>
-					
 				</div>
 
 			</div>
