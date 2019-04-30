@@ -153,6 +153,13 @@ config=TeX-AMS-MML_HTMLorMML"></script>
 
 <h3 id="front-end-audio-pre-processing">Front-end: Audio pre-processing:</h3>
 <ul>
+  <li>FFT vs CQT/CQCCs:
+    <ul>
+      <li>One of another traditional way is used (Fast) Fourier Transform (FFT). This technique is extremely powerful in time-frequency analysis, however it may lack frequency resolution at lower frequencies and temporal resolution at higher frequencies. In the other hand, one of efficient methods had been found in ASV 2015 for that problem is constant Q transform (CQT). The difference is that FFT imposes the regular spaced frequency bins while CQT employs geometrically spaced frequency bins, so CQT can across the entire spectrum and then get the a higher frequency resolution at lower frequencies and higher temporal resolution at higher frequencies. With this technique, it reflects more precisely the human perception system. Additionally, the baseline of feature extraction is proposed from ASV 2015 has shown that it will be more efficient to combine the CQT with traditional cepstral analysis called constant Q cepstral coefficients (CQCCs).</li>
+      <li>Q factor is a measure of selectivity of each filter and is defined as a ratio between center frequency \(f_{k}\) and bandwidth \(\delta f\):
+  \[Q=\frac{f_{k}}{\delta f}\]</li>
+    </ul>
+  </li>
   <li>Mel-spectrogram:</li>
 </ul>
 
@@ -198,15 +205,22 @@ config=TeX-AMS-MML_HTMLorMML"></script>
   <li>Then, the frequency can be converted to Mel scale and vice versa through these equations: 
   \[m=2595 \log _{10}\left(1+\frac{f}{700}\right)\]
   \[f=700\left(10^{m / 2595}-1\right)\]</li>
-  <li>Those steps above have been made by default of the framework <strong>librosa.feature.melspectrogram</strong>. There are multiple parameters (y=None, sr=22050, S=None, n_fft=2048, hop_length=512, power=2.0, <em>*kwargs) have been used in this framework. These files in the data set have the sampling rate is 16kHz, so *sr</em> need to be changed into 16000 instead of default value of 22050. Then the spectrogram is convert from amplitude to db and flattened. As a result, the input for the deep learning cnn model will be (?, 60, 41, 1).</li>
-  <li>FFT vs CQT/CQCCs:
-    <ul>
-      <li>One of another traditional way is used (Fast) Fourier Transform (FFT). This technique is extremely powerful in time-frequency analysis, however it may lack frequency resolution at lower frequencies and temporal resolution at higher frequencies. In the other hand, one of efficient methods had been found in ASV 2015 for that problem is constant Q transform (CQT). The difference is that FFT imposes the regular spaced frequency bins while CQT employs geometrically spaced frequency bins, so CQT can across the entire spectrum and then get the a higher frequency resolution at lower frequencies and higher temporal resolution at higher frequencies. With this technique, it reflects more precisely the human perception system. Additionally, the baseline of feature extraction is proposed from ASV 2015 has shown that it will be more efficient to combine the CQT with traditional cepstral analysis called constant Q cepstral coefficients (CQCCs).</li>
-      <li>Q factor is a measure of selectivity of each filter and is defined as a ratio between center frequency \(f_{k}\) and bandwidth \(\delta f\):
-  \[Q=\frac{f_{k}}{\delta f}\]
-        <h3 id="back-end-deep-learning-model-cnn">Back-end: Deep learning model CNN</h3>
-      </li>
-    </ul>
+  <li>Those steps above have been made by default of the framework <strong>librosa.feature.melspectrogram</strong>. There are multiple parameters (y=None, sr=22050, S=None, n_fft=2048, hop_length=512, power=2.0, <em>*kwargs) have been used in this framework. These files in the data set have the sampling rate is 16kHz, so *sr</em> need to be changed into 16000 instead of default value of 22050. Then the spectrogram is convert from amplitude to db and flattened. As a result, the log spectrogram is created in shape of (?, 60, 41, 1). Then we change the shape of log spectrogram into the shape of (?, 60, 41, 2) which is the input matrix vector for the CNN model.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  
+<span class="n">parent_dir</span> <span class="o">=</span> <span class="s">'ASVspoof2017_V2_eval'</span>
+<span class="n">features</span><span class="p">,</span><span class="n">labels</span> <span class="o">=</span> <span class="n">extract_features</span><span class="p">(</span><span class="n">parent_dir</span><span class="p">)</span>
+<span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">integer_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">array</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+<span class="n">onehot_encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">categories</span><span class="o">=</span><span class="s">'auto'</span><span class="p">,)</span>
+<span class="n">integer_encoded</span> <span class="o">=</span> <span class="n">integer_encoded</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">integer_encoded</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">integer_encoded</span><span class="p">)</span>
+      </code></pre></figure>
+
+<ul>
+  <li>The goal of this project is to identify spoof vs genuine voice. So, we define two labels for the data set and encode it with OneHot Encoder from python to get the same shape with feature extraction above (?, 2).
+    <h3 id="back-end-deep-learning-model-cnn">Back-end: Deep learning model CNN</h3>
   </li>
 </ul>
 
@@ -260,7 +274,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
     </code></pre></figure>
 
 <ul>
-  <li>Tensorflow placeholder for input and output data are defined next. A convolution function is applied with a filter size of 30 and depth of 16 (number of channels, we will get as output from convolution layer, depth as sampling rate). Next, the convolution output is flattened out for the fully connected layer input. There are 200 neurons in the fully connected layer as defined by the above configuration. The Sigmoid function is used as non-linearity in this layer. Lastly, the Softmax layer is defined to output probabilities of the class labels.</li>
+  <li>Here, we define some configuration parameters for the deep learning model with Convolutional Neural Network. So, the input</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python">  
@@ -282,7 +296,7 @@ config=TeX-AMS-MML_HTMLorMML"></script>
     </code></pre></figure>
 
 <ul>
-  <li>The negative log-likelihood cost function will be minimised using Adam optimizer, the code provided below initialize cost function and optimizer. Also, define the code for accuracy calculation of the prediction by model.</li>
+  <li>Tensorflow placeholder for input and output data are defined next. A convolution function is applied with a filter size of 30 and depth of 16 (number of channels, we will get as output from convolution layer). Next, the convolution output is flattened out for the fully connected layer input. There are 200 neurons in the fully connected layer as defined by the above configuration. The Sigmoid function is used as non-linearity in this layer. Lastly, the Softmax layer is defined to output probabilities of the class labels.</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python">  
@@ -293,32 +307,50 @@ config=TeX-AMS-MML_HTMLorMML"></script>
     </code></pre></figure>
 
 <ul>
-  <li>Now the following code will train the CNN model using a batch size of 50 for 2000 iterations. After the training, it classifies testing set and prints out the achieved accuracy of the model along with plotting cost as a function of a number of iterations.</li>
+  <li>The negative log-likelihood cost function will be minimised using Adam optimizer, the code provided below initialize cost function and optimizer. Also, define the code for accuracy calculation of the prediction by model.</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python">  
-<span class="n">cost_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-    <span class="n">tf</span><span class="o">.</span><span class="n">initialize_all_variables</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-
-    <span class="k">for</span> <span class="n">itr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_iterations</span><span class="p">):</span>    
-        <span class="n">offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">itr</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">tr_labels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">batch_size</span><span class="p">)</span>
-        <span class="n">batch_x</span> <span class="o">=</span> <span class="n">tr_features</span><span class="p">[</span><span class="n">offset</span><span class="p">:(</span><span class="n">offset</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">),</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
-        <span class="n">batch_y</span> <span class="o">=</span> <span class="n">tr_labels</span><span class="p">[</span><span class="n">offset</span><span class="p">:(</span><span class="n">offset</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">),</span> <span class="p">:]</span>
-        
-        <span class="n">_</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">loss</span><span class="p">],</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">Y</span> <span class="p">:</span> <span class="n">batch_y</span><span class="p">})</span>
-        <span class="n">cost_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost_history</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
-    
-    <span class="k">print</span><span class="p">(</span><span class="s">'Test accuracy: '</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">ts_features</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">ts_labels</span><span class="p">})</span> <span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cost_history</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">total_iterations</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">cost_history</span><span class="p">)])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    </code></pre></figure>
+  <span class="n">cost_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+  <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+      <span class="n">tf</span><span class="o">.</span><span class="n">initialize_all_variables</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+  
+      <span class="k">for</span> <span class="n">itr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_iterations</span><span class="p">):</span>    
+          <span class="n">offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">itr</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">tr_labels</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">batch_size</span><span class="p">)</span>
+          <span class="n">batch_x</span> <span class="o">=</span> <span class="n">tr_features</span><span class="p">[</span><span class="n">offset</span><span class="p">:(</span><span class="n">offset</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">),</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+          <span class="n">batch_y</span> <span class="o">=</span> <span class="n">tr_labels</span><span class="p">[</span><span class="n">offset</span><span class="p">:(</span><span class="n">offset</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">),</span> <span class="p">:]</span>
+          
+          <span class="n">_</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">loss</span><span class="p">],</span><span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">Y</span> <span class="p">:</span> <span class="n">batch_y</span><span class="p">})</span>
+          <span class="n">cost_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost_history</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+      
+      <span class="k">print</span><span class="p">(</span><span class="s">'Test accuracy: '</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="n">ts_features</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">ts_labels</span><span class="p">})</span> <span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+      <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cost_history</span><span class="p">)</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">total_iterations</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">cost_history</span><span class="p">)])</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+      </code></pre></figure>
 
 <ul>
+  <li>Now the following code will train the CNN model using a batch size of 50 for 2000 iterations. After the training, it classifies testing set and prints out the achieved accuracy of the model along with plotting cost as a function of a number of iterations.</li>
   <li>The accuracy achieved around 90%.</li>
 </ul>
+
+<p>Source:</p>
+
+<p><a href="https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html">Speech processing</a></p>
+
+<p><a href="http://www.fon.hum.uva.nl/praat/manual/band_filtering_in_the_frequency_domain.html">Band filtering in the frequency domain</a></p>
+
+<p><a href="http://aqibsaeed.github.io/2016-09-03-urban-sound-classification-part-1/">urban sound classification - part 1</a></p>
+
+<p><a href="http://aqibsaeed.github.io/2016-09-24-urban-sound-classification-part-2/">urban sound classification - part 2</a></p>
+
+<p><a href="http://cs231n.github.io/convolutional-networks/">Convolutional Neural Networks</a></p>
+
+<p><a href="https://www.mathworks.com/help/audio/ref/melspectrogram.html">Mel-Spectrogram</a></p>
+
+<p><a href="http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/">Mel Frequency Cepstral Coefficient (MFCC)</a></p>
+
 
 
 					<div class="post-share">
