@@ -154,6 +154,9 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
       {% endhighlight %}
 * Now the following code will train the CNN model using a batch size of 50 for 2000 iterations. After the training, it classifies testing set and prints out the achieved accuracy of the model along with plotting cost as a function of a number of iterations.
 * The accuracy achieved around 90%.
+### Future work:
+* In my next step, I will try to implement different method for audio pre-processing to extract useful features from the audio files such as Constant Q cepstral coefficients (CQCCs), MFCCs, LCNNs. 
+* Beck-end: I will try to add more fully connected layers and use other different models such RNN, fastAI to compare the accuracy between them. 
 
 Source: 
 
