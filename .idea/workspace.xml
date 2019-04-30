@@ -67,7 +67,7 @@
         <counts>
           <entry key="Gemfile" value="8" />
           <entry key="html" value="72" />
-          <entry key="markdown" value="39702" />
+          <entry key="markdown" value="40084" />
           <entry key="md" value="279" />
           <entry key="rmarkdown" value="2" />
           <entry key="yml" value="146" />
@@ -76,7 +76,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="72" />
-          <entry key="Markdown" value="39981" />
+          <entry key="Markdown" value="40363" />
           <entry key="PLAIN_TEXT" value="10" />
           <entry key="YAML" value="146" />
         </counts>
@@ -92,8 +92,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-04-29-voice-classification-spoof-vs-genuine.markdown">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="290">
-                <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+              <first_editor relative-caret-position="-764">
+                <caret line="109" column="189" selection-start-line="109" selection-start-column="189" selection-end-line="109" selection-end-column="189" />
               </first_editor>
               <second_editor />
             </state>
@@ -281,12 +281,12 @@
       <workItem from="1554206020491" duration="900000" />
       <workItem from="1554216843731" duration="191000" />
       <workItem from="1556564199721" duration="1222000" />
-      <workItem from="1556567648817" duration="7085000" />
+      <workItem from="1556567648817" duration="7499000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185244000" />
+    <option name="totallyTimeSpent" value="185658000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -575,8 +575,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2019-04-29-voice-classification-spoof-vs-genuine.markdown">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="290">
-            <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+          <first_editor relative-caret-position="-764">
+            <caret line="109" column="189" selection-start-line="109" selection-start-column="189" selection-end-line="109" selection-end-column="189" />
           </first_editor>
           <second_editor />
         </state>

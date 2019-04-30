@@ -107,7 +107,7 @@ num_hidden = 200
 learning_rate = 0.01
 training_iterations = 2000
     {% endhighlight %}
-* Here, we define some configuration parameters for the deep learning model with Convolutional Neural Network. So, the input 
+* Here, we define some configuration parameters for the deep learning model with Convolutional Neural Network as kernel size, total iterations, a number of neurons in the hidden layer, etc.
   {% highlight python %}  
 X = tf.placeholder(tf.float32, shape=[None,bands,frames,num_channels])
 Y = tf.placeholder(tf.float32, shape=[None,num_labels])
